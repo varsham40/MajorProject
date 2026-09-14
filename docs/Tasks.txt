@@ -1,0 +1,39 @@
+1. In records section for doctor should have 2 sections: only records of patients treated by him and then shared records tab where he accessed patient records through token from other hospital patients 
+
+2. Instead of new patient registration for doctor, we should do an appointment system like patient logs in and then based on availability he asks for an appointment and then based on doctor availability appointement in a hospital is scheduled and then patient shares all the records and necessary details then doctor logins in and checks his appointments scheduled and then enters the appointement id of patient and then sees the reports and detaijls and enters it in form like we kept now for analysisng the disesase like bmi,glucosse,bp,insulin etc shd be asked to fill based on disease selected and option to upload any reports for analysis    so doctor fills them and analysis prediction and report will be generated .SO when report is generated doctor will share to that patient . so we shd remove new patient registration feature and add appointment scheduling feature.
+
+3. In records or patients and dashboards the doctor shd see only the patients treated by him or the patients he received through access tokens..but not all the patients present in the system and in dashboard also analytics shd be dynamic as per only that doctors profile and treatements but not overall system patients and models.
+
+4. Add appointment scheduling feature in correct manner in suitable way to the patient in the navbar and make the entire page working and add all necessary features there which are working
+ 
+5.Whenver through the access token if someone else are trying to access the patients reports somehow then the patient shd recienve an alert in notficiation section that it is being shared to someone whom u didn't give access and immediately it shd block them..so the notifications shd be dynamic for patients.
+
+6.For doctors tab also if in so and so time the appointement or access tokens are received then a notfications,reminders shd come to doctor that u have so and so patient anlysis scheduled now or recived token from this patient and hospital like that . SO notifications shd be dynamic.
+
+
+Remove all filter
+
+For Patients page - status should be shared access, treated by me, scheduled by me, rejected by me
+
+Now when a doctor click on particular patient record in the patients page, he need to view the record for the actual analysis that doctor made and if that patient sent any report from other doctor analysis. So while displaying records upon clicking view details from the patients page I need to view the reports rows for that particular patient with a column added with name "relation" - either treated or shared.
+
+
+Now, let's focus on the patient token access sharing. In this when the patient create the report access token for a particular doctor to give access to particular document then make sure that token is shown in the notifications tab for the doctor upon clicking that notifications icon that provides the details of what report is being shared and by which patients and which doctor of which hospital treated it. So that the current doctor can use that token to unlock the report sent by the patient. We need to refine this properly so that either when the current doctor want to access that report from the patients view details record or from the records page of doctor under shared-access token records we made blur for the reports that are shared but not unlocked now when the doctor click on the unlock button near these blurred report that doctor need to redirect to Reed Patient Token page and only after entering valid token from the notification he need to unlock the report and view the preview of the report in that page and at the same time that particular report should be unblurred everywhere for that doctor since he verified with token
+
+
+NEW:
+=========
+In doctor remove new patient button in overview 
+
+Medical Report parsing and extraction of details into a form that holds the values for each medical field
+
+Allow Hospitals to set the working time and the slots availability for their doctors
+
+Number of pregnancies to 0 for male by default and also be 0 for female which can be changed
+
+Update MyHealth based on all the test results for the patients
+
+Now when the doctor receive any report shared by patient then the doctor should have the option to perform the analysis to extend that analysis and both the results should be put together
+now everyrecord generated shd be stored in blockchain
+
+admin,hosptials and blockchain features shd be fixed.Hosptials shd have details of patients,doctors and handle about doctors schedule,avalibaliities,integrity of records. 

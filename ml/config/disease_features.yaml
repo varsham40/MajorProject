@@ -1,0 +1,503 @@
+diabetes:
+  disease_name: "Diabetes"
+  dataset_path: "datasets/Kaggle/diabetes.csv"
+  target_column: "Outcome"
+  positive_label: 1
+  features:
+    - name: "Pregnancies"
+      label: "Pregnancies"
+      type: "int"
+      unit: "count"
+      min: 0
+      max: 20
+    - name: "Glucose"
+      label: "Glucose Level"
+      type: "float"
+      unit: "mg/dL"
+      min: 0
+      max: 300
+    - name: "BloodPressure"
+      label: "Blood Pressure"
+      type: "float"
+      unit: "mmHg"
+      min: 0
+      max: 200
+    - name: "SkinThickness"
+      label: "Skin Thickness"
+      type: "float"
+      unit: "mm"
+      min: 0
+      max: 100
+    - name: "Insulin"
+      label: "Insulin Level"
+      type: "float"
+      unit: "mu U/ml"
+      min: 0
+      max: 900
+    - name: "BMI"
+      label: "Body Mass Index (BMI)"
+      type: "float"
+      unit: "kg/m²"
+      min: 0.0
+      max: 70.0
+    - name: "DiabetesPedigreeFunction"
+      label: "Diabetes Pedigree Function"
+      type: "float"
+      unit: "score"
+      min: 0.0
+      max: 3.0
+    - name: "Age"
+      label: "Age"
+      type: "int"
+      unit: "years"
+      min: 1
+      max: 120
+
+heart_disease:
+  disease_name: "Heart Disease"
+  dataset_path: "datasets/Kaggle/heart.csv"
+  target_column: "target"
+  positive_label: 0
+  features:
+    - name: "age"
+      label: "Age"
+      type: "int"
+      unit: "years"
+      min: 1
+      max: 120
+    - name: "sex"
+      label: "Sex (1 = Male, 0 = Female)"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "cp"
+      label: "Chest Pain Type (0-3)"
+      type: "int"
+      unit: "scale"
+      min: 0
+      max: 3
+    - name: "trestbps"
+      label: "Resting Blood Pressure"
+      type: "float"
+      unit: "mmHg"
+      min: 50
+      max: 250
+    - name: "chol"
+      label: "Serum Cholestoral"
+      type: "float"
+      unit: "mg/dL"
+      min: 100
+      max: 600
+    - name: "fbs"
+      label: "Fasting Blood Sugar > 120 mg/dL (1/0)"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "restecg"
+      label: "Resting ECG Results (0-2)"
+      type: "int"
+      unit: "scale"
+      min: 0
+      max: 2
+    - name: "thalach"
+      label: "Maximum Heart Rate Achieved"
+      type: "float"
+      unit: "bpm"
+      min: 60
+      max: 220
+    - name: "exang"
+      label: "Exercise Induced Angina (1/0)"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "oldpeak"
+      label: "ST Depression Induced by Exercise"
+      type: "float"
+      unit: "mm"
+      min: 0.0
+      max: 10.0
+    - name: "slope"
+      label: "Slope of Peak Exercise ST Segment (0-2)"
+      type: "int"
+      unit: "scale"
+      min: 0
+      max: 2
+    - name: "ca"
+      label: "Number of Major Vessels (0-4)"
+      type: "int"
+      unit: "count"
+      min: 0
+      max: 4
+    - name: "thal"
+      label: "Thalassemia (0-3)"
+      type: "int"
+      unit: "scale"
+      min: 0
+      max: 3
+
+kidney_disease:
+  disease_name: "Kidney Disease"
+  dataset_path: "datasets/Kaggle/Kidney/kidney_disease_train.csv"
+  target_column: "classification"
+  positive_label: "ckd"
+  features:
+    - name: "age"
+      label: "Age"
+      type: "float"
+      unit: "years"
+      min: 1
+      max: 120
+    - name: "bp"
+      label: "Blood Pressure"
+      type: "float"
+      unit: "mmHg"
+      min: 40
+      max: 200
+    - name: "sg"
+      label: "Specific Gravity"
+      type: "float"
+      unit: "ratio"
+      min: 1.000
+      max: 1.035
+    - name: "al"
+      label: "Albumin"
+      type: "float"
+      unit: "scale"
+      min: 0
+      max: 5
+    - name: "su"
+      label: "Sugar"
+      type: "float"
+      unit: "scale"
+      min: 0
+      max: 5
+    - name: "rbc"
+      label: "Red Blood Cells (normal/abnormal)"
+      type: "string"
+      unit: "categorical"
+      options: ["normal", "abnormal"]
+    - name: "pc"
+      label: "Pus Cell (normal/abnormal)"
+      type: "string"
+      unit: "categorical"
+      options: ["normal", "abnormal"]
+    - name: "pcc"
+      label: "Pus Cell Clumps (present/notpresent)"
+      type: "string"
+      unit: "categorical"
+      options: ["notpresent", "present"]
+    - name: "ba"
+      label: "Bacteria (present/notpresent)"
+      type: "string"
+      unit: "categorical"
+      options: ["notpresent", "present"]
+    - name: "bgr"
+      label: "Blood Glucose Random"
+      type: "float"
+      unit: "mgs/dl"
+      min: 20
+      max: 500
+    - name: "bu"
+      label: "Blood Urea"
+      type: "float"
+      unit: "mgs/dl"
+      min: 1
+      max: 400
+    - name: "sc"
+      label: "Serum Creatinine"
+      type: "float"
+      unit: "mgs/dl"
+      min: 0.1
+      max: 25.0
+    - name: "sod"
+      label: "Sodium"
+      type: "float"
+      unit: "mEq/L"
+      min: 80
+      max: 180
+    - name: "pot"
+      label: "Potassium"
+      type: "float"
+      unit: "mEq/L"
+      min: 2.0
+      max: 50.0
+    - name: "hemo"
+      label: "Hemoglobin"
+      type: "float"
+      unit: "gms"
+      min: 3.0
+      max: 20.0
+    - name: "pcv"
+      label: "Packed Cell Volume"
+      type: "float"
+      unit: "%"
+      min: 10
+      max: 60
+    - name: "wc"
+      label: "White Blood Cell Count"
+      type: "float"
+      unit: "cells/cumm"
+      min: 1000
+      max: 30000
+    - name: "rc"
+      label: "Red Blood Cell Count"
+      type: "float"
+      unit: "millions/cmm"
+      min: 1.0
+      max: 10.0
+    - name: "htn"
+      label: "Hypertension (yes/no)"
+      type: "string"
+      unit: "categorical"
+      options: ["no", "yes"]
+    - name: "dm"
+      label: "Diabetes Mellitus (yes/no)"
+      type: "string"
+      unit: "categorical"
+      options: ["no", "yes"]
+    - name: "cad"
+      label: "Coronary Artery Disease (yes/no)"
+      type: "string"
+      unit: "categorical"
+      options: ["no", "yes"]
+    - name: "appet"
+      label: "Appetite (good/poor)"
+      type: "string"
+      unit: "categorical"
+      options: ["good", "poor"]
+    - name: "pe"
+      label: "Pedal Edema (yes/no)"
+      type: "string"
+      unit: "categorical"
+      options: ["no", "yes"]
+    - name: "ane"
+      label: "Anemia (yes/no)"
+      type: "string"
+      unit: "categorical"
+      options: ["no", "yes"]
+
+liver_disease:
+  disease_name: "Liver Disease"
+  dataset_path: "datasets/Kaggle/indian_liver_patient.csv"
+  target_column: "Dataset"
+  positive_label: 1
+  features:
+    - name: "Age"
+      label: "Age"
+      type: "int"
+      unit: "years"
+      min: 1
+      max: 120
+    - name: "Gender"
+      label: "Gender"
+      type: "string"
+      unit: "categorical"
+      options: ["Female", "Male"]
+    - name: "Total_Bilirubin"
+      label: "Total Bilirubin"
+      type: "float"
+      unit: "mg/dL"
+      min: 0.1
+      max: 80.0
+    - name: "Direct_Bilirubin"
+      label: "Direct Bilirubin"
+      type: "float"
+      unit: "mg/dL"
+      min: 0.1
+      max: 30.0
+    - name: "Alkaline_Phosphotase"
+      label: "Alkaline Phosphatase"
+      type: "float"
+      unit: "IU/L"
+      min: 50
+      max: 2200
+    - name: "Alamine_Aminotransferase"
+      label: "Alamine Aminotransferase (ALT)"
+      type: "float"
+      unit: "IU/L"
+      min: 10
+      max: 2500
+    - name: "Aspartate_Aminotransferase"
+      label: "Aspartate Aminotransferase (AST)"
+      type: "float"
+      unit: "IU/L"
+      min: 10
+      max: 5000
+    - name: "Total_Protiens"
+      label: "Total Proteins"
+      type: "float"
+      unit: "g/dL"
+      min: 2.0
+      max: 12.0
+    - name: "Albumin"
+      label: "Albumin"
+      type: "float"
+      unit: "g/dL"
+      min: 0.5
+      max: 7.0
+    - name: "Albumin_and_Globulin_Ratio"
+      label: "Albumin / Globulin Ratio"
+      type: "float"
+      unit: "ratio"
+      min: 0.1
+      max: 3.5
+
+thyroid_disease:
+  disease_name: "Thyroid Disease"
+  dataset_path: "datasets/Kaggle/Thydroid_disease/cleaned_dataset_Thyroid1.csv"
+  target_column: "binaryClass"
+  positive_label: 1
+  features:
+    - name: "age"
+      label: "Age"
+      type: "float"
+      unit: "years"
+      min: 1
+      max: 120
+    - name: "sex"
+      label: "Sex (0 = Female, 1 = Male)"
+      type: "float"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "on thyroxine"
+      label: "On Thyroxine Medication"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "query on thyroxine"
+      label: "Query On Thyroxine"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "on antithyroid medication"
+      label: "On Antithyroid Medication"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "sick"
+      label: "Sick"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "pregnant"
+      label: "Pregnant"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "thyroid surgery"
+      label: "Thyroid Surgery History"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "I131 treatment"
+      label: "I131 Radioiodine Treatment"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "query hypothyroid"
+      label: "Query Hypothyroid"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "query hyperthyroid"
+      label: "Query Hyperthyroid"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "lithium"
+      label: "Lithium Treatment"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "goitre"
+      label: "Goitre Present"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "tumor"
+      label: "Tumor Present"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "hypopituitary"
+      label: "Hypopituitary"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "psych"
+      label: "Psychiatric History"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "TSH measured"
+      label: "TSH Measured (1/0)"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "TSH"
+      label: "TSH Level"
+      type: "float"
+      unit: "mIU/L"
+      min: 0.0
+      max: 500.0
+    - name: "T3 measured"
+      label: "T3 Measured (1/0)"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "TT4 measured"
+      label: "TT4 Measured (1/0)"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "TT4"
+      label: "TT4 Level"
+      type: "float"
+      unit: "nmol/L"
+      min: 0.0
+      max: 500.0
+    - name: "T4U measured"
+      label: "T4U Measured (1/0)"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "T4U"
+      label: "T4U Level"
+      type: "float"
+      unit: "ratio"
+      min: 0.0
+      max: 5.0
+    - name: "FTI measured"
+      label: "FTI Measured (1/0)"
+      type: "int"
+      unit: "binary"
+      min: 0
+      max: 1
+    - name: "FTI"
+      label: "Free Thyroxine Index (FTI)"
+      type: "float"
+      unit: "index"
+      min: 0.0
+      max: 500.0

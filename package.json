@@ -1,0 +1,17 @@
+{
+  "name": "ai-healthsecure-workspace",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "blockchain",
+    "frontend"
+  ],
+  "scripts": {
+    "blockchain:compile": "npm --prefix blockchain run compile",
+    "blockchain:test": "npm --prefix blockchain run test",
+    "blockchain:node": "npm --prefix blockchain run node",
+    "blockchain:deploy": "npm --prefix blockchain run deploy",
+    "frontend:dev": "npm --prefix frontend run dev",
+    "frontend:build": "npm --prefix frontend run build"
+  }
+}

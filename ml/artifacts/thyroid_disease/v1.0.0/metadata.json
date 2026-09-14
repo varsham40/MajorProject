@@ -1,0 +1,111 @@
+{
+  "disease": "Thyroid Disease",
+  "disease_key": "thyroid_disease",
+  "algorithm": "RandomForestClassifier",
+  "version": "v1.0.0",
+  "dataset_name": "cleaned_dataset_Thyroid1.csv",
+  "feature_count": 25,
+  "preprocessing_version": "v1.0",
+  "training_date": "2026-09-14T17:04:22.715110",
+  "metrics": {
+    "accuracy": 0.9974,
+    "precision": 0.9667,
+    "recall": 1.0,
+    "f1_score": 0.9831,
+    "roc_auc": 0.9998,
+    "training_samples": 3016,
+    "testing_samples": 755,
+    "duration": 0.174
+  },
+  "confusion_matrix": [
+    [
+      695,
+      2
+    ],
+    [
+      0,
+      58
+    ]
+  ],
+  "roc_curve": {
+    "fpr": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0029,
+      0.0029,
+      0.0732,
+      0.076,
+      0.1449,
+      0.1478,
+      0.1851,
+      0.1879,
+      0.1966,
+      0.2253,
+      0.2281,
+      0.2511,
+      0.2539,
+      0.2755
+    ],
+    "tpr": [
+      0.0,
+      0.0172,
+      0.0862,
+      0.1207,
+      0.1552,
+      0.931,
+      0.931,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ]
+  },
+  "feature_importance": {
+    "age": 0.0285,
+    "sex": 0.007,
+    "on thyroxine": 0.0668,
+    "query on thyroxine": 0.0009,
+    "on antithyroid medication": 0.0008,
+    "sick": 0.0012,
+    "pregnant": 0.0005,
+    "thyroid surgery": 0.016,
+    "I131 treatment": 0.001,
+    "query hypothyroid": 0.0049,
+    "query hyperthyroid": 0.0014,
+    "lithium": 0.0006,
+    "goitre": 0.0001,
+    "tumor": 0.0011,
+    "hypopituitary": 0.0002,
+    "psych": 0.001,
+    "TSH measured": 0.0026,
+    "TSH": 0.6084,
+    "T3 measured": 0.0041,
+    "TT4 measured": 0.0008,
+    "TT4": 0.1027,
+    "T4U measured": 0.0017,
+    "T4U": 0.0269,
+    "FTI measured": 0.0016,
+    "FTI": 0.1191
+  },
+  "artifact_path": "E:\\1_Final_MicroProject\\Majorproject_Varsha\\ml\\artifacts\\thyroid_disease\\v1.0.0\\model_bundle.joblib",
+  "artifacts": {
+    "joblib_bundle": "E:\\1_Final_MicroProject\\Majorproject_Varsha\\ml\\artifacts\\thyroid_disease\\v1.0.0\\model_bundle.joblib",
+    "pkl_bundle": "E:\\1_Final_MicroProject\\Majorproject_Varsha\\ml\\artifacts\\thyroid_disease\\v1.0.0\\model_bundle.pkl",
+    "model_pkl": "E:\\1_Final_MicroProject\\Majorproject_Varsha\\ml\\artifacts\\thyroid_disease\\v1.0.0\\model.pkl",
+    "scaler_pkl": "E:\\1_Final_MicroProject\\Majorproject_Varsha\\ml\\artifacts\\thyroid_disease\\v1.0.0\\scaler.pkl",
+    "shap_pkl": "E:\\1_Final_MicroProject\\Majorproject_Varsha\\ml\\artifacts\\thyroid_disease\\v1.0.0\\shap_explainer.pkl"
+  }
+}
