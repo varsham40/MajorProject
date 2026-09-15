@@ -14,7 +14,7 @@ export const AdminDashboard: React.FC = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div className="p-8 text-cyan-400 text-center font-semibold">Loading Admin System Dashboard...</div>;
+  if (loading) return <div className="p-8 text-emerald-600 text-center font-semibold">Loading Admin System Dashboard...</div>;
 
   const kpis = data?.kpis || {};
   const modelChart = data?.model_metrics_chart || [];
@@ -22,57 +22,57 @@ export const AdminDashboard: React.FC = () => {
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
       <div>
-        <h1 className="text-2xl font-extrabold text-white">System Administrator Control Center</h1>
-        <p className="text-xs text-slate-400">Global analytics, user roles, AI model performance, and Hardhat blockchain ledger audit</p>
+        <h1 className="text-2xl font-extrabold text-slate-900 font-bold">System Administrator Control Center</h1>
+        <p className="text-xs text-slate-500">Global analytics, user roles, AI model performance, and Hardhat blockchain ledger audit</p>
       </div>
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
         <div className="glass-panel p-4 rounded-xl space-y-1">
-          <div className="flex items-center justify-between text-cyan-400">
-            <span className="text-xs text-slate-400 font-medium">Patients</span>
+          <div className="flex items-center justify-between text-emerald-600">
+            <span className="text-xs text-slate-500 font-medium">Patients</span>
             <Users className="w-4 h-4" />
           </div>
-          <p className="text-2xl font-extrabold text-white">{kpis.total_patients || 0}</p>
+          <p className="text-2xl font-extrabold text-slate-900 font-bold">{kpis.total_patients || 0}</p>
         </div>
 
         <div className="glass-panel p-4 rounded-xl space-y-1">
           <div className="flex items-center justify-between text-emerald-400">
-            <span className="text-xs text-slate-400 font-medium">Doctors</span>
+            <span className="text-xs text-slate-500 font-medium">Doctors</span>
             <Stethoscope className="w-4 h-4" />
           </div>
-          <p className="text-2xl font-extrabold text-white">{kpis.total_doctors || 0}</p>
+          <p className="text-2xl font-extrabold text-slate-900 font-bold">{kpis.total_doctors || 0}</p>
         </div>
 
         <div className="glass-panel p-4 rounded-xl space-y-1">
           <div className="flex items-center justify-between text-purple-400">
-            <span className="text-xs text-slate-400 font-medium">Hospitals</span>
+            <span className="text-xs text-slate-500 font-medium">Hospitals</span>
             <Building2 className="w-4 h-4" />
           </div>
-          <p className="text-2xl font-extrabold text-white">{kpis.total_hospitals || 0}</p>
+          <p className="text-2xl font-extrabold text-slate-900 font-bold">{kpis.total_hospitals || 0}</p>
         </div>
 
         <div className="glass-panel p-4 rounded-xl space-y-1">
           <div className="flex items-center justify-between text-amber-400">
-            <span className="text-xs text-slate-400 font-medium">Medical Records</span>
+            <span className="text-xs text-slate-500 font-medium">Medical Records</span>
             <FileText className="w-4 h-4" />
           </div>
-          <p className="text-2xl font-extrabold text-white">{kpis.total_records || 0}</p>
+          <p className="text-2xl font-extrabold text-slate-900 font-bold">{kpis.total_records || 0}</p>
         </div>
 
         <div className="glass-panel p-4 rounded-xl space-y-1">
           <div className="flex items-center justify-between text-rose-400">
-            <span className="text-xs text-slate-400 font-medium">Blockchain Hash Reg</span>
+            <span className="text-xs text-slate-500 font-medium">Blockchain Hash Reg</span>
             <Lock className="w-4 h-4" />
           </div>
-          <p className="text-2xl font-extrabold text-white">{kpis.blockchain_registered || 0}</p>
+          <p className="text-2xl font-extrabold text-slate-900 font-bold">{kpis.blockchain_registered || 0}</p>
         </div>
       </div>
 
       {/* Model Performance Comparison Chart */}
       <div className="glass-panel p-6 rounded-2xl space-y-4">
-        <h2 className="text-base font-bold text-white flex items-center gap-2">
-          <Cpu className="w-5 h-5 text-cyan-400" />
+        <h2 className="text-base font-bold text-slate-900 font-bold flex items-center gap-2">
+          <Cpu className="w-5 h-5 text-emerald-600" />
           <span>Disease ML Models Metric Comparison (%) — Dynamic Database Metrics</span>
         </h2>
 

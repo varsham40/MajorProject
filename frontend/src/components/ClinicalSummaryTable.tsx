@@ -97,21 +97,21 @@ export const ClinicalSummaryTable: React.FC<Props> = ({ summaryText, shapList = 
   return (
     <div className="space-y-3.5">
       {/* 3-Bullet AI Clinical Analysis Summary Card (Matches User Screenshot) */}
-      <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs text-slate-200 leading-relaxed space-y-2 shadow-inner">
-        <div className="font-semibold text-slate-100">
+      <div className="p-4 rounded-xl bg-emerald-50/50 border border-emerald-200/60 text-xs text-slate-800 leading-relaxed space-y-2 shadow-inner">
+        <div className="font-semibold text-slate-900 font-extrabold">
           Artificial Intelligence Clinical Analysis for {diseaseName}:
         </div>
-        <ul className="space-y-1.5 text-slate-300 list-disc list-inside pl-1">
+        <ul className="space-y-1.5 text-slate-700 list-disc list-inside pl-1">
           <li>
-            <strong className="text-slate-200">Primary clinical contributors increasing risk:</strong>{' '}
+            <strong className="text-slate-800">Primary clinical contributors increasing risk:</strong>{' '}
             {increasingRiskFactors.length > 0 ? increasingRiskFactors.join(', ') : 'Glucose (137), BloodPressure (120), SkinThickness (50)'}.
           </li>
           <li>
-            <strong className="text-slate-200">Primary protective factors reducing risk:</strong>{' '}
+            <strong className="text-slate-800">Primary protective factors reducing risk:</strong>{' '}
             {decreasingRiskFactors.length > 0 ? decreasingRiskFactors.join(', ') : 'Pregnancies (0)'}.
           </li>
           <li>
-            <strong className="text-slate-200">SHAP Base Expected Risk Value:</strong> {baseRiskValueStr}%.
+            <strong className="text-slate-800">SHAP Base Expected Risk Value:</strong> {baseRiskValueStr}%.
           </li>
         </ul>
       </div>
@@ -121,42 +121,42 @@ export const ClinicalSummaryTable: React.FC<Props> = ({ summaryText, shapList = 
         <div className="space-y-3">
           <button
             onClick={() => setShowTable(!showTable)}
-            className="text-[11px] font-bold text-cyan-400 hover:text-cyan-300 underline underline-offset-4 flex items-center gap-1 transition-colors"
+            className="text-[11px] font-bold text-emerald-700 hover:text-cyan-300 underline underline-offset-4 flex items-center gap-1 transition-colors"
           >
             {showTable ? 'Hide Full Lab Parameter Table ▲' : 'View Full Lab Parameter Table ▼'}
           </button>
 
           {showTable && (
-            <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950/90 shadow-xl transition-all">
+            <div className="overflow-x-auto rounded-xl border border-slate-200/80 bg-white shadow-xl transition-all">
               <table className="w-full text-xs text-left border-collapse">
-                <thead className="bg-slate-900 border-b border-slate-800 text-cyan-400 font-extrabold uppercase text-[10px] tracking-wider">
+                <thead className="bg-slate-50 border-b border-slate-200/80 text-emerald-700 font-extrabold uppercase text-[10px] tracking-wider">
                   <tr>
-                    <th className="py-2.5 px-3.5 w-[24%] border-r border-slate-800/60">{headers[0]}</th>
-                    <th className="py-2.5 px-3.5 w-[26%] border-r border-slate-800/60">{headers[1]}</th>
+                    <th className="py-2.5 px-3.5 w-[24%] border-r border-slate-200/80/60">{headers[0]}</th>
+                    <th className="py-2.5 px-3.5 w-[26%] border-r border-slate-200/80/60">{headers[1]}</th>
                     <th className="py-2.5 px-3.5 w-[50%]">{headers[2]}</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/50 text-slate-200">
+                <tbody className="divide-y divide-slate-800/50 text-slate-800">
                   {rows.map((row, rIdx) => {
                     const isRiskVal = checkIsRiskValue(row);
 
                     return (
-                      <tr key={rIdx} className="bg-slate-950/40 hover:bg-slate-900/50 transition-colors">
-                        <td className="py-2.5 px-3.5 font-bold text-slate-200 border-r border-slate-800/40 w-[24%]">
+                      <tr key={rIdx} className="bg-white hover:bg-slate-50/50 transition-colors">
+                        <td className="py-2.5 px-3.5 font-bold text-slate-800 border-r border-slate-200/80/40 w-[24%]">
                           {row[0]}
                         </td>
 
-                        <td className="py-2.5 px-3.5 border-r border-slate-800/40 w-[26%]">
+                        <td className="py-2.5 px-3.5 border-r border-slate-200/80/40 w-[26%]">
                           <span className={`inline-block font-mono font-bold text-[11px] px-2.5 py-1 rounded-md border ${
                             isRiskVal
                               ? 'bg-rose-500/15 text-rose-400 border-rose-500/30'
-                              : 'bg-slate-900 text-cyan-400 border-slate-700/80'
+                              : 'bg-slate-50 text-emerald-700 border-slate-200'
                           }`}>
                             {row[1]}
                           </span>
                         </td>
 
-                        <td className="py-2.5 px-3.5 leading-relaxed text-slate-300 w-[50%] text-xs">
+                        <td className="py-2.5 px-3.5 leading-relaxed text-slate-700 w-[50%] text-xs">
                           {highlightRiskKeywords(row[2])}
                         </td>
                       </tr>

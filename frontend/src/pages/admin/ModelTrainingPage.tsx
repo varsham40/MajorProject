@@ -76,19 +76,19 @@ export const ModelTrainingPage: React.FC = () => {
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
       <div>
-        <h1 className="text-2xl font-extrabold text-white">AI Model Training & Optimization Studio</h1>
-        <p className="text-xs text-slate-400">Train across 6 top clinical ML algorithms, evaluate performance, and generate .pkl artifacts</p>
+        <h1 className="text-2xl font-extrabold text-slate-900 font-bold">AI Model Training & Optimization Studio</h1>
+        <p className="text-xs text-slate-500">Train across 6 top clinical ML algorithms, evaluate performance, and generate .pkl artifacts</p>
       </div>
 
       {/* Training Control Panel */}
-      <div className="glass-panel p-6 rounded-2xl border border-slate-800 space-y-6">
-        <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
-          <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+      <div className="glass-panel p-6 rounded-2xl border border-slate-200/80 space-y-6">
+        <div className="flex items-center gap-3 border-b border-slate-200/80 pb-4">
+          <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-emerald-600">
             <Cpu className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-lg font-bold text-white">Multi-Algorithm Model Trainer</h2>
-            <p className="text-xs text-slate-400">Select algorithm, pick dataset, and re-train model weights</p>
+            <h2 className="text-lg font-bold text-slate-900 font-bold">Multi-Algorithm Model Trainer</h2>
+            <p className="text-xs text-slate-500">Select algorithm, pick dataset, and re-train model weights</p>
           </div>
         </div>
 
@@ -103,11 +103,11 @@ export const ModelTrainingPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Disease Selector */}
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-300">Target Disease Model</label>
+              <label className="text-xs font-semibold text-slate-600">Target Disease Model</label>
               <select
                 value={selectedDisease}
                 onChange={(e) => setSelectedDisease(e.target.value)}
-                className="w-full bg-dark-800 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-500"
+                className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 font-bold focus:outline-none focus:border-cyan-500"
               >
                 {diseases.map(d => (
                   <option key={d.key} value={d.key}>{d.name}</option>
@@ -117,11 +117,11 @@ export const ModelTrainingPage: React.FC = () => {
 
             {/* Algorithm Selector */}
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-300">ML Algorithm Architecture</label>
+              <label className="text-xs font-semibold text-slate-600">ML Algorithm Architecture</label>
               <select
                 value={algorithm}
                 onChange={(e) => setAlgorithm(e.target.value)}
-                className="w-full bg-dark-800 border border-slate-700/80 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-cyan-500"
+                className="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-900 font-bold focus:outline-none focus:border-cyan-500"
               >
                 {algorithms.map(a => (
                   <option key={a.id} value={a.id}>{a.name}</option>
@@ -131,15 +131,15 @@ export const ModelTrainingPage: React.FC = () => {
 
             {/* Dataset Mode Selector */}
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-300">Dataset Source</label>
+              <label className="text-xs font-semibold text-slate-600">Dataset Source</label>
               <div className="grid grid-cols-2 gap-2">
                 <button
                   type="button"
                   onClick={() => setDatasetMode('default')}
                   className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all border ${
                     datasetMode === 'default'
-                      ? 'bg-cyan-500/20 text-cyan-400 border-cyan-500/40'
-                      : 'bg-dark-800 text-slate-400 border-slate-700/60'
+                      ? 'bg-cyan-500/20 text-emerald-600 border-cyan-500/40'
+                      : 'bg-white text-slate-500 border-slate-200/60'
                   }`}
                 >
                   Default Dataset
@@ -149,8 +149,8 @@ export const ModelTrainingPage: React.FC = () => {
                   onClick={() => setDatasetMode('custom')}
                   className={`py-2.5 px-3 rounded-xl text-xs font-bold transition-all border ${
                     datasetMode === 'custom'
-                      ? 'bg-cyan-500/20 text-cyan-400 border-cyan-500/40'
-                      : 'bg-dark-800 text-slate-400 border-slate-700/60'
+                      ? 'bg-cyan-500/20 text-emerald-600 border-cyan-500/40'
+                      : 'bg-white text-slate-500 border-slate-200/60'
                   }`}
                 >
                   Upload CSV
@@ -161,9 +161,9 @@ export const ModelTrainingPage: React.FC = () => {
 
           {/* Custom File Upload Box */}
           {datasetMode === 'custom' && (
-            <div className="p-4 rounded-xl bg-dark-800/60 border border-dashed border-slate-700 space-y-2">
-              <label className="text-xs font-semibold text-slate-300 flex items-center gap-2">
-                <Upload className="w-4 h-4 text-cyan-400" />
+            <div className="p-4 rounded-xl bg-white/60 border border-dashed border-slate-200 space-y-2">
+              <label className="text-xs font-semibold text-slate-600 flex items-center gap-2">
+                <Upload className="w-4 h-4 text-emerald-600" />
                 <span>Upload Custom Dataset CSV File</span>
               </label>
               <input
@@ -171,7 +171,7 @@ export const ModelTrainingPage: React.FC = () => {
                 accept=".csv"
                 required
                 onChange={(e) => setCustomFile(e.target.files?.[0] || null)}
-                className="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-cyan-500/20 file:text-cyan-400 hover:file:bg-cyan-500/30 cursor-pointer"
+                className="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-cyan-500/20 file:text-emerald-600 hover:file:bg-cyan-500/30 cursor-pointer"
               />
               {customFile && (
                 <p className="text-[11px] text-emerald-400 font-mono">
@@ -185,7 +185,7 @@ export const ModelTrainingPage: React.FC = () => {
           <button
             type="submit"
             disabled={training}
-            className="px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-dark-900 font-extrabold text-sm shadow-lg shadow-cyan-500/25 flex items-center gap-2 disabled:opacity-50"
+            className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-dark-900 font-extrabold text-sm shadow-lg shadow-cyan-500/25 flex items-center gap-2 disabled:opacity-50"
           >
             {training ? (
               <>
@@ -209,39 +209,39 @@ export const ModelTrainingPage: React.FC = () => {
                 <CheckCircle2 className="w-5 h-5" />
                 <span>{trainingResult.message}</span>
               </div>
-              <span className="text-xs text-slate-400 font-mono">
+              <span className="text-xs text-slate-500 font-mono">
                 Duration: {trainingResult.metrics?.duration}s
               </span>
             </div>
 
             {/* Metrics Badge Grid */}
             <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-              <div className="p-3 rounded-xl bg-dark-900/60 border border-emerald-500/20 text-center">
-                <p className="text-[10px] text-slate-400 font-medium">Accuracy</p>
+              <div className="p-3 rounded-xl bg-[#f4f7f6]/60 border border-emerald-500/20 text-center">
+                <p className="text-[10px] text-slate-500 font-medium">Accuracy</p>
                 <p className="text-base font-extrabold text-emerald-400">
                   {((trainingResult.metrics?.accuracy || 0) * 100).toFixed(1)}%
                 </p>
               </div>
-              <div className="p-3 rounded-xl bg-dark-900/60 border border-emerald-500/20 text-center">
-                <p className="text-[10px] text-slate-400 font-medium">Precision</p>
+              <div className="p-3 rounded-xl bg-[#f4f7f6]/60 border border-emerald-500/20 text-center">
+                <p className="text-[10px] text-slate-500 font-medium">Precision</p>
                 <p className="text-base font-extrabold text-emerald-400">
                   {((trainingResult.metrics?.precision || 0) * 100).toFixed(1)}%
                 </p>
               </div>
-              <div className="p-3 rounded-xl bg-dark-900/60 border border-emerald-500/20 text-center">
-                <p className="text-[10px] text-slate-400 font-medium">Recall</p>
+              <div className="p-3 rounded-xl bg-[#f4f7f6]/60 border border-emerald-500/20 text-center">
+                <p className="text-[10px] text-slate-500 font-medium">Recall</p>
                 <p className="text-base font-extrabold text-emerald-400">
                   {((trainingResult.metrics?.recall || 0) * 100).toFixed(1)}%
                 </p>
               </div>
-              <div className="p-3 rounded-xl bg-dark-900/60 border border-emerald-500/20 text-center">
-                <p className="text-[10px] text-slate-400 font-medium">F1 Score</p>
+              <div className="p-3 rounded-xl bg-[#f4f7f6]/60 border border-emerald-500/20 text-center">
+                <p className="text-[10px] text-slate-500 font-medium">F1 Score</p>
                 <p className="text-base font-extrabold text-emerald-400">
                   {((trainingResult.metrics?.f1_score || 0) * 100).toFixed(1)}%
                 </p>
               </div>
-              <div className="p-3 rounded-xl bg-dark-900/60 border border-emerald-500/20 text-center">
-                <p className="text-[10px] text-slate-400 font-medium">ROC-AUC</p>
+              <div className="p-3 rounded-xl bg-[#f4f7f6]/60 border border-emerald-500/20 text-center">
+                <p className="text-[10px] text-slate-500 font-medium">ROC-AUC</p>
                 <p className="text-base font-extrabold text-emerald-400">
                   {((trainingResult.metrics?.roc_auc || 0) * 100).toFixed(1)}%
                 </p>
@@ -250,15 +250,15 @@ export const ModelTrainingPage: React.FC = () => {
 
             {/* Generated Artifact Paths */}
             <div className="space-y-1.5 text-xs">
-              <p className="font-semibold text-slate-300 flex items-center gap-1.5">
-                <FileCheck className="w-4 h-4 text-cyan-400" />
+              <p className="font-semibold text-slate-600 flex items-center gap-1.5">
+                <FileCheck className="w-4 h-4 text-emerald-600" />
                 <span>Exported Model Artifact Files (.pkl & .joblib):</span>
               </p>
-              <div className="bg-dark-900/80 p-3 rounded-xl border border-slate-800 font-mono text-[11px] text-slate-300 space-y-1">
-                <p><span className="text-cyan-400">model.pkl:</span> {trainingResult.artifacts_saved?.model_pkl}</p>
-                <p><span className="text-cyan-400">scaler.pkl:</span> {trainingResult.artifacts_saved?.scaler_pkl}</p>
-                <p><span className="text-cyan-400">shap_explainer.pkl:</span> {trainingResult.artifacts_saved?.shap_pkl}</p>
-                <p><span className="text-cyan-400">model_bundle.joblib:</span> {trainingResult.artifacts_saved?.joblib_bundle}</p>
+              <div className="bg-[#f4f7f6]/80 p-3 rounded-xl border border-slate-200/80 font-mono text-[11px] text-slate-600 space-y-1">
+                <p><span className="text-emerald-600">model.pkl:</span> {trainingResult.artifacts_saved?.model_pkl}</p>
+                <p><span className="text-emerald-600">scaler.pkl:</span> {trainingResult.artifacts_saved?.scaler_pkl}</p>
+                <p><span className="text-emerald-600">shap_explainer.pkl:</span> {trainingResult.artifacts_saved?.shap_pkl}</p>
+                <p><span className="text-emerald-600">model_bundle.joblib:</span> {trainingResult.artifacts_saved?.joblib_bundle}</p>
               </div>
             </div>
           </div>
@@ -266,22 +266,22 @@ export const ModelTrainingPage: React.FC = () => {
       </div>
 
       {/* Model Training History Table */}
-      <div className="glass-panel rounded-2xl overflow-hidden border border-slate-800 space-y-4">
-        <div className="p-5 border-b border-slate-800/80 flex items-center justify-between">
+      <div className="glass-panel rounded-2xl overflow-hidden border border-slate-200/80 space-y-4">
+        <div className="p-5 border-b border-slate-200/80 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Database className="w-5 h-5 text-cyan-400" />
-            <h2 className="font-bold text-white text-base">Model Training History</h2>
+            <Database className="w-5 h-5 text-emerald-600" />
+            <h2 className="font-bold text-slate-800 text-base">Model Training History</h2>
           </div>
-          <span className="text-xs text-slate-400">{runs.length} Runs Recorded</span>
+          <span className="text-xs text-slate-500">{runs.length} Runs Recorded</span>
         </div>
 
         {loadingHistory ? (
-          <div className="p-8 text-center text-cyan-400 text-xs font-semibold">Loading Training History...</div>
+          <div className="p-8 text-center text-emerald-600 text-xs font-semibold">Loading Training History...</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-xs text-left">
               <thead>
-                <tr className="border-b border-slate-800 text-slate-400 bg-dark-800/50">
+                <tr className="border-b border-slate-200/80 text-slate-500 bg-white/50">
                   <th className="py-3 px-4">Disease Model</th>
                   <th className="py-3 px-4">Dataset Name</th>
                   <th className="py-3 px-4">Train / Test Samples</th>
@@ -295,20 +295,20 @@ export const ModelTrainingPage: React.FC = () => {
               </thead>
               <tbody className="divide-y divide-slate-800/60">
                 {runs.map((r) => (
-                  <tr key={r.id} className="hover:bg-slate-800/30 transition-colors">
-                    <td className="py-3.5 px-4 font-bold text-white">{r.disease}</td>
-                    <td className="py-3.5 px-4 font-mono text-cyan-400">{r.dataset_name}</td>
-                    <td className="py-3.5 px-4 text-slate-300">{r.training_samples} / {r.testing_samples}</td>
+                  <tr key={r.id} className="hover:bg-slate-100/30 transition-colors">
+                    <td className="py-3.5 px-4 font-bold text-slate-900 font-bold">{r.disease}</td>
+                    <td className="py-3.5 px-4 font-mono text-emerald-600">{r.dataset_name}</td>
+                    <td className="py-3.5 px-4 text-slate-600">{r.training_samples} / {r.testing_samples}</td>
                     <td className="py-3.5 px-4 font-bold text-emerald-400">{((r.accuracy || 0) * 100).toFixed(1)}%</td>
-                    <td className="py-3.5 px-4 text-slate-300">{((r.f1_score || 0) * 100).toFixed(1)}%</td>
-                    <td className="py-3.5 px-4 text-slate-300">{((r.roc_auc || 0) * 100).toFixed(1)}%</td>
-                    <td className="py-3.5 px-4 text-slate-400">{r.training_duration}s</td>
+                    <td className="py-3.5 px-4 text-slate-600">{((r.f1_score || 0) * 100).toFixed(1)}%</td>
+                    <td className="py-3.5 px-4 text-slate-600">{((r.roc_auc || 0) * 100).toFixed(1)}%</td>
+                    <td className="py-3.5 px-4 text-slate-500">{r.training_duration}s</td>
                     <td className="py-3.5 px-4">
                       <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-400">
                         {r.status}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 text-right text-slate-400">{r.created_at}</td>
+                    <td className="py-3.5 px-4 text-right text-slate-500">{r.created_at}</td>
                   </tr>
                 ))}
               </tbody>

@@ -197,7 +197,7 @@ export const DoctorAppointmentsPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-white flex items-center gap-3">My Scheduled Appointments         <div className="flex items-center gap-3">
+          <h1 className="text-3xl font-extrabold text-slate-900 font-bold flex items-center gap-3">My Scheduled Appointments         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsSlotModalOpen(true)}
             className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 font-extrabold text-xs shadow-lg shadow-emerald-500/20 flex items-center gap-2 hover:opacity-90 transition cursor-pointer"
@@ -206,7 +206,7 @@ export const DoctorAppointmentsPage: React.FC = () => {
             <span>Manage Slot Availability</span>
           </button>
         </div></h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1">
             Review patient appointment requests, accept/reject slots, and conduct AI clinical disease diagnosis.
           </p>
         </div>
@@ -218,13 +218,13 @@ export const DoctorAppointmentsPage: React.FC = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by code, patient, disease..."
-            className="bg-slate-900 border border-slate-700 rounded-xl pl-10 pr-4 py-2 text-xs text-white focus:outline-none focus:border-cyan-500"
+            className="bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-900 font-bold focus:outline-none focus:border-cyan-500"
           />
         </div>
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-slate-900/80 border border-slate-800 w-fit text-xs overflow-x-auto">
+      <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-white border border-slate-200/80 w-fit text-xs overflow-x-auto">
         {(['SCHEDULED', 'ACCEPTED', 'COMPLETED', 'REJECTED'] as const).map((t) => (
           <button
             key={t}
@@ -232,7 +232,7 @@ export const DoctorAppointmentsPage: React.FC = () => {
             className={`px-4 py-2 rounded-xl font-bold transition-all ${
               filter === t 
                 ? 'bg-cyan-500 text-slate-950 shadow-md' 
-                : 'text-slate-400 hover:text-white'
+                : 'text-slate-500 hover:text-slate-900'
             }`}
           >
             {t === 'SCHEDULED' ? 'Pending' : t.charAt(0) + t.slice(1).toLowerCase()} ({
@@ -244,17 +244,17 @@ export const DoctorAppointmentsPage: React.FC = () => {
 
       {/* Appointments Grid */}
       {loading ? (
-        <div className="flex flex-col items-center justify-center py-20 text-slate-400 space-y-4">
+        <div className="flex flex-col items-center justify-center py-20 text-slate-500 space-y-4">
           <div className="w-10 h-10 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin" />
           <p className="text-sm font-medium">Fetching scheduled appointments...</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filtered.map((apt) => (
-            <div key={apt.id} className="bg-slate-900/60 hover:bg-slate-900/90 p-6 rounded-2xl space-y-4 border border-slate-800 flex flex-col justify-between hover:border-slate-700 transition-all shadow-xl">
+            <div key={apt.id} className="bg-white hover:bg-white p-6 rounded-2xl space-y-4 border border-slate-200/80 flex flex-col justify-between hover:border-slate-200 transition-all shadow-xl">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 font-mono text-xs font-bold">
+                  <span className="px-3 py-1 rounded-full bg-cyan-500/10 text-emerald-600 border border-cyan-500/30 font-mono text-xs font-bold">
                     {apt.appointment_code}
                   </span>
                   
@@ -269,44 +269,44 @@ export const DoctorAppointmentsPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-lg font-extrabold text-white flex items-center gap-2">
-                    <User className="w-4 h-4 text-cyan-400" />
+                  <h3 className="text-lg font-extrabold text-slate-900 font-bold flex items-center gap-2">
+                    <User className="w-4 h-4 text-emerald-600" />
                     <span>{apt.patient_name || 'Patient Profile'}</span>
                   </h3>
-                  <p className="text-xs font-mono text-slate-400 mt-0.5">Code: {apt.patient_code}</p>
+                  <p className="text-xs font-mono text-slate-500 mt-0.5">Code: {apt.patient_code}</p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 space-y-2 text-xs">
-                  <div className="flex justify-between text-slate-400">
-                    <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5 text-cyan-400" /> Date:</span>
-                    <span className="text-slate-200 font-semibold">{apt.appointment_date}</span>
+                <div className="p-3.5 rounded-xl bg-[#f4f7f6]/60 border border-slate-200/80 space-y-2 text-xs">
+                  <div className="flex justify-between text-slate-500">
+                    <span className="flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5 text-emerald-600" /> Date:</span>
+                    <span className="text-slate-700 font-semibold">{apt.appointment_date}</span>
                   </div>
-                  <div className="flex justify-between text-slate-400">
+                  <div className="flex justify-between text-slate-500">
                     <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-teal-400" /> Slot:</span>
-                    <span className="text-slate-200 font-semibold">{apt.appointment_time}</span>
+                    <span className="text-slate-700 font-semibold">{apt.appointment_time}</span>
                   </div>
-                  <div className="flex justify-between text-slate-400">
+                  <div className="flex justify-between text-slate-500">
                     <span>Target Disease / Reason:</span>
                     <span className="text-emerald-400 font-bold uppercase">{apt.reason || apt.target_disease || 'General Consultation'}</span>
                   </div>
                 </div>
 
                 {apt.reason && (
-                  <div className="text-xs text-slate-400 border-l-2 border-slate-700 pl-3 py-1">
-                    <span className="text-slate-300 font-medium">Reason: </span>
+                  <div className="text-xs text-slate-500 border-l-2 border-slate-200 pl-3 py-1">
+                    <span className="text-slate-600 font-medium">Reason: </span>
                     {apt.reason}
                   </div>
                 )}
 
                 {apt.notes && (
-                  <div className="text-xs text-slate-500 italic bg-slate-950/40 p-2 rounded-lg">
+                  <div className="text-xs text-slate-500 italic bg-white p-2 rounded-lg">
                     Notes: {apt.notes}
                   </div>
                 )}
               </div>
 
               {/* Action Buttons */}
-              <div className="pt-4 border-t border-slate-800/80 flex items-center justify-between gap-2">
+              <div className="pt-4 border-t border-slate-200/80 flex items-center justify-between gap-2">
                 {apt.status === 'SCHEDULED' && (
                   <div className="w-full flex items-center gap-2">
                     <button
@@ -329,7 +329,7 @@ export const DoctorAppointmentsPage: React.FC = () => {
                 {apt.status === 'ACCEPTED' && (
                   <button
                     onClick={() => handleStartAnalysis(apt.appointment_code)}
-                    className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold text-xs shadow-md flex items-center justify-center gap-2 hover:opacity-90 transition-all"
+                    className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-slate-950 font-bold text-xs shadow-md flex items-center justify-center gap-2 hover:opacity-90 transition-all"
                   >
                     <Stethoscope className="w-4 h-4" />
                     <span>Start AI Clinical Analysis</span>
@@ -340,7 +340,7 @@ export const DoctorAppointmentsPage: React.FC = () => {
                 {apt.status === 'COMPLETED' && (
                   <button
                     onClick={() => navigate('/doctor/records')}
-                    className="w-full py-2.5 px-4 rounded-xl bg-slate-800 text-emerald-400 border border-emerald-500/30 font-bold text-xs flex items-center justify-center gap-2 hover:bg-slate-700"
+                    className="w-full py-2.5 px-4 rounded-xl bg-slate-100 text-emerald-400 border border-emerald-500/30 font-bold text-xs flex items-center justify-center gap-2 hover:bg-slate-700"
                   >
                     <CheckCircle2 className="w-4 h-4 text-emerald-400" />
                     <span>View Completed Record</span>
@@ -357,7 +357,7 @@ export const DoctorAppointmentsPage: React.FC = () => {
           ))}
 
           {filtered.length === 0 && (
-            <div className="col-span-full py-16 text-center text-slate-500 text-sm bg-slate-900/40 rounded-2xl border border-slate-800">
+            <div className="col-span-full py-16 text-center text-slate-500 text-sm bg-white rounded-2xl border border-slate-200/80">
               <Calendar className="w-12 h-12 mx-auto text-slate-600 mb-2 opacity-50" />
               No appointments found matching the current filter.
             </div>
@@ -367,37 +367,37 @@ export const DoctorAppointmentsPage: React.FC = () => {
     
       {/* Manage Slot Availability Modal */}
       {isSlotModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-fade-in">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-2xl w-full shadow-2xl space-y-5">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-white backdrop-blur-md animate-fade-in">
+          <div className="bg-white border border-slate-200/80 rounded-2xl p-6 max-w-2xl w-full shadow-2xl space-y-5">
+            <div className="flex items-center justify-between border-b border-slate-200/80 pb-3">
               <div className="flex items-center gap-2 text-emerald-400">
                 <Calendar className="w-5 h-5" />
-                <h3 className="text-base font-bold text-slate-100">Manage My Time Slot Availability</h3>
+                <h3 className="text-base font-bold text-slate-800">Manage My Time Slot Availability</h3>
               </div>
-              <button onClick={() => setIsSlotModalOpen(false)} className="p-1 text-slate-400 hover:text-white rounded-lg">
+              <button onClick={() => setIsSlotModalOpen(false)} className="p-1 text-slate-500 hover:text-slate-900 rounded-lg">
                 <X className="w-4 h-4" />
               </button>
             </div>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-950 p-3.5 rounded-xl border border-slate-800">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-[#f4f7f6] p-3.5 rounded-xl border border-slate-200/80">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-slate-300">Select Date:</span>
+                <span className="text-xs font-semibold text-slate-600">Select Date:</span>
                 <input
                   type="date"
                   min={new Date().toISOString().split('T')[0]}
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
-                  className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                  className="bg-white border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-900 font-bold focus:outline-none focus:border-cyan-500"
                 />
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-slate-300">Add Custom Flexible Time:</span>
+                <span className="text-xs font-semibold text-slate-600">Add Custom Flexible Time:</span>
                 <input
                   type="time"
                   value={customTime}
                   onChange={(e) => setCustomTime(e.target.value)}
-                  className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                  className="bg-white border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-900 font-bold focus:outline-none focus:border-cyan-500"
                 />
                 <button
                   type="button"
@@ -421,21 +421,21 @@ export const DoctorAppointmentsPage: React.FC = () => {
             <div className="flex items-center gap-4 text-xs">
               <div className="flex items-center gap-1.5">
                 <div className="w-3 h-3 bg-emerald-500 rounded"></div>
-                <span className="text-slate-300">Available</span>
+                <span className="text-slate-600">Available</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <div className="w-3 h-3 bg-amber-500 rounded"></div>
-                <span className="text-slate-300">Booked</span>
+                <span className="text-slate-600">Booked</span>
               </div>
               <div className="flex items-center gap-1.5">
-                <div className="w-3 h-3 bg-slate-800 rounded border border-slate-700"></div>
-                <span className="text-slate-400">Not Available</span>
+                <div className="w-3 h-3 bg-slate-100 rounded border border-slate-200"></div>
+                <span className="text-slate-500">Not Available</span>
               </div>
             </div>
 
             {/* Slots Grid */}
             {loadingSlots ? (
-              <div className="p-8 text-center text-xs text-cyan-400">Loading availability...</div>
+              <div className="p-8 text-center text-xs text-emerald-600">Loading availability...</div>
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5 max-h-60 overflow-y-auto">
                 {slotData.map((s: any) => {
@@ -453,7 +453,7 @@ export const DoctorAppointmentsPage: React.FC = () => {
                           ? 'bg-amber-500/10 border-amber-500/30 text-amber-400 cursor-not-allowed opacity-80'
                           : isSelected
                           ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-md'
-                          : 'bg-slate-950 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-white'
+                          : 'bg-[#f4f7f6] border-slate-200/80 text-slate-500 hover:bg-slate-100 hover:text-slate-900'
                       }`}
                     >
                       <span>{s.slot}</span>
@@ -466,10 +466,10 @@ export const DoctorAppointmentsPage: React.FC = () => {
               </div>
             )}
 
-            <div className="pt-3 border-t border-slate-800 flex justify-end gap-3">
+            <div className="pt-3 border-t border-slate-200/80 flex justify-end gap-3">
               <button
                 onClick={() => setIsSlotModalOpen(false)}
-                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs"
+                className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-700 text-slate-600 font-bold text-xs"
               >
                 Close
               </button>

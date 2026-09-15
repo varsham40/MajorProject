@@ -35,7 +35,7 @@ export const VerificationHistoryPage: React.FC = () => {
   if (loading) return (
     <div className="p-8 flex flex-col items-center justify-center space-y-3">
       <div className="w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
-      <p className="text-cyan-400 font-semibold text-sm">Loading Verification Audit Logs...</p>
+      <p className="text-emerald-600 font-semibold text-sm">Loading Verification Audit Logs...</p>
     </div>
   );
 
@@ -44,18 +44,18 @@ export const VerificationHistoryPage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white flex items-center gap-2">
-            <History className="w-6 h-6 text-cyan-400" />
+          <h1 className="text-2xl font-extrabold text-slate-900 font-bold flex items-center gap-2">
+            <History className="w-6 h-6 text-emerald-600" />
             Integrity Verification Logs & History
           </h1>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 mt-1">
             Complete audit trail of all SHA-256 vs Hardhat blockchain cryptographic verification checks
           </p>
         </div>
         <div className="flex items-center gap-2 self-start">
           <button 
             onClick={fetchHistory}
-            className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-xs font-bold text-slate-200 rounded-xl transition border border-slate-700"
+            className="px-3.5 py-2 bg-slate-100 hover:bg-slate-700 text-xs font-bold text-slate-700 rounded-xl transition border border-slate-200"
           >
             Refresh Logs
           </button>
@@ -73,17 +73,17 @@ export const VerificationHistoryPage: React.FC = () => {
 
       {/* KPI Summary Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="glass-panel p-4 rounded-2xl border border-slate-800 bg-slate-900/40">
-          <div className="flex items-center justify-between text-slate-400 text-xs font-medium">
+        <div className="glass-panel p-4 rounded-2xl border border-slate-200/80 bg-white">
+          <div className="flex items-center justify-between text-slate-500 text-xs font-medium">
             <span>Total Verification Checks</span>
-            <History className="w-4 h-4 text-cyan-400" />
+            <History className="w-4 h-4 text-emerald-600" />
           </div>
-          <p className="text-2xl font-black text-white mt-2">{history.length}</p>
-          <p className="text-[11px] text-slate-400 mt-1">Audit logs recorded across sessions</p>
+          <p className="text-2xl font-black text-slate-900 font-bold mt-2">{history.length}</p>
+          <p className="text-[11px] text-slate-500 mt-1">Audit logs recorded across sessions</p>
         </div>
 
-        <div className="glass-panel p-4 rounded-2xl border border-slate-800 bg-slate-900/40">
-          <div className="flex items-center justify-between text-slate-400 text-xs font-medium">
+        <div className="glass-panel p-4 rounded-2xl border border-slate-200/80 bg-white">
+          <div className="flex items-center justify-between text-slate-500 text-xs font-medium">
             <span>Passed Verifications</span>
             <CheckCircle2 className="w-4 h-4 text-emerald-400" />
           </div>
@@ -91,8 +91,8 @@ export const VerificationHistoryPage: React.FC = () => {
           <p className="text-[11px] text-emerald-500/80 mt-1">100% Cryptographic Match</p>
         </div>
 
-        <div className="glass-panel p-4 rounded-2xl border border-slate-800 bg-slate-900/40">
-          <div className="flex items-center justify-between text-slate-400 text-xs font-medium">
+        <div className="glass-panel p-4 rounded-2xl border border-slate-200/80 bg-white">
+          <div className="flex items-center justify-between text-slate-500 text-xs font-medium">
             <span>Tamper Alerts Detected</span>
             <AlertTriangle className="w-4 h-4 text-rose-400" />
           </div>
@@ -102,11 +102,11 @@ export const VerificationHistoryPage: React.FC = () => {
       </div>
 
       {/* Audit Log Table */}
-      <div className="glass-panel rounded-2xl overflow-hidden border border-slate-800 shadow-xl">
+      <div className="glass-panel rounded-2xl overflow-hidden border border-slate-200/80 shadow-xl">
         <div className="overflow-x-auto">
           <table className="w-full text-xs text-left">
             <thead>
-              <tr className="border-b border-slate-800 text-slate-400 bg-dark-800/80">
+              <tr className="border-b border-slate-200/80 text-slate-500 bg-white/90 border border-slate-200/80">
                 <th className="py-3.5 px-4 font-bold">Record Code</th>
                 <th className="py-3.5 px-4 font-bold">Verified By</th>
                 <th className="py-3.5 px-4 font-bold">Verdict</th>
@@ -123,9 +123,9 @@ export const VerificationHistoryPage: React.FC = () => {
                 </tr>
               ) : (
                 history.map((h) => (
-                  <tr key={h.id} className="hover:bg-slate-800/30 transition-colors">
-                    <td className="py-3.5 px-4 font-mono font-bold text-cyan-400">{h.record_code}</td>
-                    <td className="py-3.5 px-4 text-slate-200 font-sans text-xs">{h.verified_by}</td>
+                  <tr key={h.id} className="hover:bg-slate-100/30 transition-colors">
+                    <td className="py-3.5 px-4 font-mono font-bold text-emerald-600">{h.record_code}</td>
+                    <td className="py-3.5 px-4 text-slate-700 font-sans text-xs">{h.verified_by}</td>
                     <td className="py-3.5 px-4">
                       <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
                         h.result === 'MATCH' || h.result === 'VALID' 
@@ -135,10 +135,10 @@ export const VerificationHistoryPage: React.FC = () => {
                         {h.result}
                       </span>
                     </td>
-                    <td className="py-3.5 px-4 font-mono text-[11px] text-slate-400 truncate max-w-xs" title={h.current_hash}>
+                    <td className="py-3.5 px-4 font-mono text-[11px] text-slate-500 truncate max-w-xs" title={h.current_hash}>
                       {h.current_hash}
                     </td>
-                    <td className="py-3.5 px-4 text-right text-slate-400 font-sans text-[11px]">{h.verified_at}</td>
+                    <td className="py-3.5 px-4 text-right text-slate-500 font-sans text-[11px]">{h.verified_at}</td>
                   </tr>
                 ))
               )}

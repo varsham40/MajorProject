@@ -58,7 +58,7 @@ const ProtectedLayout: React.FC<{ allowedRoles: string[] }> = ({ allowedRoles })
   const currentPath = location.pathname;
 
   return (
-    <div className="flex min-h-screen bg-dark-900">
+    <div className="flex min-h-screen app-layout-wrapper text-slate-800">
       <PasswordResetModal />
       <Sidebar />
       <div className="flex-1 flex flex-col min-w-0">

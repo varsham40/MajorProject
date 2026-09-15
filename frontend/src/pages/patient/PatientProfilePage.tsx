@@ -88,7 +88,7 @@ export const PatientProfilePage: React.FC = () => {
     }
   };
 
-  if (loading) return <div className="p-8 text-cyan-400 text-center font-semibold animate-pulse">Loading Patient Profile...</div>;
+  if (loading) return <div className="p-8 text-emerald-600 text-center font-semibold animate-pulse">Loading Patient Profile...</div>;
 
   const p = data?.patient || {};
   const hp = data?.health_profile || {};
@@ -98,13 +98,13 @@ export const PatientProfilePage: React.FC = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white">Patient Profile & Health File</h1>
-          <p className="text-xs text-slate-400">Personal information, clinical health metrics, and medical history</p>
+          <h1 className="text-2xl font-extrabold text-slate-900 font-bold">Patient Profile & Health File</h1>
+          <p className="text-xs text-slate-500">Personal information, clinical health metrics, and medical history</p>
         </div>
 
         <button
           onClick={() => setIsEditModalOpen(true)}
-          className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-extrabold text-xs shadow-lg shadow-cyan-500/20 transition flex items-center gap-2 cursor-pointer w-fit"
+          className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-extrabold text-xs shadow-lg shadow-cyan-500/20 transition flex items-center gap-2 cursor-pointer w-fit"
         >
           <Edit3 className="w-4 h-4" />
           <span>Edit Profile & Health Details</span>
@@ -120,37 +120,37 @@ export const PatientProfilePage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Card: Identity */}
-        <div className="glass-panel p-6 rounded-2xl space-y-4 text-center border border-slate-800">
-          <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-cyan-500 to-emerald-400 mx-auto flex items-center justify-center text-dark-900 font-extrabold text-3xl shadow-xl shadow-cyan-500/20">
+        <div className="glass-panel p-6 rounded-2xl space-y-4 text-center border border-slate-200/80">
+          <div className="w-24 h-24 rounded-full bg-gradient-to-tr from-emerald-500 to-emerald-600 mx-auto flex items-center justify-center text-dark-900 font-extrabold text-3xl shadow-xl shadow-cyan-500/20">
             {p.name ? p.name[0] : 'P'}
           </div>
           <div>
-            <h2 className="text-xl font-extrabold text-white">{p.name || 'Patient'}</h2>
-            <span className="inline-block mt-1 text-[11px] font-mono font-bold px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
+            <h2 className="text-xl font-extrabold text-slate-900 font-bold">{p.name || 'Patient'}</h2>
+            <span className="inline-block mt-1 text-[11px] font-mono font-bold px-3 py-1 rounded-full bg-cyan-500/20 text-emerald-600 border border-cyan-500/30">
               {p.patient_code || 'PAT-0000'}
             </span>
           </div>
 
-          <div className="text-xs text-slate-300 space-y-2 pt-4 border-t border-slate-800 text-left">
+          <div className="text-xs text-slate-600 space-y-2 pt-4 border-t border-slate-200/80 text-left">
             <div className="flex justify-between">
               <span className="text-slate-500 font-medium">Email:</span>
-              <span className="font-semibold text-white">{p.email || 'N/A'}</span>
+              <span className="font-semibold text-slate-900 font-bold">{p.email || 'N/A'}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-slate-500 font-medium">Phone:</span>
-              <span className="font-semibold text-white">{p.phone || 'N/A'}</span>
+              <span className="font-semibold text-slate-900 font-bold">{p.phone || 'N/A'}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-slate-500 font-medium">Gender:</span>
-              <span className="font-semibold text-white">{p.gender || 'N/A'}</span>
+              <span className="font-semibold text-slate-900 font-bold">{p.gender || 'N/A'}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-slate-500 font-medium">Date of Birth:</span>
-              <span className="font-semibold text-white">{p.dob || 'N/A'}</span>
+              <span className="font-semibold text-slate-900 font-bold">{p.dob || 'N/A'}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-slate-500 font-medium">Address:</span>
-              <span className="font-semibold text-white">{p.address || 'Central City'}</span>
+              <span className="font-semibold text-slate-900 font-bold">{p.address || 'Central City'}</span>
             </div>
           </div>
         </div>
@@ -158,43 +158,43 @@ export const PatientProfilePage: React.FC = () => {
         {/* Right Section: Clinical Metrics & Health Summary */}
         <div className="lg:col-span-2 space-y-6">
           {/* Health Metrics Grid */}
-          <div className="glass-panel p-6 rounded-2xl space-y-4 border border-slate-800">
-            <h2 className="text-sm font-extrabold text-white flex items-center gap-2">
+          <div className="glass-panel p-6 rounded-2xl space-y-4 border border-slate-200/80">
+            <h2 className="text-sm font-extrabold text-slate-900 font-bold flex items-center gap-2">
               <Activity className="w-4 h-4 text-emerald-400" />
               <span>Biometric & Clinical Vitals</span>
             </h2>
 
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-              <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
-                <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider block">Height</span>
-                <span className="text-base font-extrabold text-white">{hp?.height ? `${hp.height} cm` : 'N/A'}</span>
+              <div className="p-3.5 rounded-xl bg-white border border-slate-200/80">
+                <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider block">Height</span>
+                <span className="text-base font-extrabold text-slate-900 font-bold">{hp?.height ? `${hp.height} cm` : 'N/A'}</span>
               </div>
-              <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
-                <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider block">Weight</span>
-                <span className="text-base font-extrabold text-white">{hp?.weight ? `${hp.weight} kg` : 'N/A'}</span>
+              <div className="p-3.5 rounded-xl bg-white border border-slate-200/80">
+                <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider block">Weight</span>
+                <span className="text-base font-extrabold text-slate-900 font-bold">{hp?.weight ? `${hp.weight} kg` : 'N/A'}</span>
               </div>
-              <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
-                <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider block">BMI</span>
-                <span className="text-base font-extrabold text-cyan-400">{hp?.bmi ? hp.bmi : 'N/A'}</span>
+              <div className="p-3.5 rounded-xl bg-white border border-slate-200/80">
+                <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider block">BMI</span>
+                <span className="text-base font-extrabold text-emerald-600">{hp?.bmi ? hp.bmi : 'N/A'}</span>
               </div>
-              <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800">
-                <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider block">Blood Pressure</span>
+              <div className="p-3.5 rounded-xl bg-white border border-slate-200/80">
+                <span className="text-[10px] text-slate-500 font-semibold uppercase tracking-wider block">Blood Pressure</span>
                 <span className="text-base font-extrabold text-emerald-400">{hp?.blood_pressure || '120/80'}</span>
               </div>
             </div>
 
             <div className="space-y-3 pt-2 text-xs">
-              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800">
-                <span className="text-slate-400 font-semibold block mb-1">Medical History:</span>
-                <p className="text-slate-200">{hp?.medical_history || 'No recorded major medical history.'}</p>
+              <div className="p-3 rounded-xl bg-[#f4f7f6] border border-slate-200/80">
+                <span className="text-slate-500 font-semibold block mb-1">Medical History:</span>
+                <p className="text-slate-700">{hp?.medical_history || 'No recorded major medical history.'}</p>
               </div>
-              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800">
-                <span className="text-slate-400 font-semibold block mb-1">Allergies & Drug Reactions:</span>
+              <div className="p-3 rounded-xl bg-[#f4f7f6] border border-slate-200/80">
+                <span className="text-slate-500 font-semibold block mb-1">Allergies & Drug Reactions:</span>
                 <p className="text-amber-300 font-medium">{hp?.allergies || 'No known drug allergies.'}</p>
               </div>
-              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800">
-                <span className="text-slate-400 font-semibold block mb-1">Chronic Conditions:</span>
-                <p className="text-slate-200">{hp?.existing_conditions || 'None reported.'}</p>
+              <div className="p-3 rounded-xl bg-[#f4f7f6] border border-slate-200/80">
+                <span className="text-slate-500 font-semibold block mb-1">Chronic Conditions:</span>
+                <p className="text-slate-700">{hp?.existing_conditions || 'None reported.'}</p>
               </div>
             </div>
           </div>
@@ -203,16 +203,16 @@ export const PatientProfilePage: React.FC = () => {
 
       {/* Edit Profile Modal */}
       {isEditModalOpen && (
-        <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full p-6 space-y-5 my-8 shadow-2xl">
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
-              <h2 className="text-base font-extrabold text-white flex items-center gap-2">
-                <Edit3 className="w-5 h-5 text-cyan-400" />
+        <div className="fixed inset-0 z-50 bg-white backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="bg-white border border-slate-200/80 rounded-2xl max-w-2xl w-full p-6 space-y-5 my-8 shadow-2xl">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-200/80">
+              <h2 className="text-base font-extrabold text-slate-900 font-bold flex items-center gap-2">
+                <Edit3 className="w-5 h-5 text-emerald-600" />
                 <span>Edit Patient Profile & Health File</span>
               </h2>
               <button
                 onClick={() => setIsEditModalOpen(false)}
-                className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800"
+                className="p-1 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -228,33 +228,33 @@ export const PatientProfilePage: React.FC = () => {
             <form onSubmit={handleSaveProfile} className="space-y-4 text-xs">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Full Name *</label>
+                  <label className="block text-slate-600 font-semibold mb-1">Full Name *</label>
                   <input
                     type="text"
                     required
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyan-500"
+                    className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold focus:border-cyan-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Phone Number</label>
+                  <label className="block text-slate-600 font-semibold mb-1">Phone Number</label>
                   <input
                     type="text"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyan-500"
+                    className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold focus:border-cyan-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Gender</label>
+                  <label className="block text-slate-600 font-semibold mb-1">Gender</label>
                   <select
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyan-500"
+                    className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold focus:border-cyan-500"
                   >
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -262,104 +262,104 @@ export const PatientProfilePage: React.FC = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Date of Birth</label>
+                  <label className="block text-slate-600 font-semibold mb-1">Date of Birth</label>
                   <input
                     type="date"
                     value={dob}
                     onChange={(e) => setDob(e.target.value)}
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyan-500"
+                    className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold focus:border-cyan-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Blood Pressure</label>
+                  <label className="block text-slate-600 font-semibold mb-1">Blood Pressure</label>
                   <input
                     type="text"
                     value={bloodPressure}
                     onChange={(e) => setBloodPressure(e.target.value)}
                     placeholder="e.g. 120/80"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyan-500"
+                    className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold focus:border-cyan-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Height (cm)</label>
+                  <label className="block text-slate-600 font-semibold mb-1">Height (cm)</label>
                   <input
                     type="number"
                     value={height}
                     onChange={(e) => setHeight(e.target.value ? Number(e.target.value) : '')}
                     placeholder="e.g. 175"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyan-500"
+                    className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold focus:border-cyan-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Weight (kg)</label>
+                  <label className="block text-slate-600 font-semibold mb-1">Weight (kg)</label>
                   <input
                     type="number"
                     value={weight}
                     onChange={(e) => setWeight(e.target.value ? Number(e.target.value) : '')}
                     placeholder="e.g. 70"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyan-500"
+                    className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold focus:border-cyan-500"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-slate-300 font-semibold mb-1">Residential Address</label>
+                <label className="block text-slate-600 font-semibold mb-1">Residential Address</label>
                 <input
                   type="text"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyan-500"
+                  className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold focus:border-cyan-500"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 font-semibold mb-1">Medical History</label>
+                <label className="block text-slate-600 font-semibold mb-1">Medical History</label>
                 <textarea
                   rows={2}
                   value={medicalHistory}
                   onChange={(e) => setMedicalHistory(e.target.value)}
                   placeholder="Previous surgeries, hospitalizations, major illnesses..."
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-white focus:border-cyan-500"
+                  className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl p-2.5 text-slate-900 font-bold focus:border-cyan-500"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 font-semibold mb-1">Allergies & Reactions</label>
+                <label className="block text-slate-600 font-semibold mb-1">Allergies & Reactions</label>
                 <input
                   type="text"
                   value={allergies}
                   onChange={(e) => setAllergies(e.target.value)}
                   placeholder="e.g. Penicillin, Peanuts, Pollen"
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyan-500"
+                  className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold focus:border-cyan-500"
                 />
               </div>
 
               <div>
-                <label className="block text-slate-300 font-semibold mb-1">Chronic Conditions</label>
+                <label className="block text-slate-600 font-semibold mb-1">Chronic Conditions</label>
                 <input
                   type="text"
                   value={existingConditions}
                   onChange={(e) => setExistingConditions(e.target.value)}
                   placeholder="e.g. Type 2 Diabetes, Hypertension"
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white focus:border-cyan-500"
+                  className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold focus:border-cyan-500"
                 />
               </div>
 
-              <div className="pt-3 border-t border-slate-800 flex justify-end gap-3">
+              <div className="pt-3 border-t border-slate-200/80 flex justify-end gap-3">
                 <button
                   type="button"
                   onClick={() => setIsEditModalOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold"
+                  className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-700 text-slate-600 font-bold"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={saving}
-                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-extrabold shadow-md flex items-center gap-1.5"
+                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-slate-950 font-extrabold shadow-md flex items-center gap-1.5"
                 >
                   <Save className="w-4 h-4" />
                   <span>{saving ? 'Saving...' : 'Save Profile Changes'}</span>

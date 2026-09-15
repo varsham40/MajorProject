@@ -13,44 +13,44 @@ export const ModelRegistryPage: React.FC = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div className="p-8 text-cyan-400 text-center font-semibold">Loading AI Model Registry...</div>;
+  if (loading) return <div className="p-8 text-emerald-600 text-center font-semibold">Loading AI Model Registry...</div>;
 
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
       <div>
-        <h1 className="text-2xl font-extrabold text-white">AI Model Registry</h1>
-        <p className="text-xs text-slate-400">Deployed Machine Learning Model Artifacts for Disease Inference & SHAP Explainability</p>
+        <h1 className="text-2xl font-extrabold text-slate-900 font-bold">AI Model Registry</h1>
+        <p className="text-xs text-slate-500">Deployed Machine Learning Model Artifacts for Disease Inference & SHAP Explainability</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {models.map((m) => (
-          <div key={m.id} className="glass-panel p-6 rounded-2xl space-y-4 border border-slate-800">
+          <div key={m.id} className="glass-panel p-6 rounded-2xl space-y-4 border border-slate-200/80">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-mono font-bold text-cyan-400">Version {m.version}</span>
+              <span className="text-xs font-mono font-bold text-emerald-600">Version {m.version}</span>
               <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
                 {m.status}
               </span>
             </div>
 
             <div>
-              <h3 className="text-xl font-extrabold text-white">{m.disease}</h3>
-              <p className="text-xs text-slate-400">{m.algorithm}</p>
+              <h3 className="text-xl font-extrabold text-slate-900 font-bold">{m.disease}</h3>
+              <p className="text-xs text-slate-500">{m.algorithm}</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 text-xs pt-2 border-t border-slate-800">
-              <div className="p-2 rounded-lg bg-dark-800">
+            <div className="grid grid-cols-2 gap-2 text-xs pt-2 border-t border-slate-200/80">
+              <div className="p-2 rounded-lg bg-white">
                 <span className="text-slate-500">Accuracy</span>
-                <p className="font-bold text-cyan-400">{((m.accuracy || 0) * 100).toFixed(1)}%</p>
+                <p className="font-bold text-emerald-600">{((m.accuracy || 0) * 100).toFixed(1)}%</p>
               </div>
-              <div className="p-2 rounded-lg bg-dark-800">
+              <div className="p-2 rounded-lg bg-white">
                 <span className="text-slate-500">Precision</span>
                 <p className="font-bold text-emerald-400">{((m.precision || 0) * 100).toFixed(1)}%</p>
               </div>
-              <div className="p-2 rounded-lg bg-dark-800">
+              <div className="p-2 rounded-lg bg-white">
                 <span className="text-slate-500">Recall</span>
                 <p className="font-bold text-purple-400">{((m.recall || 0) * 100).toFixed(1)}%</p>
               </div>
-              <div className="p-2 rounded-lg bg-dark-800">
+              <div className="p-2 rounded-lg bg-white">
                 <span className="text-slate-500">ROC-AUC</span>
                 <p className="font-bold text-amber-400">{((m.roc_auc || 0) * 100).toFixed(1)}%</p>
               </div>

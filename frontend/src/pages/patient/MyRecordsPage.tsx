@@ -34,13 +34,13 @@ export const MyRecordsPage: React.FC = () => {
     }
   };
 
-  if (loading) return <div className="p-8 text-cyan-400 text-center">Loading Medical Records...</div>;
+  if (loading) return <div className="p-8 text-emerald-600 text-center">Loading Medical Records...</div>;
 
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
       <div>
-        <h1 className="text-2xl font-extrabold text-white">My Medical Records</h1>
-        <p className="text-xs text-slate-400">Doctor-generated checkup records, Explainable AI insights, and Blockchain integrity fingerprints</p>
+        <h1 className="text-2xl font-extrabold text-slate-800">My Medical Records</h1>
+        <p className="text-xs text-slate-500">Doctor-generated checkup records, Explainable AI insights, and Blockchain integrity fingerprints</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -51,7 +51,7 @@ export const MyRecordsPage: React.FC = () => {
           >
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono font-bold text-cyan-400">{r.record_code}</span>
+                <span className="text-xs font-mono font-bold text-emerald-600">{r.record_code}</span>
                 <span className={`text-[10px] px-2.5 py-0.5 rounded-full font-bold uppercase ${
                   r.risk_level === 'High' ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30' :
                   r.risk_level === 'Moderate' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
@@ -62,11 +62,11 @@ export const MyRecordsPage: React.FC = () => {
               </div>
 
               {/* Disease Name Prominent */}
-              <h3 className="text-lg font-extrabold text-white">{r.disease}</h3>
+              <h3 className="text-lg font-extrabold text-slate-800">{r.disease}</h3>
 
-              <p className="text-xs text-cyan-400 font-bold">{r.confidence}% Model Confidence</p>
+              <p className="text-xs text-emerald-600 font-bold">{r.confidence}% Model Confidence</p>
 
-              <div className="text-xs text-slate-400 space-y-0.5 pt-2 border-t border-slate-800">
+              <div className="text-xs text-slate-500 space-y-0.5 pt-2 border-t border-slate-200/80">
                 <p>👨‍⚕️ {r.doctor_name}</p>
                 <p>🏥 {r.hospital_name}</p>
                 <p>📅 {r.date}</p>
@@ -75,7 +75,7 @@ export const MyRecordsPage: React.FC = () => {
 
             <button
               onClick={() => openFullRecord(r.record_id)}
-              className="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-cyan-500 hover:text-dark-900 text-xs font-bold text-slate-200 transition-all border border-slate-700/60 mt-3"
+              className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-cyan-500 hover:text-dark-900 text-xs font-bold text-slate-700 transition-all border border-slate-200/60 mt-3"
             >
               Open Full Medical Record
             </button>
@@ -85,11 +85,11 @@ export const MyRecordsPage: React.FC = () => {
 
       {/* Full Record Modal */}
       {selectedRecord && (
-        <div className="fixed inset-0 z-50 bg-dark-900/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
-          <div className="glass-panel w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 space-y-6 relative border border-slate-700 shadow-2xl">
+        <div className="fixed inset-0 z-50 bg-[#f4f7f6]/80 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+          <div className="glass-panel w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl p-6 space-y-6 relative border border-slate-200 shadow-2xl">
             <button
               onClick={() => setSelectedRecord(null)}
-              className="absolute top-5 right-5 p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white"
+              className="absolute top-5 right-5 p-2 rounded-xl bg-slate-100 hover:bg-slate-700 text-slate-500 hover:text-slate-800"
             >
               <X className="w-5 h-5" />
             </button>
@@ -97,43 +97,43 @@ export const MyRecordsPage: React.FC = () => {
             {/* Header */}
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 font-mono text-xs font-bold">
+                <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-emerald-600 font-mono text-xs font-bold">
                   {selectedRecord.record_code}
                 </span>
-                <span className="text-xs text-slate-400">{selectedRecord.source_info}</span>
+                <span className="text-xs text-slate-500">{selectedRecord.source_info}</span>
               </div>
-              <h2 className="text-2xl font-extrabold text-white">Medical Diagnosis: {selectedRecord.disease}</h2>
+              <h2 className="text-2xl font-extrabold text-slate-800">Medical Diagnosis: {selectedRecord.disease}</h2>
             </div>
 
             {/* Section: Prediction Result */}
-            <div className="p-5 rounded-2xl bg-gradient-to-r from-slate-900 via-dark-800 to-slate-900 border border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <span className="text-xs text-slate-400 font-medium">Prediction Output</span>
-                <p className="text-lg font-bold text-white mt-1">{selectedRecord.result}</p>
+                <span className="text-xs font-bold text-slate-700 block mb-1">Target Condition</span>
+                <p className="text-xl font-extrabold text-slate-900">{selectedRecord.disease}</p>
               </div>
               <div>
-                <span className="text-xs text-slate-400 font-medium">Risk Level</span>
-                <p className={`text-lg font-bold mt-1 ${
-                  selectedRecord.risk_level === 'High' ? 'text-rose-400' :
-                  selectedRecord.risk_level === 'Moderate' ? 'text-amber-400' : 'text-emerald-400'
+                <span className="text-xs font-bold text-slate-700 block mb-1">Diagnostic Result & Risk</span>
+                <p className={`text-xl font-extrabold ${
+                  selectedRecord.risk_level === 'High' ? 'text-rose-600' :
+                  selectedRecord.risk_level === 'Moderate' ? 'text-amber-600' : 'text-emerald-700'
                 }`}>
-                  {selectedRecord.risk_level} Risk
+                  {selectedRecord.result} ({selectedRecord.risk_level} Risk)
                 </p>
               </div>
               <div>
-                <span className="text-xs text-slate-400 font-medium">Confidence Score</span>
-                <p className="text-lg font-bold text-cyan-400 mt-1">{selectedRecord.confidence}%</p>
+                <span className="text-xs font-bold text-slate-700 block mb-1">AI Confidence Score</span>
+                <p className="text-2xl font-extrabold text-emerald-700">{selectedRecord.confidence}%</p>
               </div>
             </div>
 
             {/* Section: Clinical Data Used */}
             <div className="space-y-2">
-              <h3 className="text-sm font-bold text-slate-200">Exact Clinical Input Values Used</h3>
+              <h3 className="text-sm font-bold text-slate-700">Exact Clinical Input Values Used</h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
                 {Object.entries(selectedRecord.clinical_inputs || {}).map(([k, v]) => (
-                  <div key={k} className="p-2.5 rounded-xl bg-dark-800 border border-slate-800">
+                  <div key={k} className="p-2.5 rounded-xl bg-white border border-slate-200/80">
                     <span className="text-slate-500 block truncate">{k}</span>
-                    <span className="font-mono font-bold text-white">{String(v)}</span>
+                    <span className="font-mono font-bold text-slate-800">{String(v)}</span>
                   </div>
                 ))}
               </div>
@@ -141,20 +141,20 @@ export const MyRecordsPage: React.FC = () => {
 
             {/* Section: AI Analysis */}
             <div className="space-y-2">
-              <h3 className="text-sm font-bold text-slate-200">Summary</h3>
+              <h3 className="text-sm font-bold text-slate-700">Summary</h3>
               <ClinicalSummaryTable summaryText={selectedRecord.ai_analysis_text} shapList={selectedRecord.shap_features} />
             </div>
 
             {/* Section: SHAP Chart & Table */}
             <div className="space-y-3">
-              <h3 className="text-sm font-bold text-slate-200">SHAP Feature Contribution Visualization</h3>
-              <div className="p-4 rounded-2xl bg-dark-800/60 border border-slate-800">
+              <h3 className="text-sm font-bold text-slate-700">SHAP Feature Contribution Visualization</h3>
+              <div className="p-4 rounded-2xl bg-white/60 border border-slate-200/80">
                 <SHAPChart features={selectedRecord.shap_features} baseValue={selectedRecord.shap_base_value} />
               </div>
 
               <table className="w-full text-xs text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-slate-800 text-slate-400">
+                  <tr className="border-b border-slate-200/80 text-slate-500">
                     <th className="py-2 px-3">Feature Name</th>
                     <th className="py-2 px-3">Patient Value</th>
                     <th className="py-2 px-3">SHAP Value</th>
@@ -167,9 +167,9 @@ export const MyRecordsPage: React.FC = () => {
                     const isDecreased = f.effect === 'Decreased Risk' || f.shap_value < -0.0005;
 
                     return (
-                      <tr key={idx} className="hover:bg-slate-800/30">
-                        <td className="py-2 px-3 font-medium text-white">{f.feature_name}</td>
-                        <td className="py-2 px-3 font-mono text-slate-300">{f.patient_value}</td>
+                      <tr key={idx} className="hover:bg-slate-100/30">
+                        <td className="py-2 px-3 font-medium text-slate-800">{f.feature_name}</td>
+                        <td className="py-2 px-3 font-mono text-slate-600">{f.patient_value}</td>
                         <td className="py-2 px-3 font-mono font-bold">{f.shap_value > 0 ? `+${f.shap_value}` : f.shap_value}</td>
                         <td className="py-2 px-3">
                           <span className={`px-2.5 py-0.5 rounded-full font-bold text-[10px] ${
@@ -177,7 +177,7 @@ export const MyRecordsPage: React.FC = () => {
                               ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
                               : isDecreased
                               ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                              : 'bg-slate-800 text-slate-400 border border-slate-700'
+                              : 'bg-slate-100 text-slate-500 border border-slate-200'
                           }`}>
                             {isIncreased ? 'Increased Risk' : isDecreased ? 'Decreased Risk' : 'Neutral'}
                           </span>
@@ -190,15 +190,15 @@ export const MyRecordsPage: React.FC = () => {
             </div>
 
             {/* Doctor & Hospital Details */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-3 border-t border-slate-800">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs pt-3 border-t border-slate-200/80">
               <div className="space-y-1">
                 <span className="text-slate-500 font-semibold">Attending Doctor</span>
-                <p className="text-white font-bold">{selectedRecord.doctor_name} ({selectedRecord.doctor_specialization})</p>
+                <p className="text-slate-800 font-bold">{selectedRecord.doctor_name} ({selectedRecord.doctor_specialization})</p>
               </div>
               <div className="space-y-1">
                 <span className="text-slate-500 font-semibold">Healthcare Organization</span>
-                <p className="text-white font-bold">{selectedRecord.hospital_name}</p>
-                <p className="text-slate-400">{selectedRecord.hospital_address}</p>
+                <p className="text-slate-800 font-bold">{selectedRecord.hospital_name}</p>
+                <p className="text-slate-500">{selectedRecord.hospital_address}</p>
               </div>
             </div>
 
@@ -209,8 +209,8 @@ export const MyRecordsPage: React.FC = () => {
                 <span>Blockchain Registered Fingerprint (Hardhat Network)</span>
               </div>
               {selectedRecord.blockchain_details && (
-                <div className="space-y-1 font-mono text-[11px] text-slate-300">
-                  <p>SHA-256 Hash: <span className="text-cyan-400">{selectedRecord.blockchain_details.sha256_hash}</span></p>
+                <div className="space-y-1 font-mono text-[11px] text-slate-600">
+                  <p>SHA-256 Hash: <span className="text-emerald-600">{selectedRecord.blockchain_details.sha256_hash}</span></p>
                   <p>Tx Hash: {selectedRecord.blockchain_details.tx_hash}</p>
                   <p>Block #{selectedRecord.blockchain_details.block_number} | Contract: {selectedRecord.blockchain_details.contract_address}</p>
                 </div>

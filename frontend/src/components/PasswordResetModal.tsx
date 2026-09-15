@@ -52,20 +52,20 @@ export const PasswordResetModal: React.FC = () => {
 
   return (
     <div className="fixed inset-0 z-50 bg-dark-950/80 backdrop-blur-md flex items-center justify-center p-4">
-      <div className="bg-dark-900 border border-cyan-500/30 rounded-2xl p-6 max-w-md w-full shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-200">
-        <div className="flex items-center gap-3 border-b border-slate-800 pb-4">
-          <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
+      <div className="bg-[#f4f7f6] border border-cyan-500/30 rounded-2xl p-6 max-w-md w-full shadow-2xl space-y-5 animate-in fade-in zoom-in-95 duration-200">
+        <div className="flex items-center gap-3 border-b border-slate-200/80 pb-4">
+          <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-emerald-600 border border-cyan-500/30 flex items-center justify-center flex-shrink-0">
             <Lock className="w-5 h-5" />
           </div>
           <div>
-            <h2 className="text-lg font-extrabold text-white">First-Time Password Reset Required</h2>
-            <p className="text-xs text-cyan-400 font-medium">Initial Onboarding Security Protocol</p>
+            <h2 className="text-lg font-extrabold text-slate-900 font-bold">First-Time Password Reset Required</h2>
+            <p className="text-xs text-emerald-600 font-medium">Initial Onboarding Security Protocol</p>
           </div>
         </div>
 
-        <div className="bg-slate-800/50 p-3 rounded-xl border border-slate-700/60 text-xs text-slate-300 space-y-1">
-          <p className="font-semibold text-white">Welcome to AI HealthSecure!</p>
-          <p className="text-slate-400">
+        <div className="bg-slate-50 p-3 rounded-xl border border-slate-200/60 text-xs text-slate-600 space-y-1">
+          <p className="font-semibold text-slate-900 font-bold">Welcome to HealthSync!</p>
+          <p className="text-slate-500">
             Your account was created by your Hospital Administrator with an initial temporary password. Please set a secure personal password to activate your dashboard.
           </p>
         </div>
@@ -86,7 +86,7 @@ export const PasswordResetModal: React.FC = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">
+            <label className="block text-xs font-semibold text-slate-600 mb-1">
               Current Initial Password <span className="text-rose-400">*</span>
             </label>
             <input
@@ -94,13 +94,13 @@ export const PasswordResetModal: React.FC = () => {
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
               placeholder="Enter temporary password"
-              className="w-full bg-dark-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:border-cyan-500 transition-colors"
+              className="w-full bg-dark-950 border border-slate-200/80 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 font-bold focus:border-cyan-500 transition-colors"
               required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">
+            <label className="block text-xs font-semibold text-slate-600 mb-1">
               New Password <span className="text-rose-400">*</span>
             </label>
             <input
@@ -108,13 +108,13 @@ export const PasswordResetModal: React.FC = () => {
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               placeholder="At least 6 characters"
-              className="w-full bg-dark-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:border-cyan-500 transition-colors"
+              className="w-full bg-dark-950 border border-slate-200/80 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 font-bold focus:border-cyan-500 transition-colors"
               required
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-300 mb-1">
+            <label className="block text-xs font-semibold text-slate-600 mb-1">
               Confirm New Password <span className="text-rose-400">*</span>
             </label>
             <input
@@ -122,7 +122,7 @@ export const PasswordResetModal: React.FC = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Re-enter new password"
-              className="w-full bg-dark-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-xs text-white focus:border-cyan-500 transition-colors"
+              className="w-full bg-dark-950 border border-slate-200/80 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 font-bold focus:border-cyan-500 transition-colors"
               required
             />
           </div>
@@ -131,14 +131,14 @@ export const PasswordResetModal: React.FC = () => {
             <button
               type="button"
               onClick={logout}
-              className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-400 text-xs font-bold transition-all"
+              className="px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-700 text-slate-500 text-xs font-bold transition-all"
             >
               Sign Out
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-dark-900 font-extrabold text-xs shadow-lg shadow-cyan-500/20 disabled:opacity-50 transition-all hover:opacity-90"
+              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-dark-900 font-extrabold text-xs shadow-lg shadow-cyan-500/20 disabled:opacity-50 transition-all hover:opacity-90"
             >
               {loading ? 'Updating Password...' : 'Save & Activate Account'}
             </button>

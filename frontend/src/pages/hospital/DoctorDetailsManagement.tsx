@@ -122,8 +122,8 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
 
   if (loading || !data) {
     return (
-      <div className="p-12 text-center text-slate-400 flex flex-col items-center justify-center space-y-3">
-        <RefreshCw className="w-8 h-8 text-cyan-400 animate-spin" />
+      <div className="p-12 text-center text-slate-500 flex flex-col items-center justify-center space-y-3">
+        <RefreshCw className="w-8 h-8 text-emerald-600 animate-spin" />
         <p className="text-sm font-semibold">Loading doctor details & performance hub...</p>
       </div>
     );
@@ -134,57 +134,57 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
   return (
     <div className="space-y-6 max-w-7xl mx-auto p-4 sm:p-6">
       {/* Header Banner */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl backdrop-blur-xl space-y-4">
+      <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xl backdrop-blur-xl space-y-4">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <button
             onClick={onBack}
-            className="flex items-center gap-2 px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition border border-slate-700 shadow-sm"
+            className="flex items-center gap-2 px-3.5 py-2 bg-slate-100 hover:bg-slate-700 text-slate-600 rounded-xl text-xs font-semibold transition border border-slate-200 shadow-sm"
           >
-            <ArrowLeft className="w-4 h-4 text-cyan-400" />
+            <ArrowLeft className="w-4 h-4 text-emerald-600" />
             Back to Doctors Directory
           </button>
 
           <div className="flex items-center gap-2">
             <button
               onClick={fetchDoctorDetails}
-              className="flex items-center gap-2 px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition border border-slate-700"
+              className="flex items-center gap-2 px-3.5 py-2 bg-slate-100 hover:bg-slate-700 text-slate-600 rounded-xl text-xs font-semibold transition border border-slate-200"
             >
-              <RefreshCw className="w-3.5 h-3.5 text-cyan-400" />
+              <RefreshCw className="w-3.5 h-3.5 text-emerald-600" />
               Refresh
             </button>
           </div>
         </div>
 
         {/* Doctor Identity Header */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-2 border-t border-slate-800">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pt-2 border-t border-slate-200/80">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-gradient-to-tr from-cyan-500 to-emerald-500 rounded-2xl flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-cyan-500/20">
+            <div className="w-14 h-14 bg-gradient-to-tr from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center text-slate-950 font-black text-xl shadow-lg shadow-cyan-500/20">
               <Stethoscope className="w-7 h-7 text-slate-950" />
             </div>
             <div>
-              <h1 className="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
+              <h1 className="text-2xl font-extrabold text-slate-900 font-bold tracking-tight flex items-center gap-2">
                 {doctor.name}
-                <span className="px-2.5 py-0.5 text-xs bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 rounded-full font-medium">
+                <span className="px-2.5 py-0.5 text-xs bg-cyan-500/10 text-emerald-600 border border-cyan-500/20 rounded-full font-medium">
                   {doctor.specialization}
                 </span>
               </h1>
-              <p className="text-xs text-slate-400 mt-1 flex flex-wrap items-center gap-x-4 gap-y-1">
-                <span>Department: <strong className="text-slate-200">{doctor.department}</strong></span>
-                <span>License: <strong className="text-cyan-400 font-mono">{doctor.license_number}</strong></span>
-                <span>Email: <strong className="text-slate-200">{doctor.email}</strong></span>
+              <p className="text-xs text-slate-500 mt-1 flex flex-wrap items-center gap-x-4 gap-y-1">
+                <span>Department: <strong className="text-slate-700">{doctor.department}</strong></span>
+                <span>License: <strong className="text-emerald-600 font-mono">{doctor.license_number}</strong></span>
+                <span>Email: <strong className="text-slate-700">{doctor.email}</strong></span>
               </p>
             </div>
           </div>
         </div>
 
         {/* Navigation Tabs */}
-        <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
+        <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-200/80">
           <button
             onClick={() => setActiveTab('overview')}
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
               activeTab === 'overview'
                 ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-white'
+                : 'bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-slate-900'
             }`}
           >
             <Activity className="w-3.5 h-3.5" />
@@ -196,7 +196,7 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
               activeTab === 'records'
                 ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-white'
+                : 'bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-slate-900'
             }`}
           >
             <FileText className="w-3.5 h-3.5" />
@@ -208,7 +208,7 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
               activeTab === 'shared'
                 ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-white'
+                : 'bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-slate-900'
             }`}
           >
             <Key className="w-3.5 h-3.5" />
@@ -220,7 +220,7 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
             className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition ${
               activeTab === 'slots'
                 ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 shadow-md shadow-emerald-500/20'
-                : 'bg-slate-800/60 text-emerald-400 hover:bg-slate-800'
+                : 'bg-slate-50 text-emerald-400 hover:bg-slate-100'
             }`}
           >
             <Calendar className="w-3.5 h-3.5" />
@@ -234,8 +234,8 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
         <div className="space-y-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {/* Scheduled */}
-            <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-2">
-              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Scheduled (Pending)</span>
+            <div className="bg-white border border-slate-200/80 p-5 rounded-2xl space-y-2">
+              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Scheduled (Pending)</span>
               <div className="flex items-center justify-between">
                 <span className="text-3xl font-extrabold text-amber-400">{appointments_summary.scheduled}</span>
                 <Clock className="w-6 h-6 text-amber-400/60" />
@@ -244,18 +244,18 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
             </div>
 
             {/* Accepted */}
-            <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-2">
-              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Accepted (Awaiting Analysis)</span>
+            <div className="bg-white border border-slate-200/80 p-5 rounded-2xl space-y-2">
+              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Accepted (Awaiting Analysis)</span>
               <div className="flex items-center justify-between">
-                <span className="text-3xl font-extrabold text-cyan-400">{appointments_summary.accepted}</span>
-                <CheckCircle2 className="w-6 h-6 text-cyan-400/60" />
+                <span className="text-3xl font-extrabold text-emerald-600">{appointments_summary.accepted}</span>
+                <CheckCircle2 className="w-6 h-6 text-emerald-600/60" />
               </div>
               <p className="text-[11px] text-slate-500">Accepted for consultation</p>
             </div>
 
             {/* Rejected */}
-            <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-2">
-              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Rejected Appointments</span>
+            <div className="bg-white border border-slate-200/80 p-5 rounded-2xl space-y-2">
+              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Rejected Appointments</span>
               <div className="flex items-center justify-between">
                 <span className="text-3xl font-extrabold text-rose-400">{appointments_summary.rejected}</span>
                 <XCircle className="w-6 h-6 text-rose-400/60" />
@@ -264,8 +264,8 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
             </div>
 
             {/* Completed */}
-            <div className="bg-slate-900 border border-slate-800 p-5 rounded-2xl space-y-2">
-              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Completed (Treated)</span>
+            <div className="bg-white border border-slate-200/80 p-5 rounded-2xl space-y-2">
+              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Completed (Treated)</span>
               <div className="flex items-center justify-between">
                 <span className="text-3xl font-extrabold text-emerald-400">{appointments_summary.completed}</span>
                 <ShieldCheck className="w-6 h-6 text-emerald-400/60" />
@@ -274,13 +274,13 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
             </div>
           </div>
 
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
-            <h3 className="text-sm font-bold text-white flex items-center gap-2">
-              <Activity className="w-4 h-4 text-cyan-400" />
+          <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-4">
+            <h3 className="text-sm font-bold text-slate-900 font-bold flex items-center gap-2">
+              <Activity className="w-4 h-4 text-emerald-600" />
               Doctor Performance Overview
             </h3>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Dr. {doctor.name} has managed a total of <strong className="text-white font-bold">{appointments_summary.total} appointments</strong> and generated <strong className="text-white font-bold">{analysis_records.length} diagnostic medical records</strong> directly at your facility.
+            <p className="text-xs text-slate-500 leading-relaxed">
+              Dr. {doctor.name} has managed a total of <strong className="text-slate-800 font-bold">{appointments_summary.total} appointments</strong> and generated <strong className="text-slate-800 font-bold">{analysis_records.length} diagnostic medical records</strong> directly at your facility.
             </p>
           </div>
         </div>
@@ -288,23 +288,23 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
 
       {/* Tab 2: Doctor Analysis Records */}
       {activeTab === 'records' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-4">
           <div>
-            <h2 className="text-lg font-bold text-white flex items-center gap-2">
-              <FileText className="w-5 h-5 text-cyan-400" />
+            <h2 className="text-lg font-bold text-slate-900 font-bold flex items-center gap-2">
+              <FileText className="w-5 h-5 text-emerald-600" />
               Diagnostic Records Created by Dr. {doctor.name}
             </h2>
-            <p className="text-xs text-slate-400">Medical diagnostic predictions run directly by this doctor.</p>
+            <p className="text-xs text-slate-500">Medical diagnostic predictions run directly by this doctor.</p>
           </div>
 
           {analysis_records.length === 0 ? (
-            <div className="text-center py-12 text-slate-500 bg-slate-950/40 rounded-xl border border-slate-800/60 text-xs">
+            <div className="text-center py-12 text-slate-500 bg-white rounded-xl border border-slate-200/80/60 text-xs">
               No diagnostic analysis records created by this doctor yet.
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs text-slate-300">
-                <thead className="bg-slate-950/80 uppercase text-[10px] text-slate-400 border-b border-slate-800">
+              <table className="w-full text-left text-xs text-slate-600">
+                <thead className="bg-white uppercase text-[10px] text-slate-500 border-b border-slate-200/80">
                   <tr>
                     <th className="py-3 px-4">Record Code</th>
                     <th className="py-3 px-4">Patient Name</th>
@@ -316,11 +316,11 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
                 </thead>
                 <tbody className="divide-y divide-slate-800/60">
                   {analysis_records.map((r: any) => (
-                    <tr key={r.id} className="hover:bg-slate-800/40 transition">
-                      <td className="py-3 px-4 font-mono font-bold text-cyan-400">{r.record_code}</td>
-                      <td className="py-3 px-4 text-white font-medium">{r.patient_name} ({r.patient_code})</td>
+                    <tr key={r.id} className="hover:bg-slate-100/40 transition">
+                      <td className="py-3 px-4 font-mono font-bold text-emerald-600">{r.record_code}</td>
+                      <td className="py-3 px-4 text-slate-900 font-bold font-medium">{r.patient_name} ({r.patient_code})</td>
                       <td className="py-3 px-4">{r.disease}</td>
-                      <td className="py-3 px-4 text-slate-200">{r.result}</td>
+                      <td className="py-3 px-4 text-slate-700">{r.result}</td>
                       <td className="py-3 px-4">
                         <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
                           r.risk_level === 'High' ? 'bg-rose-500/10 text-rose-400 border border-rose-500/20' : 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20'
@@ -328,7 +328,7 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
                           {r.risk_level || 'Low'}
                         </span>
                       </td>
-                      <td className="py-3 px-4 text-slate-400">{r.created_at}</td>
+                      <td className="py-3 px-4 text-slate-500">{r.created_at}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -340,23 +340,23 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
 
       {/* Tab 3: Shared Patient Reports */}
       {activeTab === 'shared' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-4">
           <div>
-            <h2 className="text-lg font-bold text-white flex items-center gap-2">
-              <Key className="w-5 h-5 text-cyan-400" />
+            <h2 className="text-lg font-bold text-slate-900 font-bold flex items-center gap-2">
+              <Key className="w-5 h-5 text-emerald-600" />
               Patient Reports Shared with Dr. {doctor.name}
             </h2>
-            <p className="text-xs text-slate-400">Reports authorized to this doctor via patient Access Tokens.</p>
+            <p className="text-xs text-slate-500">Reports authorized to this doctor via patient Access Tokens.</p>
           </div>
 
           {shared_reports.length === 0 ? (
-            <div className="text-center py-12 text-slate-500 bg-slate-950/40 rounded-xl border border-slate-800/60 text-xs">
+            <div className="text-center py-12 text-slate-500 bg-white rounded-xl border border-slate-200/80/60 text-xs">
               No shared patient reports found for this doctor.
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs text-slate-300">
-                <thead className="bg-slate-950/80 uppercase text-[10px] text-slate-400 border-b border-slate-800">
+              <table className="w-full text-left text-xs text-slate-600">
+                <thead className="bg-white uppercase text-[10px] text-slate-500 border-b border-slate-200/80">
                   <tr>
                     <th className="py-3 px-4">Token Code</th>
                     <th className="py-3 px-4">Record Code</th>
@@ -368,17 +368,17 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
                 </thead>
                 <tbody className="divide-y divide-slate-800/60">
                   {shared_reports.map((s: any) => (
-                    <tr key={s.id} className="hover:bg-slate-800/40 transition">
-                      <td className="py-3 px-4 font-mono font-bold text-cyan-400">{s.token_code}</td>
-                      <td className="py-3 px-4 font-mono text-slate-300">{s.record_code}</td>
-                      <td className="py-3 px-4 text-white font-medium">{s.patient_name}</td>
+                    <tr key={s.id} className="hover:bg-slate-100/40 transition">
+                      <td className="py-3 px-4 font-mono font-bold text-emerald-600">{s.token_code}</td>
+                      <td className="py-3 px-4 font-mono text-slate-600">{s.record_code}</td>
+                      <td className="py-3 px-4 text-slate-900 font-bold font-medium">{s.patient_name}</td>
                       <td className="py-3 px-4">{s.disease}</td>
                       <td className="py-3 px-4">
                         <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                           {s.status}
                         </span>
                       </td>
-                      <td className="py-3 px-4 text-slate-400">{s.authorized_at}</td>
+                      <td className="py-3 px-4 text-slate-500">{s.authorized_at}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -390,36 +390,36 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
 
       {/* Tab 4: 24-Hour Calendar Slot Availability Management */}
       {activeTab === 'slots' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800 pb-4">
+        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-6">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-200/80 pb-4">
             <div>
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
+              <h2 className="text-lg font-bold text-slate-900 font-bold flex items-center gap-2">
                 <Calendar className="w-5 h-5 text-emerald-400" />
                 24-Hour Availability Calendar & Time Slot Configurator
               </h2>
-              <p className="text-xs text-slate-400">Select a date and click to enable or disable time slots for patient appointments.</p>
+              <p className="text-xs text-slate-500">Select a date and click to enable or disable time slots for patient appointments.</p>
             </div>
 
             {/* Date & Custom Time Selector */}
             <div className="flex flex-wrap items-center gap-3">
               <div className="flex items-center gap-2">
-                <label className="text-xs font-semibold text-slate-300">Select Date:</label>
+                <label className="text-xs font-semibold text-slate-600">Select Date:</label>
                 <input
                   type="date"
                   min={new Date().toISOString().split('T')[0]}
                   value={selectedDate}
                   onChange={(e) => setSelectedDate(e.target.value)}
-                  className="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500"
+                  className="bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-xs text-slate-900 font-bold focus:outline-none focus:border-cyan-500"
                 />
               </div>
 
               <div className="flex items-center gap-2">
-                <label className="text-xs font-semibold text-slate-300">Add Flexible Time:</label>
+                <label className="text-xs font-semibold text-slate-600">Add Flexible Time:</label>
                 <input
                   type="time"
                   value={customTime}
                   onChange={(e) => setCustomTime(e.target.value)}
-                  className="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500"
+                  className="bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-xs text-slate-900 font-bold focus:outline-none focus:border-cyan-500"
                 />
                 <button
                   type="button"
@@ -444,21 +444,21 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
           <div className="flex flex-wrap items-center gap-4 text-xs">
             <div className="flex items-center gap-1.5">
               <div className="w-3.5 h-3.5 bg-emerald-500 rounded-md"></div>
-              <span className="text-slate-300 font-medium">Available (Click to deselect)</span>
+              <span className="text-slate-600 font-medium">Available (Click to deselect)</span>
             </div>
             <div className="flex items-center gap-1.5">
               <div className="w-3.5 h-3.5 bg-amber-500/80 rounded-md"></div>
-              <span className="text-slate-300 font-medium">Booked Appointment (Disabled)</span>
+              <span className="text-slate-600 font-medium">Booked Appointment (Disabled)</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <div className="w-3.5 h-3.5 bg-slate-800 rounded-md border border-slate-700"></div>
-              <span className="text-slate-400 font-medium">Not Available (Click to select)</span>
+              <div className="w-3.5 h-3.5 bg-slate-100 rounded-md border border-slate-200"></div>
+              <span className="text-slate-500 font-medium">Not Available (Click to select)</span>
             </div>
           </div>
 
           {/* Slot Grid */}
           {loadingSlots ? (
-            <div className="p-12 text-center text-xs text-cyan-400">Loading slot availability for {selectedDate}...</div>
+            <div className="p-12 text-center text-xs text-emerald-600">Loading slot availability for {selectedDate}...</div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
               {slotData.map((s: any) => {
@@ -476,7 +476,7 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
                         ? 'bg-amber-500/10 border-amber-500/30 text-amber-400 cursor-not-allowed opacity-80'
                         : isSelected
                         ? 'bg-emerald-500 text-slate-950 border-emerald-400 shadow-md shadow-emerald-500/20 hover:bg-emerald-400'
-                        : 'bg-slate-950/80 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-white'
+                        : 'bg-white border-slate-200/80 text-slate-500 hover:bg-slate-100 hover:text-slate-900'
                     }`}
                   >
                     <Clock className="w-4 h-4" />
@@ -490,7 +490,7 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
             </div>
           )}
 
-          <div className="flex justify-end pt-4 border-t border-slate-800">
+          <div className="flex justify-end pt-4 border-t border-slate-200/80">
             <button
               onClick={handleSaveSlots}
               disabled={savingSlots}

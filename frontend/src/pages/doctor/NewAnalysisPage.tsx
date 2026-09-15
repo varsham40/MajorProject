@@ -138,7 +138,7 @@ export const NewAnalysisPage: React.FC = () => {
 
     if (tableLines.length === 0) {
       return (
-        <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs text-slate-200 whitespace-pre-line leading-relaxed">
+        <div className="p-4 rounded-xl bg-white border border-slate-200/80 text-xs text-slate-700 whitespace-pre-line leading-relaxed">
           {text}
         </div>
       );
@@ -177,32 +177,32 @@ export const NewAnalysisPage: React.FC = () => {
     return (
       <div className="space-y-4">
         {/* Top Header Metadata Badges */}
-        <div className="flex flex-wrap items-center gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs">
+        <div className="flex flex-wrap items-center gap-3 p-3 rounded-xl bg-[#f4f7f6] border border-slate-200/80 text-xs">
           {metaLines.map((ml, idx) => {
             if (!ml.trim()) return null;
             const parts = ml.split(':');
             const k = parts[0];
             const v = parts.slice(1).join(':');
             return (
-              <div key={idx} className="flex items-center gap-1.5 px-3 py-1 bg-slate-900 rounded-lg border border-slate-800">
-                <span className="text-slate-400 font-semibold">{k?.trim()}:</span>
-                <span className="text-cyan-400 font-bold">{v?.trim()}</span>
+              <div key={idx} className="flex items-center gap-1.5 px-3 py-1 bg-white rounded-lg border border-slate-200/80">
+                <span className="text-slate-500 font-semibold">{k?.trim()}:</span>
+                <span className="text-emerald-600 font-bold">{v?.trim()}</span>
               </div>
             );
           })}
         </div>
 
         {/* Dynamic Compact Clinical Table */}
-        <div className="overflow-x-auto rounded-xl border border-slate-800/80 bg-slate-950/90 shadow-xl">
+        <div className="overflow-x-auto rounded-xl border border-slate-200/80 bg-white shadow-xl">
           <table className="w-full text-xs text-left border-collapse">
-            <thead className="bg-slate-900 border-b border-slate-800 text-cyan-400 font-extrabold uppercase text-[10px] tracking-wider">
+            <thead className="bg-white border-b border-slate-200/80 text-emerald-600 font-extrabold uppercase text-[10px] tracking-wider">
               <tr>
-                <th className="py-2.5 px-3.5 w-[24%] border-r border-slate-800/60">{headers[0]}</th>
-                <th className="py-2.5 px-3.5 w-[26%] border-r border-slate-800/60">{headers[1]}</th>
+                <th className="py-2.5 px-3.5 w-[24%] border-r border-slate-200/80/60">{headers[0]}</th>
+                <th className="py-2.5 px-3.5 w-[26%] border-r border-slate-200/80/60">{headers[1]}</th>
                 <th className="py-2.5 px-3.5 w-[50%]">{headers[2]}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/50 text-slate-200">
+            <tbody className="divide-y divide-slate-800/50 text-slate-700">
               {rows.map((row, rIdx) => {
                 const isRisk = checkIsRisk(row);
 
@@ -212,13 +212,13 @@ export const NewAnalysisPage: React.FC = () => {
                     className={`transition-colors border-l-4 ${
                       isRisk
                         ? 'bg-rose-950/25 hover:bg-rose-950/45 border-l-rose-500'
-                        : 'bg-slate-950/40 hover:bg-slate-900/40 border-l-emerald-500/50'
+                        : 'bg-white hover:bg-white border-l-emerald-500/50'
                     }`}
                   >
                     {/* Field / Parameter */}
-                    <td className="py-2.5 px-3.5 font-bold border-r border-slate-800/40 w-[24%]">
+                    <td className="py-2.5 px-3.5 font-bold border-r border-slate-200/80/40 w-[24%]">
                       <div className="flex items-center gap-1.5 flex-wrap">
-                        <span className={isRisk ? 'text-rose-200 font-bold' : 'text-slate-200 font-semibold'}>{row[0]}</span>
+                        <span className={isRisk ? 'text-rose-200 font-bold' : 'text-slate-700 font-semibold'}>{row[0]}</span>
                         {isRisk && (
                           <span className="px-1.5 py-0.5 rounded text-[9px] font-black uppercase bg-rose-500/20 text-rose-400 border border-rose-500/40 shadow-sm flex-shrink-0">
                             Risk Factor
@@ -228,7 +228,7 @@ export const NewAnalysisPage: React.FC = () => {
                     </td>
 
                     {/* Patient Value */}
-                    <td className="py-2.5 px-3.5 border-r border-slate-800/40 w-[26%]">
+                    <td className="py-2.5 px-3.5 border-r border-slate-200/80/40 w-[26%]">
                       <span className={`inline-block font-mono font-bold text-[11px] px-2.5 py-1 rounded-md border ${
                         isRisk
                           ? 'bg-rose-500/20 text-rose-300 border-rose-500/40 shadow-sm shadow-rose-500/10'
@@ -240,7 +240,7 @@ export const NewAnalysisPage: React.FC = () => {
 
                     {/* Medical Significance & Risk Analysis */}
                     <td className={`py-2.5 px-3.5 leading-snug w-[50%] text-xs ${
-                      isRisk ? 'text-rose-100/90 font-medium' : 'text-slate-300'
+                      isRisk ? 'text-rose-100/90 font-medium' : 'text-slate-600'
                     }`}>
                       {row[2]}
                     </td>
@@ -303,8 +303,8 @@ export const NewAnalysisPage: React.FC = () => {
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
       <div>
-        <h1 className="text-3xl font-extrabold text-white">Clinical Patient Diagnostic Engine</h1>
-        <p className="text-xs text-slate-400 mt-1">
+        <h1 className="text-3xl font-extrabold text-slate-900 font-bold">Clinical Patient Diagnostic Engine</h1>
+        <p className="text-xs text-slate-500 mt-1">
           Perform Explainable AI disease inference, register SHA-256 blockchain fingerprint, and complete patient consultations.
         </p>
       </div>
@@ -317,9 +317,9 @@ export const NewAnalysisPage: React.FC = () => {
       )}
 
       {/* Appointment Token / Code Search Header */}
-      <div className="bg-slate-900/80 p-5 rounded-2xl border border-slate-800 space-y-3 shadow-xl">
-        <h2 className="text-sm font-extrabold text-white flex items-center gap-2">
-          <Key className="w-4 h-4 text-cyan-400" />
+      <div className="bg-white p-5 rounded-2xl border border-slate-200/80 space-y-3 shadow-xl">
+        <h2 className="text-sm font-extrabold text-slate-900 font-bold flex items-center gap-2">
+          <Key className="w-4 h-4 text-emerald-600" />
           <span>Enter Patient Appointment Token / Session Code (e.g. APT-82914)</span>
         </h2>
 
@@ -330,12 +330,12 @@ export const NewAnalysisPage: React.FC = () => {
             value={appointmentCode}
             onChange={(e) => setAppointmentCode(e.target.value.toUpperCase())}
             placeholder="APT-XXXXX"
-            className="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-sm font-mono font-bold text-cyan-400 tracking-wider focus:outline-none focus:border-cyan-500"
+            className="flex-1 bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-4 py-2.5 text-sm font-mono font-bold text-emerald-600 tracking-wider focus:outline-none focus:border-cyan-500"
           />
           <button
             type="submit"
             disabled={loadingApt}
-            className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold text-xs shadow-md flex items-center justify-center gap-2"
+            className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-slate-950 font-bold text-xs shadow-md flex items-center justify-center gap-2"
           >
             <Search className="w-4 h-4" />
             <span>{loadingApt ? 'Validating Token...' : 'Load Patient Session'}</span>
@@ -354,15 +354,15 @@ export const NewAnalysisPage: React.FC = () => {
           
           {/* PROMINENT PATIENT META DETAILS CARD ABOVE MODEL SELECTION */}
           {pat ? (
-            <div className="bg-slate-900/90 border border-cyan-500/40 rounded-2xl p-5 space-y-4 shadow-xl relative overflow-hidden">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div className="bg-white border border-cyan-500/40 rounded-2xl p-5 space-y-4 shadow-xl relative overflow-hidden">
+              <div className="flex items-center justify-between border-b border-slate-200/80 pb-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-bold">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-emerald-600 font-bold">
                     <User className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="font-extrabold text-white text-base">{pat.name}</h3>
-                    <p className="text-xs text-cyan-400 font-mono font-semibold">Code: {pat.patient_code}</p>
+                    <h3 className="font-extrabold text-slate-800 text-base">{pat.name}</h3>
+                    <p className="text-xs text-emerald-600 font-mono font-semibold">Code: {pat.patient_code}</p>
                   </div>
                 </div>
                 <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-[10px] font-extrabold uppercase">
@@ -372,39 +372,39 @@ export const NewAnalysisPage: React.FC = () => {
 
               {/* Comprehensive Vitals & Background Grid */}
               <div className="grid grid-cols-2 gap-3 text-xs">
-                <div className="bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
-                  <span className="text-slate-400 text-[10px] block">Gender & DOB</span>
-                  <span className="text-slate-200 font-bold mt-0.5 block">{pat.gender} | {pat.dob}</span>
+                <div className="bg-[#f4f7f6]/60 p-2.5 rounded-xl border border-slate-200/80">
+                  <span className="text-slate-500 text-[10px] block">Gender & DOB</span>
+                  <span className="text-slate-700 font-bold mt-0.5 block">{pat.gender} | {pat.dob}</span>
                 </div>
-                <div className="bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
-                  <span className="text-slate-400 text-[10px] block">Appointment Slot</span>
+                <div className="bg-[#f4f7f6]/60 p-2.5 rounded-xl border border-slate-200/80">
+                  <span className="text-slate-500 text-[10px] block">Appointment Slot</span>
                   <span className="text-emerald-400 font-bold mt-0.5 block">{apt?.appointment_time || '10:00 AM'}</span>
                 </div>
                 {hp && (
                   <>
-                    <div className="bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
-                      <span className="text-slate-400 text-[10px] block">BMI / Blood Pressure</span>
-                      <span className="text-slate-200 font-semibold mt-0.5 block">{hp.bmi || '24.0'} | {hp.blood_pressure || '120/80'}</span>
+                    <div className="bg-[#f4f7f6]/60 p-2.5 rounded-xl border border-slate-200/80">
+                      <span className="text-slate-500 text-[10px] block">BMI / Blood Pressure</span>
+                      <span className="text-slate-700 font-semibold mt-0.5 block">{hp.bmi || '24.0'} | {hp.blood_pressure || '120/80'}</span>
                     </div>
-                    <div className="bg-slate-950/60 p-2.5 rounded-xl border border-slate-800/80">
-                      <span className="text-slate-400 text-[10px] block">Existing Conditions</span>
-                      <span className="text-slate-200 truncate block mt-0.5">{hp.existing_conditions || 'None'}</span>
+                    <div className="bg-[#f4f7f6]/60 p-2.5 rounded-xl border border-slate-200/80">
+                      <span className="text-slate-500 text-[10px] block">Existing Conditions</span>
+                      <span className="text-slate-700 truncate block mt-0.5">{hp.existing_conditions || 'None'}</span>
                     </div>
                   </>
                 )}
               </div>
 
               {apt?.reason && (
-                <div className="bg-slate-950/50 p-2.5 rounded-xl border border-slate-800/80 text-xs">
-                  <span className="text-slate-400 font-medium text-[10px] block">Consultation Reason:</span>
-                  <span className="text-slate-200 font-medium">{apt.reason}</span>
+                <div className="bg-[#f4f7f6]/50 p-2.5 rounded-xl border border-slate-200/80 text-xs">
+                  <span className="text-slate-500 font-medium text-[10px] block">Consultation Reason:</span>
+                  <span className="text-slate-700 font-medium">{apt.reason}</span>
                 </div>
               )}
             </div>
           ) : (
-            <div className="bg-slate-900/40 p-6 rounded-2xl border border-slate-800 text-xs text-slate-400 text-center space-y-2">
+            <div className="bg-white p-6 rounded-2xl border border-slate-200/80 text-xs text-slate-500 text-center space-y-2">
               <UserCheck className="w-8 h-8 mx-auto text-slate-600 opacity-60" />
-              <p className="font-semibold text-slate-300">No Patient Selected Yet</p>
+              <p className="font-semibold text-slate-600">No Patient Selected Yet</p>
               <p className="text-[11px] text-slate-500">
                 Enter an appointment code above or click "Start Analysis" from your appointment list.
               </p>
@@ -412,19 +412,19 @@ export const NewAnalysisPage: React.FC = () => {
           )}
 
           {/* Model Selection & Inputs */}
-          <div className="bg-slate-900/60 p-6 rounded-2xl border border-slate-800 space-y-4">
-            <h2 className="text-sm font-bold text-white flex items-center gap-2">
-              <Stethoscope className="w-4 h-4 text-cyan-400" />
+          <div className="bg-white p-6 rounded-2xl border border-slate-200/80 space-y-4">
+            <h2 className="text-sm font-bold text-slate-900 font-bold flex items-center gap-2">
+              <Stethoscope className="w-4 h-4 text-emerald-600" />
               <span>Diagnostic AI Model Selection</span>
             </h2>
 
             {/* Target Model Selection Dropdown */}
             <div>
-              <label className="text-xs font-semibold text-slate-300 block mb-1.5 uppercase tracking-wider">Select AI Model *</label>
+              <label className="text-xs font-semibold text-slate-600 block mb-1.5 uppercase tracking-wider">Select AI Model *</label>
               <select
                 value={diseaseKey}
                 onChange={(e) => setDiseaseKey(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-xs text-cyan-400 font-bold focus:outline-none focus:border-cyan-500"
+                className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-4 py-2.5 text-xs text-emerald-600 font-bold focus:outline-none focus:border-cyan-500"
               >
                 <option value="diabetes">Diabetes Diagnostic Model</option>
                 <option value="heart_disease">Heart Disease Risk Model</option>
@@ -436,10 +436,10 @@ export const NewAnalysisPage: React.FC = () => {
 
             {/* Dynamic Form Inputs */}
             {loadingSpec ? (
-              <div className="py-6 text-xs text-cyan-400 text-center">Loading clinical feature schema...</div>
+              <div className="py-6 text-xs text-emerald-600 text-center">Loading clinical feature schema...</div>
             ) : (
-              <form onSubmit={handleRunPrediction} className="space-y-4 pt-3 border-t border-slate-800">
-                <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">Fill Clinical Parameters</h3>
+              <form onSubmit={handleRunPrediction} className="space-y-4 pt-3 border-t border-slate-200/80">
+                <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Fill Clinical Parameters</h3>
 
                 <div className="space-y-3 max-h-[40vh] overflow-y-auto pr-1">
                   {featureList.map((f: any) => {
@@ -451,7 +451,7 @@ export const NewAnalysisPage: React.FC = () => {
                     return (
                       <div key={f.name} className="space-y-1">
                         <div className="flex justify-between text-xs">
-                          <label className="font-semibold text-slate-300">
+                          <label className="font-semibold text-slate-600">
                             {f.label}
                             {isPreg && isMale && (
                               <span className="ml-1.5 text-[10px] text-slate-500 font-normal">
@@ -467,7 +467,7 @@ export const NewAnalysisPage: React.FC = () => {
                             value={formValues[f.name] ?? f.options[0]}
                             onChange={(e) => handleInputChange(f.name, e.target.value)}
                             disabled={isDisabled}
-                            className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-xs text-slate-900 font-bold disabled:opacity-50 disabled:cursor-not-allowed"
                           >
                             {f.options.map((opt: string) => (
                               <option key={opt} value={opt}>{opt}</option>
@@ -482,7 +482,7 @@ export const NewAnalysisPage: React.FC = () => {
                             onClick={(e) => (e.target as HTMLInputElement).select()}
                             disabled={isDisabled}
                             placeholder={`Enter value (min ${f.min ?? 0})`}
-                            className="w-full bg-slate-950 border border-slate-800 focus:border-cyan-500 rounded-xl px-3.5 py-2 text-xs text-white font-mono disabled:opacity-50 disabled:cursor-not-allowed transition-all focus:outline-none focus:ring-1 focus:ring-cyan-500/50 cursor-text selection:bg-cyan-500/30"
+                            className="w-full bg-[#f4f7f6] border border-slate-200/80 focus:border-cyan-500 rounded-xl px-3.5 py-2 text-xs text-slate-900 font-bold font-mono disabled:opacity-50 disabled:cursor-not-allowed transition-all focus:outline-none focus:ring-1 focus:ring-cyan-500/50 cursor-text selection:bg-cyan-500/30"
                           />
                         )}
                       </div>
@@ -493,7 +493,7 @@ export const NewAnalysisPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={predicting || !pat}
-                  className="w-full py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-slate-950 font-bold text-xs shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 transition-all hover:opacity-90"
+                  className="w-full py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-slate-950 font-bold text-xs shadow-lg flex items-center justify-center gap-2 disabled:opacity-50 transition-all hover:opacity-90"
                 >
                   <Save className="w-4 h-4" />
                   <span>{predicting ? 'Executing Analysis & Saving Report...' : 'Run AI Prediction & Save Analysis Report'}</span>
@@ -504,12 +504,12 @@ export const NewAnalysisPage: React.FC = () => {
         </div>
 
         {/* Right Column: Prediction Results, SHAP Contributions & Completion Controls */}
-        <div className="bg-slate-900/60 p-6 rounded-2xl lg:col-span-2 border border-slate-800 space-y-6">
+        <div className="bg-white p-6 rounded-2xl lg:col-span-2 border border-slate-200/80 space-y-6">
           {!predictionResult ? (
             <div className="h-full flex flex-col items-center justify-center py-20 text-slate-500 space-y-3">
               <Stethoscope className="w-16 h-16 stroke-1 text-slate-600 opacity-60" />
               <div className="text-center space-y-1">
-                <p className="text-sm font-bold text-slate-300">Ready for Clinical Evaluation</p>
+                <p className="text-sm font-bold text-slate-600">Ready for Clinical Evaluation</p>
                 <p className="text-xs text-slate-500 max-w-sm mx-auto">
                   Validate patient appointment details, enter lab vitals, and click "Run AI Prediction & Save Analysis Report".
                 </p>
@@ -525,13 +525,13 @@ export const NewAnalysisPage: React.FC = () => {
                       <CheckCircle2 className="w-5 h-5" />
                       <span>Appointment COMPLETED & Clinical Report Saved</span>
                     </div>
-                    <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-bold text-[10px] uppercase">
+                    <span className="px-3 py-1 rounded-full bg-emerald-600 text-slate-900 font-bold text-[10px] uppercase">
                       Status: Closed
                     </span>
                   </div>
 
-                  <p className="text-slate-300 leading-relaxed font-medium">
-                    The appointment session <span className="font-bold text-white">{apt?.appointment_code || appointmentCode}</span> has been closed and marked as <span className="font-bold text-emerald-400">COMPLETED</span>. The diagnostic report is saved for both Dr. and Patient <span className="font-bold text-white">{pat?.name}</span>.
+                  <p className="text-slate-600 leading-relaxed font-medium">
+                    The appointment session <span className="font-bold text-slate-900 font-bold">{apt?.appointment_code || appointmentCode}</span> has been closed and marked as <span className="font-bold text-emerald-400">COMPLETED</span>. The diagnostic report is saved for both Dr. and Patient <span className="font-bold text-slate-900 font-bold">{pat?.name}</span>.
                   </p>
 
                   <div className="pt-2 flex flex-wrap items-center gap-3">
@@ -543,7 +543,7 @@ export const NewAnalysisPage: React.FC = () => {
                     </button>
                     <button
                       onClick={() => navigate('/doctor/appointments')}
-                      className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-all flex items-center gap-1.5"
+                      className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-700 text-slate-700 text-xs font-semibold transition-all flex items-center gap-1.5"
                     >
                       <Calendar className="w-4 h-4" /> Return to Appointments
                     </button>
@@ -551,36 +551,36 @@ export const NewAnalysisPage: React.FC = () => {
                 </div>
               )}
 
-              {/* Diagnostic Result Card */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 border border-slate-800">
+                            {/* Diagnostic Result Card */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-2xl bg-slate-50 dark:bg-[#0c1322] border border-slate-200/80 dark:border-slate-800 shadow-sm">
                 <div className="space-y-1">
-                  <span className="text-xs text-slate-400 font-medium">Diagnostic Output</span>
-                  <h2 className="text-2xl font-extrabold text-white">{predictionResult.result}</h2>
-                  <p className="text-xs text-cyan-400 font-mono font-bold">Record Code: {predictionResult.record_code}</p>
+                  <span className="text-xs text-slate-700 dark:text-slate-400 font-extrabold block">Diagnostic Output</span>
+                  <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">{predictionResult.result}</h2>
+                  <p className="text-xs text-emerald-700 dark:text-emerald-400 font-mono font-bold">Record Code: {predictionResult.record_code}</p>
                 </div>
 
                 <div className="text-right space-y-1">
                   <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase ${
-                    predictionResult.risk_level === 'High' ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30' :
-                    predictionResult.risk_level === 'Moderate' ? 'bg-amber-500/20 text-amber-400 border border-amber-500/30' :
-                    'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                    predictionResult.risk_level === 'High' ? 'bg-rose-100 text-rose-800 dark:bg-rose-950/70 dark:text-rose-400 border border-rose-300 dark:border-rose-800/80' :
+                    predictionResult.risk_level === 'Moderate' ? 'bg-amber-100 text-amber-800 dark:bg-amber-950/70 dark:text-amber-400 border border-amber-300 dark:border-amber-800/80' :
+                    'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800/80'
                   }`}>
                     {predictionResult.risk_level} Risk
                   </span>
-                  <p className="text-lg font-extrabold text-cyan-400">{predictionResult.confidence}% Confidence</p>
+                  <p className="text-lg font-extrabold text-emerald-700 dark:text-emerald-400">{predictionResult.confidence}% Confidence</p>
                 </div>
               </div>
 
               {/* AI Analysis Summary */}
               <div className="space-y-2">
-                <h3 className="text-sm font-bold text-slate-200">Summary</h3>
+                <h3 className="text-sm font-bold text-slate-700">Summary</h3>
                 <ClinicalSummaryTable summaryText={predictionResult.ai_analysis_text} shapList={shapFeatureList} />
               </div>
 
               {/* SHAP Contributions */}
               <div className="space-y-3">
-                <h3 className="text-sm font-bold text-slate-200">SHAP Risk Contribution Breakdown</h3>
-                <div className="p-4 rounded-2xl bg-slate-950/60 border border-slate-800">
+                <h3 className="text-sm font-bold text-slate-700">SHAP Risk Contribution Breakdown</h3>
+                <div className="p-4 rounded-2xl bg-[#f4f7f6]/60 border border-slate-200/80">
                   <SHAPChart
                     features={shapFeatureList}
                     baseValue={predictionResult.shap_explanation?.base_value || 0}
@@ -589,7 +589,7 @@ export const NewAnalysisPage: React.FC = () => {
 
                 <table className="w-full text-xs text-left">
                   <thead>
-                    <tr className="border-b border-slate-800 text-slate-400">
+                    <tr className="border-b border-slate-200/80 text-slate-500">
                       <th className="py-2 px-3">Clinical Feature</th>
                       <th className="py-2 px-3">Value</th>
                       <th className="py-2 px-3">SHAP Value</th>
@@ -598,9 +598,9 @@ export const NewAnalysisPage: React.FC = () => {
                   </thead>
                   <tbody className="divide-y divide-slate-800/60">
                     {shapFeatureList.map((f: any, idx: number) => (
-                      <tr key={idx} className="hover:bg-slate-800/30">
-                        <td className="py-2 px-3 font-medium text-white">{f.feature_name}</td>
-                        <td className="py-2 px-3 font-mono text-slate-300">{f.patient_value}</td>
+                      <tr key={idx} className="hover:bg-slate-100/30">
+                        <td className="py-2 px-3 font-medium text-slate-900 font-bold">{f.feature_name}</td>
+                        <td className="py-2 px-3 font-mono text-slate-600">{f.patient_value}</td>
                         <td className="py-2 px-3 font-mono font-bold">{f.shap_value > 0 ? `+${f.shap_value}` : f.shap_value}</td>
                         <td className="py-2 px-3">
                           <span className={`px-2 py-0.5 rounded-full font-bold text-[10px] ${
@@ -621,7 +621,7 @@ export const NewAnalysisPage: React.FC = () => {
                   <ShieldCheck className="w-4 h-4" />
                   <span>SHA-256 Fingerprint Registered on Hardhat Blockchain Contract</span>
                 </div>
-                <p className="text-[11px] text-slate-400 font-mono">
+                <p className="text-[11px] text-slate-500 font-mono">
                   Record ID: {predictionResult.record_id} | Record Code: {predictionResult.record_code}
                 </p>
               </div>

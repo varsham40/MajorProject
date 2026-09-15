@@ -200,21 +200,21 @@ export const HospitalRecordsManagement: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Header Banner */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl backdrop-blur-xl">
+      <div className="bg-white border border-slate-200/80 rounded-2xl p-6 shadow-xl backdrop-blur-xl">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div>
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-cyan-400">
+              <div className="p-2.5 bg-cyan-500/10 border border-cyan-500/20 rounded-xl text-emerald-600">
                 <Building2 className="w-6 h-6" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+                <h1 className="text-xl font-bold text-slate-900 font-bold tracking-tight flex items-center gap-2">
                   Hospital Medical Records Management Hub
                   <span className="px-2.5 py-0.5 text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full font-medium">
                     Patient-Centric Privacy
                   </span>
                 </h1>
-                <p className="text-xs text-slate-400 mt-0.5">
+                <p className="text-xs text-slate-500 mt-0.5">
                   Synchronized medical diagnostic records, patient-consented access tokens, and Zero-Trust blockchain verification.
                 </p>
               </div>
@@ -223,21 +223,21 @@ export const HospitalRecordsManagement: React.FC = () => {
 
           <button 
             onClick={fetchRecordsData} 
-            className="flex items-center gap-2 px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-semibold transition border border-slate-700 shadow-sm"
+            className="flex items-center gap-2 px-3.5 py-2 bg-slate-100 hover:bg-slate-700 text-slate-600 rounded-xl text-xs font-semibold transition border border-slate-200 shadow-sm"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-cyan-400' : ''}`} />
+            <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-emerald-600' : ''}`} />
             Refresh Data
           </button>
         </div>
 
         {/* Tab Navigation */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mt-6 pt-6 border-t border-slate-800">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 mt-6 pt-6 border-t border-slate-200/80">
           <button
             onClick={() => setActiveTab('created')}
             className={`flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition text-center whitespace-nowrap ${
               activeTab === 'created'
                 ? 'bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/25'
-                : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-white'
+                : 'bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-slate-900'
             }`}
           >
             <Building2 className="w-4 h-4 shrink-0" />
@@ -249,7 +249,7 @@ export const HospitalRecordsManagement: React.FC = () => {
             className={`flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition text-center whitespace-nowrap ${
               activeTab === 'authorized'
                 ? 'bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/25'
-                : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-white'
+                : 'bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-slate-900'
             }`}
           >
             <Key className="w-4 h-4 shrink-0" />
@@ -261,7 +261,7 @@ export const HospitalRecordsManagement: React.FC = () => {
             className={`flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition text-center whitespace-nowrap ${
               activeTab === 'outward'
                 ? 'bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/25'
-                : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-white'
+                : 'bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-slate-900'
             }`}
           >
             <ExternalLink className="w-4 h-4 shrink-0" />
@@ -273,7 +273,7 @@ export const HospitalRecordsManagement: React.FC = () => {
             className={`flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl font-bold text-xs sm:text-sm transition text-center whitespace-nowrap ${
               activeTab === 'verifier'
                 ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 shadow-lg shadow-emerald-500/25'
-                : 'bg-slate-800/60 text-emerald-400 hover:bg-slate-800'
+                : 'bg-slate-50 text-emerald-400 hover:bg-slate-100'
             }`}
           >
             <ShieldCheck className="w-4 h-4 shrink-0" />
@@ -285,7 +285,7 @@ export const HospitalRecordsManagement: React.FC = () => {
             className={`flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl font-semibold text-xs sm:text-sm transition text-center whitespace-nowrap ${
               activeTab === 'audit'
                 ? 'bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/25'
-                : 'bg-slate-800/60 text-slate-400 hover:bg-slate-800 hover:text-white'
+                : 'bg-slate-50 text-slate-500 hover:bg-slate-100 hover:text-slate-900'
             }`}
           >
             <Clock className="w-4 h-4 shrink-0" />
@@ -296,23 +296,23 @@ export const HospitalRecordsManagement: React.FC = () => {
 
       {/* Tab 1: Hospital Medical Records */}
       {activeTab === 'created' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-4">
           <div>
-            <h2 className="text-lg font-bold text-white flex items-center gap-2">
-              <Building2 className="w-5 h-5 text-cyan-400" />
+            <h2 className="text-lg font-bold text-slate-900 font-bold flex items-center gap-2">
+              <Building2 className="w-5 h-5 text-emerald-600" />
               Hospital Medical Records (Generated at Facility)
             </h2>
-            <p className="text-xs text-slate-400">Diagnostic medical records created by doctors affiliated with your hospital facility.</p>
+            <p className="text-xs text-slate-500">Diagnostic medical records created by doctors affiliated with your hospital facility.</p>
           </div>
 
           {createdRecords.length === 0 ? (
-            <div className="text-center py-12 text-slate-500 bg-slate-950/40 rounded-xl border border-slate-800/60">
+            <div className="text-center py-12 text-slate-500 bg-white rounded-xl border border-slate-200/80/60">
               No diagnostic medical records generated at this hospital facility yet.
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm text-slate-300">
-                <thead className="bg-slate-950/80 text-xs text-slate-400 uppercase border-b border-slate-800">
+              <table className="w-full text-left text-sm text-slate-600">
+                <thead className="bg-white text-xs text-slate-500 uppercase border-b border-slate-200/80">
                   <tr>
                     <th className="py-3 px-4">Record Code</th>
                     <th className="py-3 px-4">Patient</th>
@@ -324,12 +324,12 @@ export const HospitalRecordsManagement: React.FC = () => {
                 </thead>
                 <tbody className="divide-y divide-slate-800/60">
                   {createdRecords.map(r => (
-                    <tr key={r.id} className="hover:bg-slate-800/40 transition">
-                      <td className="py-3 px-4 font-mono font-bold text-cyan-400">{r.record_code}</td>
-                      <td className="py-3 px-4 text-white font-medium">{r.patient_name}</td>
+                    <tr key={r.id} className="hover:bg-slate-100/40 transition">
+                      <td className="py-3 px-4 font-mono font-bold text-emerald-600">{r.record_code}</td>
+                      <td className="py-3 px-4 text-slate-900 font-bold font-medium">{r.patient_name}</td>
                       <td className="py-3 px-4">{r.disease} ({r.result})</td>
-                      <td className="py-3 px-4 text-slate-400">{r.doctor_name}</td>
-                      <td className="py-3 px-4 text-xs text-slate-400">{r.created_at || 'Recently'}</td>
+                      <td className="py-3 px-4 text-slate-500">{r.doctor_name}</td>
+                      <td className="py-3 px-4 text-xs text-slate-500">{r.created_at || 'Recently'}</td>
                       <td className="py-3 px-4 text-right">
                         <button 
                           onClick={() => triggerClickVerifyFromTab(r.record_code)}
@@ -349,23 +349,23 @@ export const HospitalRecordsManagement: React.FC = () => {
 
       {/* Tab 2: Inward Consented Records */}
       {activeTab === 'authorized' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-4">
           <div>
-            <h2 className="text-lg font-bold text-white flex items-center gap-2">
-              <Key className="w-5 h-5 text-cyan-400" />
+            <h2 className="text-lg font-bold text-slate-900 font-bold flex items-center gap-2">
+              <Key className="w-5 h-5 text-emerald-600" />
               Inward Consented Records (Patient Granted Access)
             </h2>
-            <p className="text-xs text-slate-400">Records where patients explicitly generated time-bound Access Tokens granting permission to your hospital or doctors.</p>
+            <p className="text-xs text-slate-500">Records where patients explicitly generated time-bound Access Tokens granting permission to your hospital or doctors.</p>
           </div>
 
           {authorizedRecords.length === 0 ? (
-            <div className="text-center py-12 text-slate-500 bg-slate-950/40 rounded-xl border border-slate-800/60">
+            <div className="text-center py-12 text-slate-500 bg-white rounded-xl border border-slate-200/80/60">
               No consented patient access records found for your facility yet.
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm text-slate-300">
-                <thead className="bg-slate-950/80 text-xs text-slate-400 uppercase border-b border-slate-800">
+              <table className="w-full text-left text-sm text-slate-600">
+                <thead className="bg-white text-xs text-slate-500 uppercase border-b border-slate-200/80">
                   <tr>
                     <th className="py-3 px-4">Record Code</th>
                     <th className="py-3 px-4">Patient</th>
@@ -378,17 +378,17 @@ export const HospitalRecordsManagement: React.FC = () => {
                 </thead>
                 <tbody className="divide-y divide-slate-800/60">
                   {authorizedRecords.map(r => (
-                    <tr key={r.id} className="hover:bg-slate-800/40 transition">
-                      <td className="py-3 px-4 font-mono font-bold text-cyan-400">{r.record_code}</td>
-                      <td className="py-3 px-4 text-white font-medium">{r.patient_name}</td>
+                    <tr key={r.id} className="hover:bg-slate-100/40 transition">
+                      <td className="py-3 px-4 font-mono font-bold text-emerald-600">{r.record_code}</td>
+                      <td className="py-3 px-4 text-slate-900 font-bold font-medium">{r.patient_name}</td>
                       <td className="py-3 px-4">{r.disease}</td>
-                      <td className="py-3 px-4 text-slate-400">{r.doctor_name}</td>
+                      <td className="py-3 px-4 text-slate-500">{r.doctor_name}</td>
                       <td className="py-3 px-4">
                         <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                           {r.status || 'Active Consent'}
                         </span>
                       </td>
-                      <td className="py-3 px-4 text-xs text-slate-400">{r.authorized_at || 'Active'}</td>
+                      <td className="py-3 px-4 text-xs text-slate-500">{r.authorized_at || 'Active'}</td>
                       <td className="py-3 px-4 text-right">
                         <button 
                           onClick={() => triggerClickVerifyFromTab(r.record_code)}
@@ -408,23 +408,23 @@ export const HospitalRecordsManagement: React.FC = () => {
 
       {/* Tab 3: Outward Patient Grants */}
       {activeTab === 'outward' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-4">
           <div>
-            <h2 className="text-lg font-bold text-white flex items-center gap-2">
-              <ExternalLink className="w-5 h-5 text-cyan-400" />
+            <h2 className="text-lg font-bold text-slate-900 font-bold flex items-center gap-2">
+              <ExternalLink className="w-5 h-5 text-emerald-600" />
               Outward Patient Grants (Records Shared by Patients with External Doctors)
             </h2>
-            <p className="text-xs text-slate-400">Records originating at your hospital where patients issued Access Tokens to external doctors or other hospital facilities.</p>
+            <p className="text-xs text-slate-500">Records originating at your hospital where patients issued Access Tokens to external doctors or other hospital facilities.</p>
           </div>
 
           {outwardGrants.length === 0 ? (
-            <div className="text-center py-12 text-slate-500 bg-slate-950/40 rounded-xl border border-slate-800/60">
+            <div className="text-center py-12 text-slate-500 bg-white rounded-xl border border-slate-200/80/60">
               No outward patient-granted records recorded yet.
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm text-slate-300">
-                <thead className="bg-slate-950/80 text-xs text-slate-400 uppercase border-b border-slate-800">
+              <table className="w-full text-left text-sm text-slate-600">
+                <thead className="bg-white text-xs text-slate-500 uppercase border-b border-slate-200/80">
                   <tr>
                     <th className="py-3 px-4">Record Code</th>
                     <th className="py-3 px-4">Patient</th>
@@ -437,19 +437,19 @@ export const HospitalRecordsManagement: React.FC = () => {
                 </thead>
                 <tbody className="divide-y divide-slate-800/60">
                   {outwardGrants.map(r => (
-                    <tr key={r.id} className="hover:bg-slate-800/40 transition">
-                      <td className="py-3 px-4 font-mono font-bold text-cyan-400">{r.record_code}</td>
-                      <td className="py-3 px-4 text-white font-medium">{r.patient_name}</td>
+                    <tr key={r.id} className="hover:bg-slate-100/40 transition">
+                      <td className="py-3 px-4 font-mono font-bold text-emerald-600">{r.record_code}</td>
+                      <td className="py-3 px-4 text-slate-900 font-bold font-medium">{r.patient_name}</td>
                       <td className="py-3 px-4">{r.disease}</td>
-                      <td className="py-3 px-4 text-slate-300 font-medium">
+                      <td className="py-3 px-4 text-slate-600 font-medium">
                         {r.doctor_name} <span className="text-xs text-slate-500">({r.hospital_name})</span>
                       </td>
                       <td className="py-3 px-4">
-                        <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                        <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-cyan-500/10 text-emerald-600 border border-cyan-500/20">
                           {r.status || 'Patient Granted'}
                         </span>
                       </td>
-                      <td className="py-3 px-4 text-xs text-slate-400">{r.authorized_at || 'Active'}</td>
+                      <td className="py-3 px-4 text-xs text-slate-500">{r.authorized_at || 'Active'}</td>
                       <td className="py-3 px-4 text-right">
                         <button 
                           onClick={() => triggerClickVerifyFromTab(r.record_code)}
@@ -471,22 +471,22 @@ export const HospitalRecordsManagement: React.FC = () => {
       {activeTab === 'verifier' && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left Column: Data Input & Editor */}
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-5">
+          <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-5">
             <div>
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <Database className="w-5 h-5 text-cyan-400" />
+              <h2 className="text-lg font-bold text-slate-900 font-bold flex items-center gap-2">
+                <Database className="w-5 h-5 text-emerald-600" />
                 Zero-Trust Record Fingerprint & JSON Payload Inspector
               </h2>
-              <p className="text-xs text-slate-400">Select a record code from the dropdown to evaluate canonical SHA-256 fingerprint against the blockchain smart contract.</p>
+              <p className="text-xs text-slate-500">Select a record code from the dropdown to evaluate canonical SHA-256 fingerprint against the blockchain smart contract.</p>
             </div>
 
             {/* Select Record Dropdown */}
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold text-slate-300">Select Medical Record Code:</label>
+              <label className="text-xs font-semibold text-slate-600">Select Medical Record Code:</label>
               <select
                 value={selectedRecordCode}
                 onChange={(e) => handleSelectRecordForVerification(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3.5 py-2.5 text-sm text-slate-200 focus:outline-none focus:border-cyan-500"
+                className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3.5 py-2.5 text-sm text-slate-700 focus:outline-none focus:border-cyan-500"
               >
                 <option value="">-- Choose a record code --</option>
                 {allRecordCodes.map(code => (
@@ -496,9 +496,9 @@ export const HospitalRecordsManagement: React.FC = () => {
             </div>
 
             {/* Interactive Tamper Simulator Slider Switch */}
-            <div className="bg-slate-950/80 border border-slate-800 p-4 rounded-xl space-y-3">
+            <div className="bg-white border border-slate-200/80 p-4 rounded-xl space-y-3">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
-                <span className="text-xs font-bold text-slate-200 flex items-center gap-1.5">
+                <span className="text-xs font-bold text-slate-700 flex items-center gap-1.5">
                   <AlertTriangle className={`w-4 h-4 ${isTampered ? 'text-rose-400 animate-pulse' : 'text-slate-500'}`} />
                   Simulate Data Tampering:
                 </span>
@@ -511,7 +511,7 @@ export const HospitalRecordsManagement: React.FC = () => {
                     onChange={(e) => handleToggleTamper(e.target.checked)}
                     className="sr-only peer"
                   />
-                  <div className="w-12 h-6 bg-slate-800 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-rose-500 shadow-inner"></div>
+                  <div className="w-12 h-6 bg-slate-100 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-rose-500 shadow-inner"></div>
                   <span className="ml-2.5 text-xs font-extrabold tracking-wide">
                     {isTampered ? (
                       <span className="text-rose-400 bg-rose-500/10 px-2.5 py-1 rounded-lg border border-rose-500/20">ON (Tampered)</span>
@@ -521,7 +521,7 @@ export const HospitalRecordsManagement: React.FC = () => {
                   </span>
                 </label>
               </div>
-              <p className="text-[11px] text-slate-400">
+              <p className="text-[11px] text-slate-500">
                 {isTampered 
                   ? "Tampering simulation ACTIVE: Injects modified diagnostic values into the JSON editor below." 
                   : "Normal state: Using authentic canonical record data registered on blockchain."}
@@ -531,14 +531,14 @@ export const HospitalRecordsManagement: React.FC = () => {
             {/* JSON Code Editor */}
             <div className="space-y-1.5">
               <div className="flex justify-between items-center">
-                <label className="text-xs font-semibold text-slate-300 flex items-center gap-1.5">
-                  <FileJson className="w-4 h-4 text-cyan-400" />
+                <label className="text-xs font-semibold text-slate-600 flex items-center gap-1.5">
+                  <FileJson className="w-4 h-4 text-emerald-600" />
                   Canonical JSON Payload Editor:
                 </label>
                 {jsonPayload && (
                   <button
                     onClick={() => navigator.clipboard.writeText(jsonPayload)}
-                    className="text-[11px] text-cyan-400 hover:text-cyan-300 flex items-center gap-1"
+                    className="text-[11px] text-emerald-600 hover:text-cyan-300 flex items-center gap-1"
                   >
                     <Copy className="w-3 h-3" /> Copy JSON
                   </button>
@@ -549,7 +549,7 @@ export const HospitalRecordsManagement: React.FC = () => {
                 onChange={handleManualPayloadChange}
                 rows={12}
                 placeholder="JSON record payload will appear here upon record selection..."
-                className="w-full bg-slate-950 font-mono text-xs text-emerald-400 border border-slate-800 rounded-xl p-3.5 focus:outline-none focus:border-cyan-500 leading-relaxed"
+                className="w-full bg-[#f4f7f6] font-mono text-xs text-emerald-400 border border-slate-200/80 rounded-xl p-3.5 focus:outline-none focus:border-cyan-500 leading-relaxed"
               />
             </div>
 
@@ -557,7 +557,7 @@ export const HospitalRecordsManagement: React.FC = () => {
             <button
               onClick={handleExecuteVerification}
               disabled={verifying || !jsonPayload}
-              className="w-full py-3.5 bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-extrabold text-sm rounded-xl shadow-lg shadow-cyan-500/20 transition cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 active:scale-[0.99]"
+              className="w-full py-3.5 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-extrabold text-sm rounded-xl shadow-lg shadow-cyan-500/20 transition cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50 active:scale-[0.99]"
             >
               <ShieldCheck className={`w-5 h-5 ${verifying ? 'animate-spin' : ''}`} />
               {verifying ? 'Calculating SHA-256 Digest & Querying Smart Contract...' : 'Verify Record SHA-256'}
@@ -565,18 +565,18 @@ export const HospitalRecordsManagement: React.FC = () => {
           </div>
 
           {/* Right Column: Verification Results & Digest Comparison */}
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-5">
+          <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-5">
             <div>
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <Activity className="w-5 h-5 text-cyan-400" />
+              <h2 className="text-lg font-bold text-slate-900 font-bold flex items-center gap-2">
+                <Activity className="w-5 h-5 text-emerald-600" />
                 Cryptographic Integrity Verification Verdict
               </h2>
-              <p className="text-xs text-slate-400">Compares computed SHA-256 fingerprint against Hardhat smart contract on-chain ledger.</p>
+              <p className="text-xs text-slate-500">Compares computed SHA-256 fingerprint against Hardhat smart contract on-chain ledger.</p>
             </div>
 
             {verifying ? (
-              <div className="text-center py-20 text-slate-400 space-y-3">
-                <RefreshCw className="w-8 h-8 text-cyan-400 animate-spin mx-auto" />
+              <div className="text-center py-20 text-slate-500 space-y-3">
+                <RefreshCw className="w-8 h-8 text-emerald-600 animate-spin mx-auto" />
                 <p className="text-sm font-semibold">Computing SHA-256 Digest & Verifying Blockchain Fingerprint...</p>
               </div>
             ) : verificationResult ? (
@@ -603,51 +603,51 @@ export const HospitalRecordsManagement: React.FC = () => {
                 </div>
 
                 {/* Hash Digest Comparison */}
-                <div className="space-y-3 bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs">
+                <div className="space-y-3 bg-[#f4f7f6] p-4 rounded-xl border border-slate-200/80 text-xs">
                   <div>
-                    <div className="text-slate-400 font-semibold mb-1">Calculated Payload SHA-256 Digest:</div>
-                    <div className="font-mono text-emerald-400 bg-slate-900 p-2.5 rounded-lg break-all border border-slate-800">
+                    <div className="text-slate-500 font-semibold mb-1">Calculated Payload SHA-256 Digest:</div>
+                    <div className="font-mono text-emerald-400 bg-white p-2.5 rounded-lg break-all border border-slate-200/80">
                       {verificationResult.local_hash || verificationResult.current_hash}
                     </div>
                   </div>
 
                   <div>
-                    <div className="text-slate-400 font-semibold mb-1">On-Chain Blockchain Registered Digest:</div>
-                    <div className="font-mono text-cyan-400 bg-slate-900 p-2.5 rounded-lg break-all border border-slate-800">
+                    <div className="text-slate-500 font-semibold mb-1">On-Chain Blockchain Registered Digest:</div>
+                    <div className="font-mono text-emerald-600 bg-white p-2.5 rounded-lg break-all border border-slate-200/80">
                       {verificationResult.blockchain_hash}
                     </div>
                   </div>
                 </div>
 
                 {/* Blockchain Proof Metadata */}
-                <div className="bg-slate-950/60 p-4 rounded-xl border border-slate-800 text-xs space-y-2 text-slate-300">
-                  <div className="flex justify-between items-center py-1 border-b border-slate-800/60">
-                    <span className="text-slate-400">Transaction Hash:</span>
-                    <span className="font-mono text-slate-300 truncate max-w-[200px]">
+                <div className="bg-[#f4f7f6]/60 p-4 rounded-xl border border-slate-200/80 text-xs space-y-2 text-slate-600">
+                  <div className="flex justify-between items-center py-1 border-b border-slate-200/80/60">
+                    <span className="text-slate-500">Transaction Hash:</span>
+                    <span className="font-mono text-slate-600 truncate max-w-[200px]">
                       {verificationResult.tx_hash || '0xb4b4bfb5cdca49a1d5e3f90226e5a46cba49f2b4'}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1 border-b border-slate-800/60">
-                    <span className="text-slate-400">Block Number:</span>
-                    <span className="font-mono text-cyan-400">
+                  <div className="flex justify-between items-center py-1 border-b border-slate-200/80/60">
+                    <span className="text-slate-500">Block Number:</span>
+                    <span className="font-mono text-emerald-600">
                       #{verificationResult.block_number || 10842}
                     </span>
                   </div>
-                  <div className="flex justify-between items-center py-1 border-b border-slate-800/60">
-                    <span className="text-slate-400">Smart Contract Address:</span>
-                    <span className="font-mono text-slate-300">0x5FbD...aa3</span>
+                  <div className="flex justify-between items-center py-1 border-b border-slate-200/80/60">
+                    <span className="text-slate-500">Smart Contract Address:</span>
+                    <span className="font-mono text-slate-600">0x5FbD...aa3</span>
                   </div>
                   <div className="flex justify-between items-center py-1">
-                    <span className="text-slate-400">Verification Timestamp:</span>
-                    <span className="text-slate-300">{verificationResult.verified_at || 'Just now'}</span>
+                    <span className="text-slate-500">Verification Timestamp:</span>
+                    <span className="text-slate-600">{verificationResult.verified_at || 'Just now'}</span>
                   </div>
                 </div>
               </div>
             ) : (
-              <div className="text-center py-20 text-slate-500 bg-slate-950/40 rounded-xl border border-slate-800/60 space-y-3">
+              <div className="text-center py-20 text-slate-500 bg-white rounded-xl border border-slate-200/80/60 space-y-3">
                 <ShieldCheck className="w-10 h-10 text-slate-600 mx-auto opacity-40" />
-                <p className="text-xs font-semibold text-slate-400">
-                  Select a record code, then click <strong className="text-cyan-400 font-extrabold">"Verify Record SHA-256"</strong> to view cryptographic blockchain verification verdict.
+                <p className="text-xs font-semibold text-slate-500">
+                  Select a record code, then click <strong className="text-emerald-600 font-extrabold">"Verify Record SHA-256"</strong> to view cryptographic blockchain verification verdict.
                 </p>
               </div>
             )}
@@ -657,14 +657,14 @@ export const HospitalRecordsManagement: React.FC = () => {
 
       {/* Tab 5: Verification Audit Logs */}
       {activeTab === 'audit' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div className="bg-white border border-slate-200/80 rounded-2xl p-6 space-y-4">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
             <div>
-              <h2 className="text-lg font-bold text-white flex items-center gap-2">
-                <Clock className="w-5 h-5 text-cyan-400" />
+              <h2 className="text-lg font-bold text-slate-900 font-bold flex items-center gap-2">
+                <Clock className="w-5 h-5 text-emerald-600" />
                 Verification Audit History
               </h2>
-              <p className="text-xs text-slate-400">Immutable record of all SHA-256 verification checks performed across the system.</p>
+              <p className="text-xs text-slate-500">Immutable record of all SHA-256 verification checks performed across the system.</p>
             </div>
             {auditLogs.length > 0 && (
               <button
@@ -678,13 +678,13 @@ export const HospitalRecordsManagement: React.FC = () => {
           </div>
 
           {auditLogs.length === 0 ? (
-            <div className="text-center py-12 text-slate-500 bg-slate-950/40 rounded-xl border border-slate-800/60">
+            <div className="text-center py-12 text-slate-500 bg-white rounded-xl border border-slate-200/80/60">
               No verification logs recorded yet.
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm text-slate-300">
-                <thead className="bg-slate-950/80 text-xs text-slate-400 uppercase border-b border-slate-800">
+              <table className="w-full text-left text-sm text-slate-600">
+                <thead className="bg-white text-xs text-slate-500 uppercase border-b border-slate-200/80">
                   <tr>
                     <th className="py-3 px-4">Record Code</th>
                     <th className="py-3 px-4">Verified By</th>
@@ -695,9 +695,9 @@ export const HospitalRecordsManagement: React.FC = () => {
                 </thead>
                 <tbody className="divide-y divide-slate-800/60">
                   {auditLogs.map(log => (
-                    <tr key={log.id} className="hover:bg-slate-800/40 transition">
-                      <td className="py-3 px-4 font-mono font-bold text-cyan-400">{log.record_code}</td>
-                      <td className="py-3 px-4 text-slate-300">{log.verified_by}</td>
+                    <tr key={log.id} className="hover:bg-slate-100/40 transition">
+                      <td className="py-3 px-4 font-mono font-bold text-emerald-600">{log.record_code}</td>
+                      <td className="py-3 px-4 text-slate-600">{log.verified_by}</td>
                       <td className="py-3 px-4">
                         <span className={`px-2.5 py-1 rounded-full text-xs font-semibold ${
                           log.result === 'VALID' || log.result === 'MATCH'
@@ -707,8 +707,8 @@ export const HospitalRecordsManagement: React.FC = () => {
                           {log.result}
                         </span>
                       </td>
-                      <td className="py-3 px-4 font-mono text-xs text-slate-400 truncate max-w-[180px]">{log.current_hash}</td>
-                      <td className="py-3 px-4 text-xs text-slate-400">{log.verified_at}</td>
+                      <td className="py-3 px-4 font-mono text-xs text-slate-500 truncate max-w-[180px]">{log.current_hash}</td>
+                      <td className="py-3 px-4 text-xs text-slate-500">{log.verified_at}</td>
                     </tr>
                   ))}
                 </tbody>

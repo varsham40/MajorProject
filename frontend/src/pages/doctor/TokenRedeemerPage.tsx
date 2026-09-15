@@ -68,14 +68,14 @@ export const TokenRedeemerPage: React.FC = () => {
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
       <div>
-        <h1 className="text-2xl font-extrabold text-white">Patient Access Token Redeemer</h1>
-        <p className="text-xs text-slate-400">Enter a Patient Access Token code (e.g. PAT-8F4K-92MX) to access the patient's authorized analysis report</p>
+        <h1 className="text-2xl font-extrabold text-slate-900 font-bold">Patient Access Token Redeemer</h1>
+        <p className="text-xs text-slate-500">Enter a Patient Access Token code (e.g. PAT-8F4K-92MX) to access the patient's authorized analysis report</p>
       </div>
 
       {/* Token Input Form */}
       <div className="glass-panel p-6 rounded-2xl border border-cyan-500/30 space-y-4 max-w-2xl">
-        <h2 className="text-base font-bold text-white flex items-center gap-2">
-          <Key className="w-5 h-5 text-cyan-400" />
+        <h2 className="text-base font-bold text-slate-900 font-bold flex items-center gap-2">
+          <Key className="w-5 h-5 text-emerald-600" />
           <span>Redeem Patient Access Token</span>
         </h2>
 
@@ -96,7 +96,7 @@ export const TokenRedeemerPage: React.FC = () => {
               <span>Cryptographic Access Policy Enforcement</span>
             </div>
             <p className="leading-relaxed font-medium">{error}</p>
-            <div className="flex items-center gap-2 text-[10px] text-slate-400 font-mono pt-1 border-t border-rose-500/20">
+            <div className="flex items-center gap-2 text-[10px] text-slate-500 font-mono pt-1 border-t border-rose-500/20">
               <ShieldCheck className="w-3.5 h-3.5 text-rose-400" />
               <span>Token authorization policy verified & enforced on Web3 Hardhat Smart Contract</span>
             </div>
@@ -110,12 +110,12 @@ export const TokenRedeemerPage: React.FC = () => {
             value={tokenCode}
             onChange={(e) => setTokenCode(e.target.value.toUpperCase())}
             placeholder="PAT-XXXX-YYYY"
-            className="flex-1 bg-dark-800 border border-slate-700 rounded-xl px-4 py-2.5 text-sm font-mono text-cyan-400 tracking-wider focus:outline-none focus:border-cyan-500"
+            className="flex-1 bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm font-mono text-emerald-600 tracking-wider focus:outline-none focus:border-cyan-500"
           />
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-dark-900 font-extrabold text-xs shadow-lg shadow-cyan-500/20 flex items-center gap-2 disabled:opacity-50"
+            className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-dark-900 font-extrabold text-xs shadow-lg shadow-cyan-500/20 flex items-center gap-2 disabled:opacity-50"
           >
             {loading ? 'Validating Token...' : 'Access Report'}
             <Search className="w-4 h-4" />
@@ -125,21 +125,21 @@ export const TokenRedeemerPage: React.FC = () => {
 
       {/* Authorized Analysis Report View */}
       {record && (
-        <div className="glass-panel rounded-3xl p-6 space-y-6 border border-slate-700 shadow-2xl print:bg-white print:text-black print:p-0 print:border-none">
+        <div className="glass-panel rounded-3xl p-6 space-y-6 border border-slate-200 shadow-2xl print:bg-white print:text-black print:p-0 print:border-none">
           
           {/* Header Action Bar */}
-          <div className="flex items-center justify-between border-b border-slate-800 pb-4 print:hidden">
+          <div className="flex items-center justify-between border-b border-slate-200/80 pb-4 print:hidden">
             <div className="flex items-center gap-2">
               <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-mono text-xs font-bold flex items-center gap-1.5">
                 <CheckCircle2 className="w-3.5 h-3.5" />
                 <span>TOKEN AUTHORIZED</span>
               </span>
-              <span className="text-xs font-mono font-bold text-cyan-400">{record.record_code}</span>
+              <span className="text-xs font-mono font-bold text-emerald-600">{record.record_code}</span>
             </div>
 
             <button
               onClick={handlePrintDownload}
-              className="px-4 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-dark-900 font-extrabold text-xs shadow-lg flex items-center gap-2 hover:opacity-90 transition-all"
+              className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-dark-900 font-extrabold text-xs shadow-lg flex items-center gap-2 hover:opacity-90 transition-all"
             >
               <Download className="w-4 h-4" />
               <span>Download Analysis Report (PDF)</span>
@@ -150,65 +150,65 @@ export const TokenRedeemerPage: React.FC = () => {
           <div className="space-y-2">
             <div className="flex justify-between items-start">
               <div>
-                <h2 className="text-2xl font-extrabold text-white print:text-black">AI HealthSecure — Patient Authorized Report</h2>
-                <p className="text-xs text-slate-400 print:text-slate-600">Explainable Diagnostic Risk Assessment & Blockchain Fingerprint</p>
+                <h2 className="text-2xl font-extrabold text-slate-900 font-bold print:text-black">HealthSync — Patient Authorized Report</h2>
+                <p className="text-xs text-slate-500 print:text-slate-600">Explainable Diagnostic Risk Assessment & Blockchain Fingerprint</p>
               </div>
               <div className="text-right">
-                <span className="text-xs font-mono font-bold text-cyan-400 print:text-slate-800">Record ID: {record.record_code}</span>
-                <p className="text-xs text-slate-400 print:text-slate-600">Generated: {formatTimestamp(record.created_at)}</p>
+                <span className="text-xs font-mono font-bold text-emerald-600 print:text-slate-800">Record ID: {record.record_code}</span>
+                <p className="text-xs text-slate-500 print:text-slate-600">Generated: {formatTimestamp(record.created_at)}</p>
               </div>
             </div>
           </div>
 
           {/* Patient Details */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-dark-800/80 border border-slate-800 text-xs print:bg-gray-100 print:text-black print:border-gray-300">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-2xl bg-white/90 border border-slate-200/80 border border-slate-200/80 text-xs print:bg-gray-100 print:text-black print:border-gray-300">
             <div>
               <span className="text-slate-500 print:text-gray-600 block">Patient Name</span>
-              <span className="font-bold text-white print:text-black">{record.patient_name}</span>
+              <span className="font-bold text-slate-900 font-bold print:text-black">{record.patient_name}</span>
             </div>
             <div>
               <span className="text-slate-500 print:text-gray-600 block">Patient Code</span>
-              <span className="font-mono font-bold text-cyan-400 print:text-black">{record.patient_code}</span>
+              <span className="font-mono font-bold text-emerald-600 print:text-black">{record.patient_code}</span>
             </div>
             <div>
               <span className="text-slate-500 print:text-gray-600 block">Origin Doctor</span>
-              <span className="font-bold text-white print:text-black">{record.doctor_name}</span>
+              <span className="font-bold text-slate-900 font-bold print:text-black">{record.doctor_name}</span>
             </div>
             <div>
               <span className="text-slate-500 print:text-gray-600 block">Hospital</span>
-              <span className="font-bold text-white print:text-black">{record.hospital_name}</span>
+              <span className="font-bold text-slate-900 font-bold print:text-black">{record.hospital_name}</span>
             </div>
           </div>
 
-          {/* Diagnostic Prediction Result */}
-          <div className="p-5 rounded-2xl bg-gradient-to-r from-slate-900 via-dark-800 to-slate-900 border border-slate-800 grid grid-cols-1 sm:grid-cols-3 gap-4 print:bg-none print:border-gray-300">
+                    {/* Diagnostic Prediction Result */}
+          <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div>
-              <span className="text-xs text-slate-400 print:text-gray-600">Target Condition</span>
-              <p className="text-lg font-extrabold text-white print:text-black">{record.disease}</p>
+              <span className="text-xs font-bold text-slate-700 block mb-1">Target Condition</span>
+              <p className="text-xl font-extrabold text-slate-900">{record.disease}</p>
             </div>
             <div>
-              <span className="text-xs text-slate-400 print:text-gray-600">Diagnostic Result & Risk</span>
-              <p className={`text-lg font-extrabold ${
-                record.risk_level === 'High' ? 'text-rose-400' :
-                record.risk_level === 'Moderate' ? 'text-amber-400' : 'text-emerald-400'
-              } print:text-black`}>
+              <span className="text-xs font-bold text-slate-700 block mb-1">Diagnostic Result & Risk</span>
+              <p className={`text-xl font-extrabold ${
+                record.risk_level === 'High' ? 'text-rose-600' :
+                record.risk_level === 'Moderate' ? 'text-amber-600' : 'text-emerald-700'
+              }`}>
                 {record.result} ({record.risk_level} Risk)
               </p>
             </div>
             <div>
-              <span className="text-xs text-slate-400 print:text-gray-600">AI Confidence Score</span>
-              <p className="text-lg font-extrabold text-cyan-400 print:text-black">{record.confidence}%</p>
+              <span className="text-xs font-bold text-slate-700 block mb-1">AI Confidence Score</span>
+              <p className="text-2xl font-extrabold text-emerald-700">{record.confidence}%</p>
             </div>
           </div>
 
           {/* Clinical Inputs Vitals */}
           <div className="space-y-2">
-            <h3 className="text-sm font-bold text-slate-200 print:text-black">Clinical Vitals & Input Parameters</h3>
+            <h3 className="text-sm font-bold text-slate-700 print:text-black">Clinical Vitals & Input Parameters</h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
               {Object.entries(record.clinical_inputs || {}).map(([k, v]) => (
-                <div key={k} className="p-2.5 rounded-xl bg-dark-800 border border-slate-800 print:bg-gray-50 print:border-gray-200">
+                <div key={k} className="p-2.5 rounded-xl bg-white border border-slate-200/80 print:bg-gray-50 print:border-gray-200">
                   <span className="text-slate-500 print:text-gray-600 block truncate">{k}</span>
-                  <span className="font-mono font-bold text-white print:text-black">{String(v)}</span>
+                  <span className="font-mono font-bold text-slate-900 font-bold print:text-black">{String(v)}</span>
                 </div>
               ))}
             </div>
@@ -216,8 +216,8 @@ export const TokenRedeemerPage: React.FC = () => {
 
           {/* Explainable AI Text */}
           <div className="space-y-2">
-            <h3 className="text-sm font-bold text-slate-200 print:text-black">Summary</h3>
-            <div className="p-4 rounded-xl bg-dark-800/90 border border-slate-800 text-xs text-slate-200 whitespace-pre-line leading-relaxed print:bg-gray-50 print:text-black print:border-gray-200">
+            <h3 className="text-sm font-bold text-slate-700 print:text-black">Summary</h3>
+            <div className="p-4 rounded-xl bg-white/90 border border-slate-200/80 text-xs text-slate-700 whitespace-pre-line leading-relaxed print:bg-gray-50 print:text-black print:border-gray-200">
               {record.ai_analysis_text}
             </div>
           </div>
@@ -225,15 +225,15 @@ export const TokenRedeemerPage: React.FC = () => {
           {/* SHAP Chart & Table */}
           {record.shap_features && (
             <div className="space-y-3">
-              <h3 className="text-sm font-bold text-slate-200 print:text-black">SHAP Feature Contributions</h3>
+              <h3 className="text-sm font-bold text-slate-700 print:text-black">SHAP Feature Contributions</h3>
               
-              <div className="print:hidden p-4 rounded-2xl bg-dark-800/60 border border-slate-800">
+              <div className="print:hidden p-4 rounded-2xl bg-white/60 border border-slate-200/80">
                 <SHAPChart features={record.shap_features} baseValue={record.shap_base_value} />
               </div>
 
               <table className="w-full text-xs text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-slate-800 text-slate-400 print:border-gray-300 print:text-black">
+                  <tr className="border-b border-slate-200/80 text-slate-500 print:border-gray-300 print:text-black">
                     <th className="py-2 px-3">Feature Name</th>
                     <th className="py-2 px-3">Patient Value</th>
                     <th className="py-2 px-3">SHAP Impact Value</th>
@@ -242,9 +242,9 @@ export const TokenRedeemerPage: React.FC = () => {
                 </thead>
                 <tbody className="divide-y divide-slate-800/50 print:divide-gray-200">
                   {record.shap_features.map((f: any, idx: number) => (
-                    <tr key={idx} className="hover:bg-slate-800/30 print:text-black">
-                      <td className="py-2 px-3 font-medium text-white print:text-black">{f.feature_name}</td>
-                      <td className="py-2 px-3 font-mono text-slate-300 print:text-black">{f.patient_value}</td>
+                    <tr key={idx} className="hover:bg-slate-100/30 print:text-black">
+                      <td className="py-2 px-3 font-medium text-slate-900 font-bold print:text-black">{f.feature_name}</td>
+                      <td className="py-2 px-3 font-mono text-slate-600 print:text-black">{f.patient_value}</td>
                       <td className="py-2 px-3 font-mono font-bold print:text-black">{f.shap_value > 0 ? `+${f.shap_value}` : f.shap_value}</td>
                       <td className="py-2 px-3">
                         <span className={`px-2 py-0.5 rounded-full font-bold text-[10px] ${
@@ -267,8 +267,8 @@ export const TokenRedeemerPage: React.FC = () => {
                 <ShieldCheck className="w-4 h-4" />
                 <span>Blockchain Verified Fingerprint (Hardhat Ledger)</span>
               </div>
-              <div className="font-mono text-[11px] text-slate-300 space-y-0.5 print:text-black">
-                <p>SHA-256 Hash: <span className="text-cyan-400 print:text-black">{record.blockchain_details.sha256_hash}</span></p>
+              <div className="font-mono text-[11px] text-slate-600 space-y-0.5 print:text-black">
+                <p>SHA-256 Hash: <span className="text-emerald-600 print:text-black">{record.blockchain_details.sha256_hash}</span></p>
                 <p>Tx Hash: {record.blockchain_details.tx_hash}</p>
                 <p>Block #{record.blockchain_details.block_number} | Contract: {record.blockchain_details.contract_address}</p>
               </div>

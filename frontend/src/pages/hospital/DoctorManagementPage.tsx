@@ -99,13 +99,13 @@ export const DoctorManagementPage: React.FC = () => {
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white">Hospital Doctor Management</h1>
-          <p className="text-xs text-slate-400">Onboard hospital physicians, create accounts, and view active medical staff</p>
+          <h1 className="text-2xl font-extrabold text-slate-900 font-bold">Hospital Doctor Management</h1>
+          <p className="text-xs text-slate-500">Onboard hospital physicians, create accounts, and view active medical staff</p>
         </div>
 
         <button
           onClick={() => setIsModalOpen(true)}
-          className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-dark-900 font-extrabold text-xs shadow-lg shadow-cyan-500/20 flex items-center gap-2 hover:opacity-90 transition-all self-start md:self-auto"
+          className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-dark-900 font-extrabold text-xs shadow-lg shadow-cyan-500/20 flex items-center gap-2 hover:opacity-90 transition-all self-start md:self-auto"
         >
           <UserPlus className="w-4 h-4" />
           <span>+ Onboard New Doctor</span>
@@ -115,17 +115,17 @@ export const DoctorManagementPage: React.FC = () => {
       {/* Stats & Search Toolbar */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="glass-panel p-4 rounded-xl space-y-1">
-          <span className="text-xs font-medium text-slate-400">Total Hospital Doctors</span>
-          <p className="text-2xl font-extrabold text-white">{doctors.length}</p>
+          <span className="text-xs font-medium text-slate-500">Total Hospital Doctors</span>
+          <p className="text-2xl font-extrabold text-slate-900 font-bold">{doctors.length}</p>
         </div>
         <div className="glass-panel p-4 rounded-xl space-y-1">
-          <span className="text-xs font-medium text-slate-400">Pending First Password Reset</span>
+          <span className="text-xs font-medium text-slate-500">Pending First Password Reset</span>
           <p className="text-2xl font-extrabold text-amber-400">
             {doctors.filter(d => d.must_change_password).length}
           </p>
         </div>
         <div className="glass-panel p-4 rounded-xl space-y-1">
-          <span className="text-xs font-medium text-slate-400">Fully Activated Accounts</span>
+          <span className="text-xs font-medium text-slate-500">Fully Activated Accounts</span>
           <p className="text-2xl font-extrabold text-emerald-400">
             {doctors.filter(d => !d.must_change_password).length}
           </p>
@@ -134,38 +134,38 @@ export const DoctorManagementPage: React.FC = () => {
 
       {/* Search Input */}
       <div className="relative">
-        <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+        <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-500" />
         <input
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search doctor by name, email, specialization, or doctor code..."
-          className="w-full bg-slate-900/80 border border-slate-800 rounded-xl pl-10 pr-4 py-2.5 text-xs text-white placeholder-slate-500 focus:border-cyan-500 transition-colors"
+          className="w-full bg-white border border-slate-200/80 rounded-xl pl-10 pr-4 py-2.5 text-xs text-slate-900 font-bold placeholder-slate-500 focus:border-cyan-500 transition-colors"
         />
       </div>
 
       {/* Doctor Directory Table */}
-      <div className="bg-slate-900/60 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-        <div className="p-4 border-b border-slate-800 flex items-center justify-between">
-          <h2 className="text-sm font-bold text-white flex items-center gap-2">
-            <Users className="w-4 h-4 text-cyan-400" />
+      <div className="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-xl">
+        <div className="p-4 border-b border-slate-200/80 flex items-center justify-between">
+          <h2 className="text-sm font-bold text-slate-900 font-bold flex items-center gap-2">
+            <Users className="w-4 h-4 text-emerald-600" />
             <span>Onboarded Physicians Directory ({filteredDoctors.length})</span>
           </h2>
-          <button onClick={fetchDoctors} className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors">
+          <button onClick={fetchDoctors} className="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-colors">
             <RefreshCw className="w-3.5 h-3.5" />
           </button>
         </div>
 
         {loading ? (
-          <div className="p-8 text-center text-xs text-cyan-400">Loading doctor staff directory...</div>
+          <div className="p-8 text-center text-xs text-emerald-600">Loading doctor staff directory...</div>
         ) : filteredDoctors.length === 0 ? (
-          <div className="p-8 text-center text-xs text-slate-400">
+          <div className="p-8 text-center text-xs text-slate-500">
             No doctors found. Click <strong>"+ Onboard New Doctor"</strong> to create a new physician account.
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs text-slate-300">
-              <thead className="bg-slate-950/80 text-slate-400 uppercase text-[10px] font-bold border-b border-slate-800">
+            <table className="w-full text-left text-xs text-slate-600">
+              <thead className="bg-white text-slate-500 uppercase text-[10px] font-bold border-b border-slate-200/80">
                 <tr>
                   <th className="py-3 px-4">Doctor Name</th>
                   <th className="py-3 px-4">Doctor Code</th>
@@ -178,15 +178,15 @@ export const DoctorManagementPage: React.FC = () => {
               </thead>
               <tbody className="divide-y divide-slate-800/60">
                 {filteredDoctors.map((doc) => (
-                  <tr key={doc.id} onClick={() => setSelectedDoctorId(doc.id)} className="hover:bg-slate-800/60 transition-colors cursor-pointer" title="Click to view dedicated doctor hub & manage slot availability">
+                  <tr key={doc.id} onClick={() => setSelectedDoctorId(doc.id)} className="hover:bg-slate-50 transition-colors cursor-pointer" title="Click to view dedicated doctor hub & manage slot availability">
                     <td className="py-3.5 px-4">
-                      <div className="font-bold text-white">{doc.name}</div>
-                      <div className="text-[11px] text-cyan-400">{doc.email}</div>
+                      <div className="font-bold text-slate-900 font-bold">{doc.name}</div>
+                      <div className="text-[11px] text-emerald-600">{doc.email}</div>
                     </td>
-                    <td className="py-3.5 px-4 font-mono text-cyan-400 font-bold">{doc.doctor_code}</td>
-                    <td className="py-3.5 px-4 font-medium text-slate-200">{doc.specialization}</td>
-                    <td className="py-3.5 px-4 text-slate-400">{doc.department || 'General Medicine'}</td>
-                    <td className="py-3.5 px-4 font-mono text-slate-400">{doc.license_number || 'N/A'}</td>
+                    <td className="py-3.5 px-4 font-mono text-emerald-600 font-bold">{doc.doctor_code}</td>
+                    <td className="py-3.5 px-4 font-medium text-slate-700">{doc.specialization}</td>
+                    <td className="py-3.5 px-4 text-slate-500">{doc.department || 'General Medicine'}</td>
+                    <td className="py-3.5 px-4 font-mono text-slate-500">{doc.license_number || 'N/A'}</td>
                     <td className="py-3.5 px-4">
                       {doc.must_change_password ? (
                         <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-400 border border-amber-500/30 flex items-center gap-1 w-fit">
@@ -200,7 +200,7 @@ export const DoctorManagementPage: React.FC = () => {
                         </span>
                       )}
                     </td>
-                    <td className="py-3.5 px-4 text-slate-400">{doc.created_at}</td>
+                    <td className="py-3.5 px-4 text-slate-500">{doc.created_at}</td>
                   </tr>
                 ))}
               </tbody>
@@ -212,13 +212,13 @@ export const DoctorManagementPage: React.FC = () => {
       {/* Modal: Onboard New Doctor */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 bg-dark-950/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-dark-900 border border-slate-800 rounded-2xl p-6 max-w-lg w-full shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-150 max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h2 className="text-base font-extrabold text-white flex items-center gap-2">
-                <UserPlus className="w-4 h-4 text-cyan-400" />
+          <div className="bg-[#f4f7f6] border border-slate-200/80 rounded-2xl p-6 max-w-lg w-full shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-150 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between border-b border-slate-200/80 pb-3">
+              <h2 className="text-base font-extrabold text-slate-900 font-bold flex items-center gap-2">
+                <UserPlus className="w-4 h-4 text-emerald-600" />
                 <span>Onboard New Hospital Doctor</span>
               </h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-slate-400 hover:text-white p-1 rounded-lg">
+              <button onClick={() => setIsModalOpen(false)} className="text-slate-500 hover:text-slate-900 p-1 rounded-lg">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -240,7 +240,7 @@ export const DoctorManagementPage: React.FC = () => {
             <form onSubmit={handleOnboardSubmit} className="space-y-3 text-xs">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">
+                  <label className="block text-slate-600 font-semibold mb-1">
                     Doctor Full Name <span className="text-rose-400">*</span>
                   </label>
                   <input
@@ -248,12 +248,12 @@ export const DoctorManagementPage: React.FC = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="e.g. Dr. Sarah Connor"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white placeholder-slate-500 focus:border-cyan-500"
+                    className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold placeholder-slate-500 focus:border-cyan-500"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">
+                  <label className="block text-slate-600 font-semibold mb-1">
                     Email Address (Login) <span className="text-rose-400">*</span>
                   </label>
                   <input
@@ -261,7 +261,7 @@ export const DoctorManagementPage: React.FC = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="e.g. sarah@aihealthsecure.local"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white placeholder-slate-500 focus:border-cyan-500"
+                    className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold placeholder-slate-500 focus:border-cyan-500"
                     required
                   />
                 </div>
@@ -269,52 +269,52 @@ export const DoctorManagementPage: React.FC = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Specialization</label>
+                  <label className="block text-slate-600 font-semibold mb-1">Specialization</label>
                   <input
                     type="text"
                     value={specialization}
                     onChange={(e) => setSpecialization(e.target.value)}
                     placeholder="e.g. Cardiologist"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white placeholder-slate-500 focus:border-cyan-500"
+                    className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold placeholder-slate-500 focus:border-cyan-500"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Department</label>
+                  <label className="block text-slate-600 font-semibold mb-1">Department</label>
                   <input
                     type="text"
                     value={department}
                     onChange={(e) => setDepartment(e.target.value)}
                     placeholder="e.g. Cardiology"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white placeholder-slate-500 focus:border-cyan-500"
+                    className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold placeholder-slate-500 focus:border-cyan-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Medical License / Reg No</label>
+                  <label className="block text-slate-600 font-semibold mb-1">Medical License / Reg No</label>
                   <input
                     type="text"
                     value={licenseNumber}
                     onChange={(e) => setLicenseNumber(e.target.value)}
                     placeholder="e.g. MED-REG-9908"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white placeholder-slate-500 focus:border-cyan-500 font-mono"
+                    className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold placeholder-slate-500 focus:border-cyan-500 font-mono"
                   />
                 </div>
                 <div>
-                  <label className="block text-slate-300 font-semibold mb-1">Contact Phone</label>
+                  <label className="block text-slate-600 font-semibold mb-1">Contact Phone</label>
                   <input
                     type="text"
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="e.g. +1 555-0192"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white placeholder-slate-500 focus:border-cyan-500"
+                    className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold placeholder-slate-500 focus:border-cyan-500"
                   />
                 </div>
               </div>
 
               <div className="pt-1">
-                <label className="block text-slate-300 font-semibold mb-1">
+                <label className="block text-slate-600 font-semibold mb-1">
                   Initial Temporary Password <span className="text-rose-400">*</span>
                 </label>
                 <input
@@ -322,7 +322,7 @@ export const DoctorManagementPage: React.FC = () => {
                   value={initialPassword}
                   onChange={(e) => setInitialPassword(e.target.value)}
                   placeholder="Set initial password (min 6 chars)"
-                  className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-white placeholder-slate-500 focus:border-cyan-500"
+                  className="w-full bg-[#f4f7f6] border border-slate-200/80 rounded-xl px-3 py-2 text-slate-900 font-bold placeholder-slate-500 focus:border-cyan-500"
                   required
                 />
                 <p className="text-[11px] text-slate-500 mt-1">
@@ -330,18 +330,18 @@ export const DoctorManagementPage: React.FC = () => {
                 </p>
               </div>
 
-              <div className="pt-3 flex items-center justify-end gap-3 border-t border-slate-800">
+              <div className="pt-3 flex items-center justify-end gap-3 border-t border-slate-200/80">
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition-all"
+                  className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-700 text-slate-600 font-bold transition-all"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 text-dark-900 font-extrabold shadow-lg shadow-cyan-500/20 disabled:opacity-50 transition-all hover:opacity-90"
+                  className="px-5 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-dark-900 font-extrabold shadow-lg shadow-cyan-500/20 disabled:opacity-50 transition-all hover:opacity-90"
                 >
                   {submitting ? 'Creating Account...' : 'Complete Onboarding'}
                 </button>

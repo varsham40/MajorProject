@@ -30,14 +30,14 @@ export const ModelAnalysisPage: React.FC = () => {
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-extrabold text-white">AI Model Analysis & Validation</h1>
-          <p className="text-xs text-slate-400">Confusion Matrix, Receiver Operating Characteristic (ROC) Curves, & Feature Importance Rankings</p>
+          <h1 className="text-2xl font-extrabold text-slate-900 font-bold">AI Model Analysis & Validation</h1>
+          <p className="text-xs text-slate-500">Confusion Matrix, Receiver Operating Characteristic (ROC) Curves, & Feature Importance Rankings</p>
         </div>
 
         <select
           value={diseaseKey}
           onChange={(e) => setDiseaseKey(e.target.value)}
-          className="bg-dark-800 border border-slate-700 rounded-xl px-4 py-2 text-xs text-cyan-400 font-bold"
+          className="bg-white border border-slate-200 rounded-xl px-4 py-2 text-xs text-emerald-600 font-bold"
         >
           <option value="diabetes">Diabetes Model Analysis</option>
           <option value="heart_disease">Heart Disease Model Analysis</option>
@@ -48,33 +48,33 @@ export const ModelAnalysisPage: React.FC = () => {
       </div>
 
       {loading ? (
-        <div className="p-8 text-cyan-400 text-center font-semibold">Loading Model Analysis...</div>
+        <div className="p-8 text-emerald-600 text-center font-semibold">Loading Model Analysis...</div>
       ) : !analysis ? (
-        <div className="p-8 text-slate-400 text-center">No analysis data found for this disease model.</div>
+        <div className="p-8 text-slate-500 text-center">No analysis data found for this disease model.</div>
       ) : (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Confusion Matrix */}
           <div className="glass-panel p-6 rounded-2xl space-y-4">
-            <h2 className="text-base font-bold text-white flex items-center gap-2">
-              <Cpu className="w-5 h-5 text-cyan-400" />
+            <h2 className="text-base font-bold text-slate-900 font-bold flex items-center gap-2">
+              <Cpu className="w-5 h-5 text-emerald-600" />
               <span>Confusion Matrix ({analysis.disease})</span>
             </h2>
 
-            <div className="p-6 rounded-xl bg-dark-800/80 border border-slate-800 grid grid-cols-2 gap-4 text-center">
+            <div className="p-6 rounded-xl bg-white/90 border border-slate-200/80 border border-slate-200/80 grid grid-cols-2 gap-4 text-center">
               <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
-                <span className="text-xs text-slate-400 block">True Negative (TN)</span>
+                <span className="text-xs text-slate-500 block">True Negative (TN)</span>
                 <span className="text-2xl font-extrabold text-emerald-400">{analysis.confusion_matrix?.[0]?.[0] ?? 0}</span>
               </div>
               <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30">
-                <span className="text-xs text-slate-400 block">False Positive (FP)</span>
+                <span className="text-xs text-slate-500 block">False Positive (FP)</span>
                 <span className="text-2xl font-extrabold text-rose-400">{analysis.confusion_matrix?.[0]?.[1] ?? 0}</span>
               </div>
               <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30">
-                <span className="text-xs text-slate-400 block">False Negative (FN)</span>
+                <span className="text-xs text-slate-500 block">False Negative (FN)</span>
                 <span className="text-2xl font-extrabold text-rose-400">{analysis.confusion_matrix?.[1]?.[0] ?? 0}</span>
               </div>
               <div className="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30">
-                <span className="text-xs text-slate-400 block">True Positive (TP)</span>
+                <span className="text-xs text-slate-500 block">True Positive (TP)</span>
                 <span className="text-2xl font-extrabold text-emerald-400">{analysis.confusion_matrix?.[1]?.[1] ?? 0}</span>
               </div>
             </div>
@@ -82,7 +82,7 @@ export const ModelAnalysisPage: React.FC = () => {
 
           {/* ROC Curve Chart */}
           <div className="glass-panel p-6 rounded-2xl space-y-4">
-            <h2 className="text-base font-bold text-white flex items-center gap-2">
+            <h2 className="text-base font-bold text-slate-900 font-bold flex items-center gap-2">
               <Activity className="w-5 h-5 text-purple-400" />
               <span>ROC Curve (AUC: {((analysis.metrics.roc_auc || 0) * 100).toFixed(1)}%)</span>
             </h2>
@@ -101,7 +101,7 @@ export const ModelAnalysisPage: React.FC = () => {
 
           {/* Feature Importances */}
           <div className="glass-panel p-6 rounded-2xl space-y-4 lg:col-span-2">
-            <h2 className="text-base font-bold text-white flex items-center gap-2">
+            <h2 className="text-base font-bold text-slate-900 font-bold flex items-center gap-2">
               <BarChart3 className="w-5 h-5 text-amber-400" />
               <span>Global Feature Importance Rankings</span>
             </h2>

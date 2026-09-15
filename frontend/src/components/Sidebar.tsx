@@ -1,3 +1,4 @@
+import { HealthSyncLogo } from './HealthSyncLogo';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuthStore } from '../store/authStore';
@@ -54,24 +55,24 @@ export const Sidebar: React.FC = () => {
   if (role === 'ADMIN') navItems = adminNav;
 
   return (
-    <aside className="w-64 bg-dark-800/80 backdrop-blur-md border-r border-slate-800 flex flex-col min-h-screen">
-      <div className="p-6 flex items-center gap-3 border-b border-slate-800/80">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-emerald-400 flex items-center justify-center text-dark-900 font-bold shadow-lg shadow-cyan-500/20">
-          AI
-        </div>
-        <div>
-          <h1 className="font-bold text-lg text-white leading-tight">HealthSecure</h1>
-          <p className="text-xs text-cyan-400 font-medium">Explainable AI & Chain</p>
+    <aside className="w-64 bg-white border-r border-slate-200/80 flex flex-col min-h-screen">
+                  <div className="p-4 flex items-center gap-3.5 border-b border-slate-100 dark:border-slate-800">
+        <HealthSyncLogo containerClass="w-13 h-13 min-w-[3.25rem] h-13 rounded-2xl bg-[#c5f5e8] flex items-center justify-center shadow-md p-1.5 border border-emerald-300/50 shrink-0" iconSize="w-10 h-10" />
+        <div className="flex flex-col">
+          <h1 className="font-extrabold text-2xl text-slate-900 dark:text-white leading-none tracking-tight">HealthSync</h1>
+          <p className="text-[11px] text-emerald-600 dark:text-emerald-400 font-bold leading-snug mt-1">
+            Smarter Checkups.<br />Healthier tomorrows
+          </p>
         </div>
       </div>
 
-      <div className="px-4 py-3 bg-dark-900/50 mx-4 my-4 rounded-lg border border-slate-800/60 flex items-center justify-between">
-        <span className="text-xs text-slate-400">Current Role:</span>
-        <span className={`text-xs px-2.5 py-0.5 rounded-full font-bold uppercase ${
-          role === 'ADMIN' ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30' :
-          role === 'DOCTOR' ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30' :
-          role === 'HOSPITAL' ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30' :
-          'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+      <div className="px-4 py-2.5 bg-slate-50 mx-4 my-3 rounded-xl border border-slate-200/60 flex items-center justify-between">
+        <span className="text-xs text-slate-500 font-medium">Current Role:</span>
+        <span className={`text-[11px] px-2.5 py-0.5 rounded-full font-extrabold uppercase ${
+          role === 'ADMIN' ? 'bg-rose-50 text-rose-600 border border-rose-200' :
+          role === 'DOCTOR' ? 'bg-sky-50 text-sky-600 border border-sky-200' :
+          role === 'HOSPITAL' ? 'bg-purple-50 text-purple-600 border border-purple-200' :
+          'bg-emerald-50 text-emerald-700 border border-emerald-200'
         }`}>
           {role}
         </span>
@@ -85,10 +86,10 @@ export const Sidebar: React.FC = () => {
               key={item.name}
               to={item.path}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                `flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all ${
                   isActive
-                    ? 'bg-gradient-to-r from-cyan-500/20 to-emerald-500/10 text-cyan-400 border border-cyan-500/30 shadow-md'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                    ? 'bg-emerald-500 text-slate-900 font-bold shadow-md shadow-emerald-200'
+                    : 'text-slate-600 hover:text-emerald-600 hover:bg-emerald-50/60'
                 }`
               }
             >
@@ -99,8 +100,15 @@ export const Sidebar: React.FC = () => {
         })}
       </nav>
 
-      <div className="p-4 border-t border-slate-800/80 text-xs text-slate-500 text-center">
-        Predict → Explain → Record → Secure → Share → Verify
+      
+
+      
+          <div className="p-4 border-t border-slate-100 dark-border-subtle text-[11px] text-slate-500 flex items-center gap-2 mt-auto">
+        <span className="relative flex h-2 w-2">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <span className="font-semibold text-slate-400">Node Sync: Block #198242</span>
       </div>
     </aside>
   );

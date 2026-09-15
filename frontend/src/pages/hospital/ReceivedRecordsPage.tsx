@@ -15,19 +15,19 @@ export const ReceivedRecordsPage: React.FC = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div className="p-8 text-cyan-400 text-center font-semibold">Loading Received Records...</div>;
+  if (loading) return <div className="p-8 text-emerald-600 text-center font-semibold">Loading Received Records...</div>;
 
   return (
     <div className="p-6 space-y-6 max-w-7xl mx-auto">
       <div>
-        <h1 className="text-2xl font-extrabold text-white">Received Medical Records</h1>
-        <p className="text-xs text-slate-400">Records transferred from external hospitals via patient consent access tokens</p>
+        <h1 className="text-2xl font-extrabold text-slate-900 font-bold">Received Medical Records</h1>
+        <p className="text-xs text-slate-500">Records transferred from external hospitals via patient consent access tokens</p>
       </div>
 
-      <div className="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+      <div className="glass-panel rounded-2xl overflow-hidden border border-slate-200/80">
         <table className="w-full text-xs text-left">
           <thead>
-            <tr className="border-b border-slate-800 text-slate-400 bg-dark-800/50">
+            <tr className="border-b border-slate-200/80 text-slate-500 bg-white/50">
               <th className="py-3 px-4">Record Code</th>
               <th className="py-3 px-4">Patient</th>
               <th className="py-3 px-4">Disease / Diagnosis</th>
@@ -38,16 +38,16 @@ export const ReceivedRecordsPage: React.FC = () => {
           </thead>
           <tbody className="divide-y divide-slate-800/60">
             {records.map((r) => (
-              <tr key={r.share_id} className="hover:bg-slate-800/30">
-                <td className="py-3.5 px-4 font-mono font-bold text-cyan-400">{r.record_code}</td>
-                <td className="py-3.5 px-4 font-bold text-white">{r.patient_name} ({r.patient_code})</td>
-                <td className="py-3.5 px-4 text-slate-200">{r.disease}</td>
+              <tr key={r.share_id} className="hover:bg-slate-100/30">
+                <td className="py-3.5 px-4 font-mono font-bold text-emerald-600">{r.record_code}</td>
+                <td className="py-3.5 px-4 font-bold text-slate-900 font-bold">{r.patient_name} ({r.patient_code})</td>
+                <td className="py-3.5 px-4 text-slate-700">{r.disease}</td>
                 <td className="py-3.5 px-4">
                   <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/20 text-purple-400 border border-purple-500/30">
                     {r.source_info}
                   </span>
                 </td>
-                <td className="py-3.5 px-4 text-slate-400">{r.received_at}</td>
+                <td className="py-3.5 px-4 text-slate-500">{r.received_at}</td>
                 <td className="py-3.5 px-4 text-right">
                   <button
                     onClick={() => navigate(`/hospital/verify-record?id=${r.record_id}`)}
