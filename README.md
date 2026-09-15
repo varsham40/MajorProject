@@ -56,34 +56,37 @@ flowchart LR
 ## 3. System Architecture & Data Flow
 
 ```mermaid
-architecture-beta
-    group user_layer(cloud, "User Layer")
-    group app_layer(server, "Application Layer")
-    group ml_layer(database, "AI & Intelligence Layer")
-    group trust_layer(disk, "Blockchain Trust Layer")
+flowchart TD
+    subgraph UserLayer ["User Interface Layer"]
+        patient_ui["Patient Portal"]
+        doctor_ui["Doctor Workspace"]
+        admin_ui["Admin Control Center"]
+    end
 
-    service patient_ui(internet, "Patient Portal") in user_layer
-    service doctor_ui(internet, "Doctor Workspace") in user_layer
-    service admin_ui(internet, "Admin Dashboard") in user_layer
+    subgraph AppLayer ["Application Core Layer"]
+        fastapi["FastAPI Backend Engine"]
+        db[("SQLAlchemy Relational Database")]
+    end
 
-    service fastapi(server, "FastAPI Backend Engine") in app_layer
-    service db(database, "SQLAlchemy Relational DB") in app_layer
+    subgraph MLLayer ["AI & Explainability Layer"]
+        ml_engine["Scikit-Learn / XGBoost Ensemble Engine"]
+        shap_engine["SHAP TreeExplainer Service"]
+    end
 
-    service ml_engine(cpu, "Scikit-Learn / XGBoost") in ml_layer
-    service shap_engine(cpu, "SHAP Explainer Engine") in ml_layer
+    subgraph TrustLayer ["Blockchain Trust & Integrity Layer"]
+        web3_py["Web3.py Ethereum Client"]
+        hardhat["Hardhat Local Blockchain Node"]
+    end
 
-    service web3_py(disk, "Web3.py Client") in trust_layer
-    service hardhat(disk, "Hardhat Blockchain Node") in trust_layer
+    patient_ui -->|REST API / JWT| fastapi
+    doctor_ui -->|REST API / JWT| fastapi
+    admin_ui -->|REST API / JWT| fastapi
 
-    doctor_ui --> fastapi
-    patient_ui --> fastapi
-    admin_ui --> fastapi
-
-    fastapi --> ml_engine
-    ml_engine --> shap_engine
-    fastapi --> db
-    fastapi --> web3_py
-    web3_py --> hardhat
+    fastapi -->|Clinical Vitals| ml_engine
+    ml_engine -->|Predictions & Probabilities| shap_engine
+    fastapi -->|CRUD Operations| db
+    fastapi -->|Record SHA-256 Hash| web3_py
+    web3_py -->|Smart Contract RPC| hardhat
 ```
 
 ### Component Data Flow Steps:
