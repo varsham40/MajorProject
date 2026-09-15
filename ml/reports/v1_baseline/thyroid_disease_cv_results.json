@@ -1,0 +1,31 @@
+{
+  "disease_key": "thyroid_disease",
+  "disease_name": "Thyroid Disease",
+  "cv_folds": 5,
+  "metrics": {
+    "accuracy": {
+      "mean": 0.9894,
+      "std": 0.0043
+    },
+    "precision": {
+      "mean": 0.9633,
+      "std": 0.0175
+    },
+    "recall": {
+      "mean": 0.897,
+      "std": 0.0544
+    },
+    "f1_score": {
+      "mean": 0.928,
+      "std": 0.0304
+    },
+    "roc_auc": {
+      "mean": 0.9986,
+      "std": 0.0004
+    },
+    "pr_auc": {
+      "mean": 0.9786,
+      "std": 0.0064
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import { ClinicalSummaryTable } from '../../components/ClinicalSummaryTable';
 import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 import { useNavigate } from 'react-router-dom';
@@ -409,7 +410,7 @@ export const DoctorPatients: React.FC = () => {
         <div className="fixed inset-0 z-50 bg-dark-900/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
           <div className="glass-panel w-full max-w-4xl max-h-[92vh] overflow-y-auto rounded-3xl p-6 space-y-6 relative border border-slate-700 shadow-2xl">
             <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-              <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 font-mono text-xs font-bold">
+              <span className="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 font-mono text-xs font-bold">
                 {selectedRecord.record_code}
               </span>
               <button
@@ -429,14 +430,12 @@ export const DoctorPatients: React.FC = () => {
                 <span className="text-cyan-400 font-bold text-sm">{selectedRecord.confidence}% Confidence</span>
               </div>
 
-              <div className="p-4 rounded-xl bg-dark-800 border border-slate-800 text-slate-200 whitespace-pre-line leading-relaxed">
-                {selectedRecord.ai_analysis_text}
-              </div>
+              <ClinicalSummaryTable summaryText={selectedRecord.ai_analysis_text} shapList={selectedRecord.shap_features} />
 
               {selectedRecord.shap_features && (
-                <div className="space-y-2">
-                  <h3 className="font-bold text-white">SHAP Feature Contributions</h3>
-                  <div className="p-4 rounded-2xl bg-dark-800/60 border border-slate-800">
+                <div className="space-y-2 pt-2">
+                  <h3 className="font-bold text-white text-sm">SHAP Feature Contributions</h3>
+                  <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800">
                     <SHAPChart features={selectedRecord.shap_features} baseValue={selectedRecord.shap_base_value} />
                   </div>
                 </div>

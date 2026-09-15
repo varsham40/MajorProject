@@ -1,0 +1,31 @@
+{
+  "disease_key": "diabetes",
+  "disease_name": "Diabetes",
+  "cv_folds": 5,
+  "metrics": {
+    "accuracy": {
+      "mean": 0.7736,
+      "std": 0.0192
+    },
+    "precision": {
+      "mean": 0.7101,
+      "std": 0.0454
+    },
+    "recall": {
+      "mean": 0.5981,
+      "std": 0.04
+    },
+    "f1_score": {
+      "mean": 0.6478,
+      "std": 0.0292
+    },
+    "roc_auc": {
+      "mean": 0.829,
+      "std": 0.0249
+    },
+    "pr_auc": {
+      "mean": 0.72,
+      "std": 0.0513
+    }
+  }
+}

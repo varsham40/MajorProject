@@ -1,0 +1,22 @@
+{
+  "XGBoost": {
+    "n_estimators": 189,
+    "learning_rate": 0.021032297090411232,
+    "max_depth": 7,
+    "subsample": 0.7970404338725673,
+    "colsample_bytree": 0.6939976975798988
+  },
+  "LightGBM": {
+    "n_estimators": 92,
+    "learning_rate": 0.12839332846954402,
+    "max_depth": 8,
+    "num_leaves": 61,
+    "subsample": 0.6837563486223069,
+    "colsample_bytree": 0.8496243607117163
+  },
+  "CatBoost": {
+    "iterations": 188,
+    "learning_rate": 0.03307399623067989,
+    "depth": 8
+  }
+}

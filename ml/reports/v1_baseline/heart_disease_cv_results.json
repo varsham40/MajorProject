@@ -1,0 +1,31 @@
+{
+  "disease_key": "heart_disease",
+  "disease_name": "Heart Disease",
+  "cv_folds": 5,
+  "metrics": {
+    "accuracy": {
+      "mean": 0.9841,
+      "std": 0.0049
+    },
+    "precision": {
+      "mean": 0.9852,
+      "std": 0.0121
+    },
+    "recall": {
+      "mean": 0.9825,
+      "std": 0.0187
+    },
+    "f1_score": {
+      "mean": 0.9836,
+      "std": 0.0053
+    },
+    "roc_auc": {
+      "mean": 0.9988,
+      "std": 0.0008
+    },
+    "pr_auc": {
+      "mean": 0.9988,
+      "std": 0.0009
+    }
+  }
+}

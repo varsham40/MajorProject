@@ -120,8 +120,8 @@ async def book_appointment(
         hospital_id=hosp.id,
         appointment_date=apt_date,
         appointment_time=slot_time,
-        target_disease=req.target_disease or "General Consultation",
-        reason=req.reason or "Routine Checkup",
+        target_disease=req.reason or req.target_disease or "General Consultation",
+        reason=req.reason or req.target_disease or "General Consultation",
         notes=req.notes,
         status="SCHEDULED"
     )

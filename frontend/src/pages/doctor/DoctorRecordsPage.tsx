@@ -1,3 +1,4 @@
+import { ClinicalSummaryTable } from '../../components/ClinicalSummaryTable';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
@@ -390,10 +391,11 @@ export const DoctorRecordsPage: React.FC = () => {
 
             {/* Section: Explainable AI Clinical Analysis */}
             <div className="space-y-2">
-              <h3 className="text-sm font-bold text-slate-200 print:text-black">Explainable AI Analysis Summary</h3>
-              <div className="p-4 rounded-xl bg-dark-800/90 border border-slate-800 text-xs text-slate-200 whitespace-pre-line leading-relaxed print:bg-gray-50 print:text-black print:border-gray-200">
-                {selectedRecord.ai_analysis_text}
-              </div>
+              <h3 className="text-sm font-bold text-slate-200 print:text-black">Summary</h3>
+              <ClinicalSummaryTable
+                summaryText={selectedRecord.ai_analysis_text}
+                shapList={selectedRecord.shap_features}
+              />
             </div>
 
             {/* Section: SHAP Feature Contributions */}
@@ -415,20 +417,31 @@ export const DoctorRecordsPage: React.FC = () => {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-800/50 print:divide-gray-200">
-                    {selectedRecord.shap_features.map((f: any, idx: number) => (
-                      <tr key={idx} className="hover:bg-slate-800/30 print:text-black">
-                        <td className="py-2 px-3 font-medium text-white print:text-black">{f.feature_name}</td>
-                        <td className="py-2 px-3 font-mono text-slate-300 print:text-black">{f.patient_value}</td>
-                        <td className="py-2 px-3 font-mono font-bold print:text-black">{f.shap_value > 0 ? `+${f.shap_value}` : f.shap_value}</td>
-                        <td className="py-2 px-3">
-                          <span className={`px-2 py-0.5 rounded-full font-bold text-[10px] ${
-                            f.effect === 'Increased Risk' ? 'bg-rose-500/20 text-rose-400' : 'bg-emerald-500/20 text-emerald-400'
-                          } print:text-black`}>
-                            {f.effect}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
+                    {selectedRecord.shap_features.map((f: any, idx: number) => {
+                      const isIncreased = f.effect === 'Increased Risk' || f.shap_value > 0.0005;
+                      const isDecreased = f.effect === 'Decreased Risk' || f.shap_value < -0.0005;
+
+                      return (
+                        <tr key={idx} className="hover:bg-slate-800/30 print:text-black">
+                          <td className="py-2 px-3 font-medium text-white print:text-black">{f.feature_name}</td>
+                          <td className="py-2 px-3 font-mono text-slate-300 print:text-black">{f.patient_value}</td>
+                          <td className="py-2 px-3 font-mono font-bold print:text-black">
+                            {f.shap_value > 0 ? `+${f.shap_value}` : f.shap_value}
+                          </td>
+                          <td className="py-2 px-3">
+                            <span className={`px-2.5 py-0.5 rounded-full font-bold text-[10px] ${
+                              isIncreased
+                                ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
+                                : isDecreased
+                                ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                                : 'bg-slate-800 text-slate-400 border border-slate-700'
+                            } print:text-black`}>
+                              {isIncreased ? 'Increased Risk' : isDecreased ? 'Decreased Risk' : 'Neutral'}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>

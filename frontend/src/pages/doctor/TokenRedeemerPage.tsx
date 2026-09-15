@@ -1,3 +1,4 @@
+import { ClinicalSummaryTable } from '../../components/ClinicalSummaryTable';
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import api from '../../services/api';
@@ -215,7 +216,7 @@ export const TokenRedeemerPage: React.FC = () => {
 
           {/* Explainable AI Text */}
           <div className="space-y-2">
-            <h3 className="text-sm font-bold text-slate-200 print:text-black">Explainable AI Analysis Summary</h3>
+            <h3 className="text-sm font-bold text-slate-200 print:text-black">Summary</h3>
             <div className="p-4 rounded-xl bg-dark-800/90 border border-slate-800 text-xs text-slate-200 whitespace-pre-line leading-relaxed print:bg-gray-50 print:text-black print:border-gray-200">
               {record.ai_analysis_text}
             </div>

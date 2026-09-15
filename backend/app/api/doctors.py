@@ -566,7 +566,7 @@ async def get_doctor_notifications(
             "patient_code": pat.patient_code if pat else "PAT-0000",
             "appointment_date": apt.appointment_date,
             "slot_time": apt.appointment_time or "Scheduled Time",
-            "target_disease": apt.target_disease or "General Consultation",
+            "target_disease": apt.reason or apt.target_disease or "General Consultation",
             "created_at": format_ist(apt.created_at) if apt.created_at else "Recent",
             "raw_created_at": apt.created_at or datetime.min,
             "is_redeemed": False
@@ -995,7 +995,7 @@ async def get_doctor_slot_availability(
     avails = (await db.execute(avail_stmt)).scalars().all()
 
     if avails:
-        configured_slots = {a.time_slot.strip().upper(): a.is_available for a in avails}
+        configured_slots = {a.time_slot.strip().upper(): (a.time_slot.strip(), a.is_available) for a in avails}
     else:
         # Fallback to doctor's latest saved preferences across any date
         latest_stmt = select(DoctorAvailability).where(
@@ -1004,34 +1004,74 @@ async def get_doctor_slot_availability(
         latest_avails = (await db.execute(latest_stmt)).scalars().all()
 
         if latest_avails:
-            configured_slots = {a.time_slot.strip().upper(): a.is_available for a in latest_avails}
+            configured_slots = {a.time_slot.strip().upper(): (a.time_slot.strip(), a.is_available) for a in latest_avails}
         else:
-            # Default ALL slots in DEFAULT_DAY_SLOTS to AVAILABLE (True) across all days
-            configured_slots = {slot.strip().upper(): True for slot in DEFAULT_DAY_SLOTS}
+            configured_slots = {slot.strip().upper(): (slot.strip(), True) for slot in DEFAULT_DAY_SLOTS}
 
-    # Fetch active booked appointments on target date (matching string & datetime for future dates)
+    # Fetch active booked appointments on target date
     target_d_str = str(target_date)
     apt_stmt = select(Appointment).where(
         Appointment.doctor_id == doctor_id,
         Appointment.status != "REJECTED"
     )
     all_doc_apts = (await db.execute(apt_stmt)).scalars().all()
-    booked_slots = set()
+    booked_slots = {}
     for a in all_doc_apts:
         if a.appointment_date:
             a_d_str = str(a.appointment_date).split(" ")[0].split("T")[0]
             if a_d_str == target_d_str and a.appointment_time:
-                booked_slots.add(a.appointment_time.strip().upper())
+                booked_slots[a.appointment_time.strip().upper()] = a.appointment_time.strip()
+
+    now_local = datetime.now()
+    current_date = now_local.date()
+    current_time = now_local.time()
+
+    is_past_date = (target_date < current_date)
+    is_today = (target_date == current_date)
+
+    # Collect all unique slots
+    all_slots_dict = {}
+    for s in DEFAULT_DAY_SLOTS:
+        all_slots_dict[s.strip().upper()] = s.strip()
+    for s_upper, (s_orig, _) in configured_slots.items():
+        if s_upper not in all_slots_dict:
+            all_slots_dict[s_upper] = s_orig
+    for s_upper, s_orig in booked_slots.items():
+        if s_upper not in all_slots_dict:
+            all_slots_dict[s_upper] = s_orig
+
+    def get_slot_sort_key(slot_str):
+        try:
+            return datetime.strptime(slot_str.strip(), "%I:%M %p").time()
+        except Exception:
+            try:
+                return datetime.strptime(slot_str.strip(), "%H:%M").time()
+            except Exception:
+                return datetime.min.time()
+
+    sorted_slots = sorted(all_slots_dict.values(), key=get_slot_sort_key)
 
     slot_results = []
-    for slot in DEFAULT_DAY_SLOTS:
+    for slot in sorted_slots:
         slot_upper = slot.strip().upper()
-        if slot_upper in booked_slots:
+
+        slot_time_obj = None
+        try:
+            slot_time_obj = datetime.strptime(slot.strip(), "%I:%M %p").time()
+        except Exception:
+            try:
+                slot_time_obj = datetime.strptime(slot.strip(), "%H:%M").time()
+            except Exception:
+                pass
+
+        if is_past_date or (is_today and slot_time_obj and slot_time_obj <= current_time):
+            status_label = "PASSED"
+        elif slot_upper in booked_slots:
             status_label = "BOOKED"
-        elif configured_slots.get(slot_upper, True):
-            status_label = "AVAILABLE"
+        elif slot_upper in configured_slots:
+            status_label = "AVAILABLE" if configured_slots[slot_upper][1] else "NOT_AVAILABLE"
         else:
-            status_label = "NOT_AVAILABLE"
+            status_label = "AVAILABLE"
 
         slot_results.append({
             "slot": slot,
@@ -1062,7 +1102,6 @@ async def save_doctor_slot_availability(
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid date format. Expected YYYY-MM-DD.")
 
-    # Fetch active booked appointments for target date
     start_dt = datetime.combine(target_date, datetime.min.time())
     end_dt = datetime.combine(target_date, datetime.max.time())
 
@@ -1073,7 +1112,7 @@ async def save_doctor_slot_availability(
         Appointment.status != "REJECTED"
     )
     booked_apts = (await db.execute(apt_stmt)).scalars().all()
-    booked_slots = {a.appointment_time.strip().upper() for a in booked_apts if a.appointment_time}
+    booked_slots = {a.appointment_time.strip().upper(): a.appointment_time.strip() for a in booked_apts if a.appointment_time}
 
     if req.apply_all_days:
         del_stmt = select(DoctorAvailability).where(DoctorAvailability.doctor_id == doctor_id)
@@ -1088,13 +1127,23 @@ async def save_doctor_slot_availability(
         await db.delete(rec)
     await db.flush()
 
-    # Add new configured slots - Force is_available=True for slots with active booked appointments
-    for slot in DEFAULT_DAY_SLOTS:
+    all_candidate_slots = []
+    seen_upper = set()
+    for slot in DEFAULT_DAY_SLOTS + req.time_slots + list(booked_slots.values()):
+        s_clean = slot.strip()
+        s_upper = s_clean.upper()
+        if s_upper not in seen_upper:
+            seen_upper.add(s_upper)
+            all_candidate_slots.append(s_clean)
+
+    req_slots_upper = {s.strip().upper() for s in req.time_slots}
+
+    for slot in all_candidate_slots:
         slot_upper = slot.strip().upper()
         if slot_upper in booked_slots:
-            is_avail = True  # Active appointments cannot be deselected
+            is_avail = True
         else:
-            is_avail = (slot in req.time_slots) or (slot.upper() in [s.upper() for s in req.time_slots])
+            is_avail = (slot_upper in req_slots_upper)
 
         new_avail = DoctorAvailability(
             doctor_id=doctor_id,

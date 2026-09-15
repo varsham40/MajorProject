@@ -327,7 +327,7 @@ def train_all():
     config = load_config()
     results = {}
     for disease_key, disease_cfg in config.items():
-        bundle = preprocess_and_train(disease_key, disease_cfg, algorithm_name="RandomForestClassifier")
+        bundle = preprocess_and_train(disease_key, disease_cfg, algorithm_name="VotingEnsemble")
         results[disease_key] = bundle["metrics"]
     
     print("\n==========================================")

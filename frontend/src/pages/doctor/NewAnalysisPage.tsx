@@ -1,3 +1,4 @@
+import { ClinicalSummaryTable } from '../../components/ClinicalSummaryTable';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import api from '../../services/api';
@@ -63,7 +64,7 @@ export const NewAnalysisPage: React.FC = () => {
       setAppointmentDetail(data);
 
       // Auto-set disease model based on appointment target disease
-      const targetDis = (data.appointment?.target_disease || '').toLowerCase();
+      const targetDis = (data.appointment?.reason || data.appointment?.target_disease || '').toLowerCase();
       if (targetDis.includes('heart')) setDiseaseKey('heart_disease');
       else if (targetDis.includes('kidney') || targetDis.includes('ckd')) setDiseaseKey('kidney_disease');
       else if (targetDis.includes('liver')) setDiseaseKey('liver_disease');
@@ -129,6 +130,130 @@ export const NewAnalysisPage: React.FC = () => {
     setFormValues(prev => ({ ...prev, [name]: value }));
   };
 
+    const renderSummaryContent = (text: string, shapList: any[] = []) => {
+    if (!text) return null;
+    const lines = text.split('\n');
+    const metaLines = lines.filter(l => !l.includes('|'));
+    const tableLines = lines.filter(l => l.includes('|') && !l.includes('---'));
+
+    if (tableLines.length === 0) {
+      return (
+        <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs text-slate-200 whitespace-pre-line leading-relaxed">
+          {text}
+        </div>
+      );
+    }
+
+    const headers = tableLines[0].split('|').map(s => s.trim()).filter(Boolean);
+    const rows = tableLines.slice(1).map(l => l.split('|').map(s => s.trim()).filter(Boolean));
+
+    const checkIsRisk = (row: string[]) => {
+      const pName = (row[0] || '').toLowerCase();
+      const vText = (row[1] || '').toLowerCase();
+      const aText = (row[2] || '').toLowerCase();
+
+      if (Array.isArray(shapList) && shapList.length > 0) {
+        const match = shapList.find((f: any) => {
+          const fn = (f.feature_name || '').toLowerCase();
+          const rn = (f.raw_name || '').toLowerCase();
+          return pName.includes(fn) || pName.includes(rn) || fn.includes(pName) || rn.includes(pName);
+        });
+        if (match) {
+          if (match.effect === 'Increased Risk' || match.shap_value > 0.005) return true;
+          if (match.effect === 'Decreased Risk' || match.shap_value < -0.005) return false;
+        }
+      }
+
+      const riskKws = [
+        'hypertension', 'elevated', 'abnormal', 'impaired', 'severely', 'stage 2', 'stage 1',
+        'incompetence', 'ischemia', 'blockage', 'blocked', 'defect', 'positive indicator',
+        'proteinuria', 'anemia', 'hyperbilirubinemia', 'hyperglycemia', 'obesity', 'subnormal',
+        'flat', 'downsloping', 'hypertrophy', 'high positive', 'increased risk', 'disease', 'pathology'
+      ];
+      const combined = `${pName} ${vText} ${aText}`;
+      return riskKws.some(kw => combined.includes(kw));
+    };
+
+    return (
+      <div className="space-y-4">
+        {/* Top Header Metadata Badges */}
+        <div className="flex flex-wrap items-center gap-3 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs">
+          {metaLines.map((ml, idx) => {
+            if (!ml.trim()) return null;
+            const parts = ml.split(':');
+            const k = parts[0];
+            const v = parts.slice(1).join(':');
+            return (
+              <div key={idx} className="flex items-center gap-1.5 px-3 py-1 bg-slate-900 rounded-lg border border-slate-800">
+                <span className="text-slate-400 font-semibold">{k?.trim()}:</span>
+                <span className="text-cyan-400 font-bold">{v?.trim()}</span>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Dynamic Compact Clinical Table */}
+        <div className="overflow-x-auto rounded-xl border border-slate-800/80 bg-slate-950/90 shadow-xl">
+          <table className="w-full text-xs text-left border-collapse">
+            <thead className="bg-slate-900 border-b border-slate-800 text-cyan-400 font-extrabold uppercase text-[10px] tracking-wider">
+              <tr>
+                <th className="py-2.5 px-3.5 w-[24%] border-r border-slate-800/60">{headers[0]}</th>
+                <th className="py-2.5 px-3.5 w-[26%] border-r border-slate-800/60">{headers[1]}</th>
+                <th className="py-2.5 px-3.5 w-[50%]">{headers[2]}</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-800/50 text-slate-200">
+              {rows.map((row, rIdx) => {
+                const isRisk = checkIsRisk(row);
+
+                return (
+                  <tr
+                    key={rIdx}
+                    className={`transition-colors border-l-4 ${
+                      isRisk
+                        ? 'bg-rose-950/25 hover:bg-rose-950/45 border-l-rose-500'
+                        : 'bg-slate-950/40 hover:bg-slate-900/40 border-l-emerald-500/50'
+                    }`}
+                  >
+                    {/* Field / Parameter */}
+                    <td className="py-2.5 px-3.5 font-bold border-r border-slate-800/40 w-[24%]">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span className={isRisk ? 'text-rose-200 font-bold' : 'text-slate-200 font-semibold'}>{row[0]}</span>
+                        {isRisk && (
+                          <span className="px-1.5 py-0.5 rounded text-[9px] font-black uppercase bg-rose-500/20 text-rose-400 border border-rose-500/40 shadow-sm flex-shrink-0">
+                            Risk Factor
+                          </span>
+                        )}
+                      </div>
+                    </td>
+
+                    {/* Patient Value */}
+                    <td className="py-2.5 px-3.5 border-r border-slate-800/40 w-[26%]">
+                      <span className={`inline-block font-mono font-bold text-[11px] px-2.5 py-1 rounded-md border ${
+                        isRisk
+                          ? 'bg-rose-500/20 text-rose-300 border-rose-500/40 shadow-sm shadow-rose-500/10'
+                          : 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30'
+                      }`}>
+                        {row[1]}
+                      </span>
+                    </td>
+
+                    {/* Medical Significance & Risk Analysis */}
+                    <td className={`py-2.5 px-3.5 leading-snug w-[50%] text-xs ${
+                      isRisk ? 'text-rose-100/90 font-medium' : 'text-slate-300'
+                    }`}>
+                      {row[2]}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
+  };
+
   const handleRunPrediction = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!appointmentDetail?.patient?.id) {
@@ -139,10 +264,20 @@ export const NewAnalysisPage: React.FC = () => {
     setPredicting(true);
 
     try {
+      const formattedInputs: Record<string, any> = {};
+      Object.keys(formValues).forEach(k => {
+        const v = formValues[k];
+        if (typeof v === 'string' && v.trim() !== '' && !isNaN(Number(v))) {
+          formattedInputs[k] = parseFloat(v);
+        } else {
+          formattedInputs[k] = v;
+        }
+      });
+
       const res = await api.post('/doctors/analysis/predict', {
         patient_id: appointmentDetail.patient.id,
         disease_key: diseaseKey,
-        inputs: formValues,
+        inputs: formattedInputs,
         appointment_code: appointmentDetail.appointment?.appointment_code || appointmentCode
       });
       setPredictionResult(res.data);
@@ -340,13 +475,14 @@ export const NewAnalysisPage: React.FC = () => {
                           </select>
                         ) : (
                           <input
-                            type="number"
-                            step="any"
-                            min={0}
-                            value={isDisabled ? 0 : (formValues[f.name] ?? 0)}
-                            onChange={(e) => handleInputChange(f.name, parseFloat(e.target.value) || 0)}
+                            type="text"
+                            inputMode="decimal"
+                            value={isDisabled ? '0' : (formValues[f.name] !== undefined && formValues[f.name] !== null ? formValues[f.name] : '')}
+                            onChange={(e) => handleInputChange(f.name, e.target.value)}
+                            onClick={(e) => (e.target as HTMLInputElement).select()}
                             disabled={isDisabled}
-                            className="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white font-mono disabled:opacity-50 disabled:cursor-not-allowed"
+                            placeholder={`Enter value (min ${f.min ?? 0})`}
+                            className="w-full bg-slate-950 border border-slate-800 focus:border-cyan-500 rounded-xl px-3.5 py-2 text-xs text-white font-mono disabled:opacity-50 disabled:cursor-not-allowed transition-all focus:outline-none focus:ring-1 focus:ring-cyan-500/50 cursor-text selection:bg-cyan-500/30"
                           />
                         )}
                       </div>
@@ -437,10 +573,8 @@ export const NewAnalysisPage: React.FC = () => {
 
               {/* AI Analysis Summary */}
               <div className="space-y-2">
-                <h3 className="text-sm font-bold text-slate-200">Explainable AI Summary</h3>
-                <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800/80 text-xs text-slate-200 whitespace-pre-line leading-relaxed">
-                  {predictionResult.ai_analysis_text}
-                </div>
+                <h3 className="text-sm font-bold text-slate-200">Summary</h3>
+                <ClinicalSummaryTable summaryText={predictionResult.ai_analysis_text} shapList={shapFeatureList} />
               </div>
 
               {/* SHAP Contributions */}

@@ -1,0 +1,31 @@
+{
+  "disease_key": "liver_disease",
+  "disease_name": "Liver Disease",
+  "cv_folds": 5,
+  "metrics": {
+    "accuracy": {
+      "mean": 0.7382,
+      "std": 0.0227
+    },
+    "precision": {
+      "mean": 0.7584,
+      "std": 0.0203
+    },
+    "recall": {
+      "mean": 0.9309,
+      "std": 0.0122
+    },
+    "f1_score": {
+      "mean": 0.8356,
+      "std": 0.0136
+    },
+    "roc_auc": {
+      "mean": 0.7302,
+      "std": 0.0152
+    },
+    "pr_auc": {
+      "mean": 0.8806,
+      "std": 0.0062
+    }
+  }
+}

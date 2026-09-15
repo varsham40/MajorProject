@@ -1,3 +1,4 @@
+from backend.app.services.shap_service import compute_shap_explanations
 from pydantic import BaseModel
 import os
 from datetime import datetime, timedelta
@@ -150,6 +151,18 @@ async def get_full_record_details(
                 "shap_value": f.shap_value,
                 "effect": f.effect
             })
+
+    # DYNAMIC FALLBACK: If SHAP values in DB are zero or empty, recompute on the fly
+    if not shap_features or all(abs(f.get("shap_value", 0)) < 0.0001 for f in shap_features):
+        try:
+            disease_key = pred.disease.lower().replace(" ", "_")
+            computed_base, computed_feats, computed_text = compute_shap_explanations(disease_key, inputs_dict)
+            base_val = computed_base
+            shap_features = computed_feats
+            if not ai_analysis_text or "Clinical AI Analysis completed" in ai_analysis_text or "|" not in ai_analysis_text:
+                ai_analysis_text = computed_text
+        except Exception as e:
+            print(f"[SHAP On-The-Fly Computation Warning]: {e}")
 
     # Reports Used
     pr_stmt = (

@@ -22,6 +22,7 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
   const [loadingSlots, setLoadingSlots] = useState<boolean>(false);
   const [savingSlots, setSavingSlots] = useState<boolean>(false);
   const [slotMsg, setSlotMsg] = useState<string | null>(null);
+  const [customTime, setCustomTime] = useState<string>('');
 
   useEffect(() => {
     fetchDoctorDetails();
@@ -57,6 +58,38 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
     } finally {
       setLoadingSlots(false);
     }
+  };
+
+  
+  const formatTime24to12 = (time24: string): string => {
+    if (!time24) return '';
+    const parts = time24.split(':');
+    if (parts.length < 2) return time24;
+    let h = parseInt(parts[0], 10);
+    const m = parseInt(parts[1], 10);
+    if (isNaN(h) || isNaN(m)) return time24;
+    const period = h >= 12 ? 'PM' : 'AM';
+    h = h % 12;
+    if (h === 0) h = 12;
+    const formattedH = h < 10 ? `0${h}` : `${h}`;
+    const formattedM = m < 10 ? `0${m}` : `${m}`;
+    return `${formattedH}:${formattedM} ${period}`;
+  };
+
+  const handleAddCustomSlot = () => {
+    if (!customTime) return;
+    const formatted = formatTime24to12(customTime);
+    if (!formatted) return;
+    const existsInSlotData = slotData.some((s: any) => s.slot.toUpperCase() === formatted.toUpperCase());
+    if (!existsInSlotData) {
+      setSlotData(prev => [...prev, { slot: formatted, status: 'AVAILABLE', is_selectable: true }]);
+    }
+    if (!selectedSlots.includes(formatted)) {
+      setSelectedSlots(prev => [...prev, formatted]);
+    }
+    setCustomTime('');
+    setSlotMsg(`Custom slot "${formatted}" added to availability list!`);
+    setTimeout(() => setSlotMsg(null), 3000);
   };
 
   const handleToggleSlot = (slotName: string, isBooked: boolean) => {
@@ -367,15 +400,36 @@ export const DoctorDetailsManagement: React.FC<Props> = ({ doctorId, onBack }) =
               <p className="text-xs text-slate-400">Select a date and click to enable or disable time slots for patient appointments.</p>
             </div>
 
-            {/* Date Selector */}
-            <div className="flex items-center gap-2">
-              <label className="text-xs font-semibold text-slate-300">Select Date:</label>
-              <input
-                type="date"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-                className="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500"
-              />
+            {/* Date & Custom Time Selector */}
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-2">
+                <label className="text-xs font-semibold text-slate-300">Select Date:</label>
+                <input
+                  type="date"
+                  min={new Date().toISOString().split('T')[0]}
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  className="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500"
+                />
+              </div>
+
+              <div className="flex items-center gap-2">
+                <label className="text-xs font-semibold text-slate-300">Add Flexible Time:</label>
+                <input
+                  type="time"
+                  value={customTime}
+                  onChange={(e) => setCustomTime(e.target.value)}
+                  className="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500"
+                />
+                <button
+                  type="button"
+                  onClick={handleAddCustomSlot}
+                  disabled={!customTime}
+                  className="px-3.5 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs rounded-xl transition disabled:opacity-40 shadow-sm"
+                >
+                  + Add Slot
+                </button>
+              </div>
             </div>
           </div>
 

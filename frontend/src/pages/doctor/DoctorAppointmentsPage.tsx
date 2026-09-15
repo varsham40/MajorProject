@@ -35,6 +35,7 @@ export const DoctorAppointmentsPage: React.FC = () => {
   const [loadingSlots, setLoadingSlots] = useState<boolean>(false);
   const [savingSlots, setSavingSlots] = useState<boolean>(false);
   const [slotMsg, setSlotMsg] = useState<string | null>(null);
+  const [customTime, setCustomTime] = useState<string>('');
 
   useEffect(() => {
     api.get('/doctors/profile/me')
@@ -71,6 +72,38 @@ export const DoctorAppointmentsPage: React.FC = () => {
     } finally {
       setLoadingSlots(false);
     }
+  };
+
+  
+  const formatTime24to12 = (time24: string): string => {
+    if (!time24) return '';
+    const parts = time24.split(':');
+    if (parts.length < 2) return time24;
+    let h = parseInt(parts[0], 10);
+    const m = parseInt(parts[1], 10);
+    if (isNaN(h) || isNaN(m)) return time24;
+    const period = h >= 12 ? 'PM' : 'AM';
+    h = h % 12;
+    if (h === 0) h = 12;
+    const formattedH = h < 10 ? `0${h}` : `${h}`;
+    const formattedM = m < 10 ? `0${m}` : `${m}`;
+    return `${formattedH}:${formattedM} ${period}`;
+  };
+
+  const handleAddCustomSlot = () => {
+    if (!customTime) return;
+    const formatted = formatTime24to12(customTime);
+    if (!formatted) return;
+    const existsInSlotData = slotData.some((s: any) => s.slot.toUpperCase() === formatted.toUpperCase());
+    if (!existsInSlotData) {
+      setSlotData(prev => [...prev, { slot: formatted, status: 'AVAILABLE', is_selectable: true }]);
+    }
+    if (!selectedSlots.includes(formatted)) {
+      setSelectedSlots(prev => [...prev, formatted]);
+    }
+    setCustomTime('');
+    setSlotMsg(`Custom slot "${formatted}" added to availability list!`);
+    setTimeout(() => setSlotMsg(null), 3000);
   };
 
   const handleToggleSlot = (slotName: string, isBooked: boolean) => {
@@ -150,6 +183,7 @@ export const DoctorAppointmentsPage: React.FC = () => {
     const matchesSearch =
       (apt.patient_name || '').toLowerCase().includes(search.toLowerCase()) ||
       (apt.appointment_code || '').toLowerCase().includes(search.toLowerCase()) ||
+      (apt.reason || '').toLowerCase().includes(search.toLowerCase()) ||
       (apt.target_disease || '').toLowerCase().includes(search.toLowerCase());
     return matchesFilter && matchesSearch;
   });
@@ -252,8 +286,8 @@ export const DoctorAppointmentsPage: React.FC = () => {
                     <span className="text-slate-200 font-semibold">{apt.appointment_time}</span>
                   </div>
                   <div className="flex justify-between text-slate-400">
-                    <span>Target Disease:</span>
-                    <span className="text-emerald-400 font-bold uppercase">{apt.target_disease}</span>
+                    <span>Target Disease / Reason:</span>
+                    <span className="text-emerald-400 font-bold uppercase">{apt.reason || apt.target_disease || 'General Consultation'}</span>
                   </div>
                 </div>
 
@@ -345,14 +379,35 @@ export const DoctorAppointmentsPage: React.FC = () => {
               </button>
             </div>
 
-            <div className="flex justify-between items-center bg-slate-950 p-3 rounded-xl border border-slate-800">
-              <span className="text-xs font-semibold text-slate-300">Select Date:</span>
-              <input
-                type="date"
-                value={selectedDate}
-                onChange={(e) => setSelectedDate(e.target.value)}
-                className="bg-slate-900 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-500"
-              />
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-slate-950 p-3.5 rounded-xl border border-slate-800">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-semibold text-slate-300">Select Date:</span>
+                <input
+                  type="date"
+                  min={new Date().toISOString().split('T')[0]}
+                  value={selectedDate}
+                  onChange={(e) => setSelectedDate(e.target.value)}
+                  className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                />
+              </div>
+
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-semibold text-slate-300">Add Custom Flexible Time:</span>
+                <input
+                  type="time"
+                  value={customTime}
+                  onChange={(e) => setCustomTime(e.target.value)}
+                  className="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white focus:outline-none focus:border-cyan-500"
+                />
+                <button
+                  type="button"
+                  onClick={handleAddCustomSlot}
+                  disabled={!customTime}
+                  className="px-3 py-1.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-xs rounded-lg transition disabled:opacity-40"
+                >
+                  + Add Slot
+                </button>
+              </div>
             </div>
 
             {slotMsg && (
